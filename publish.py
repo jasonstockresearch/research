@@ -24,7 +24,7 @@ import sys, shutil, subprocess, re
 from pathlib import Path
 from datetime import date
 
-HUB_DIR = Path(r"C:\Users\USER\Claude\Projects\research-site")
+HUB_DIR = Path(r"C:\Users\USER\Claude\Projects\研究報告站_research-site")
 INDEX_HTML = HUB_DIR / "index.html"
 
 ICONS = {
@@ -118,9 +118,12 @@ def main():
     dest_name = f"{slug}.html"
     dest = HUB_DIR / dest_name
 
-    # 1. 複製報告
-    shutil.copy2(src, dest)
-    print(f"[OK] 複製完成：{dest_name}")
+    # 1. 複製報告（src == dst 時跳過，檔案已在正確位置）
+    if src.resolve() != dest.resolve():
+        shutil.copy2(src, dest)
+        print(f"[OK] 複製完成：{dest_name}")
+    else:
+        print(f"[OK] 檔案已在目標位置：{dest_name}")
 
     # 2. 自動寫入 index.html
     entry = dict(date=today.isoformat(), type=rtype, icon=icon,
