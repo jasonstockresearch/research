@@ -24,7 +24,7 @@ import sys, shutil, subprocess, re
 from pathlib import Path
 from datetime import date
 
-HUB_DIR = Path(__file__).parent
+HUB_DIR = Path(r"C:\Users\USER\Claude\Projects\research-site")
 INDEX_HTML = HUB_DIR / "index.html"
 
 ICONS = {
