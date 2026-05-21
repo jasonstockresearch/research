@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 數據中心連接之戰：2026–2028 完整投資地圖</title>
+<style>
+  :root {
+    --bg: #0d1117; --bg2: #161b22; --bg3: #21262d;
+    --border: #30363d; --text: #e6edf3; --muted: #8b949e;
+    --accent: #58a6ff; --green: #3fb950; --yellow: #d29922;
+    --red: #f85149; --purple: #bc8cff; --teal: #39d353;
+    --header-bg: #1c2128;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", "Noto Sans TC", sans-serif;
+    background: var(--bg); color: var(--text);
+    font-size: 15px; line-height: 1.7;
+    max-width: 1000px; margin: 0 auto; padding: 40px 24px 80px;
+  }
+
+  /* ── Cover ── */
+  .cover {
+    background: linear-gradient(135deg, #0d1117 0%, #1c2a4a 50%, #0d1117 100%);
+    border: 1px solid #1e3a5f; border-radius: 12px;
+    padding: 48px 40px; margin-bottom: 40px; text-align: center;
+  }
+  .cover .badge {
+    display: inline-block; background: #1e3a5f; color: var(--accent);
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    padding: 4px 14px; border-radius: 20px; margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  .cover h1 {
+    font-size: 26px; font-weight: 900; color: #fff;
+    line-height: 1.3; margin-bottom: 12px;
+  }
+  .cover .subtitle { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
+  .cover .meta {
+    display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;
+    font-size: 13px;
+  }
+  .cover .meta-item { display: flex; flex-direction: column; gap: 2px; }
+  .cover .meta-label { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
+  .cover .meta-value { color: var(--text); font-weight: 600; }
+
+  /* ── Executive Summary ── */
+  .exec-summary {
+    background: #0d2137; border: 1px solid #1e3a5f; border-left: 4px solid var(--accent);
+    border-radius: 8px; padding: 24px 28px; margin-bottom: 36px;
+  }
+  .exec-summary h2 { color: var(--accent); font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 16px; }
+  .exec-summary blockquote {
+    color: #8ebbff; font-size: 15px; font-style: italic; line-height: 1.6;
+    border-left: 2px solid var(--accent); padding-left: 16px; margin-bottom: 20px;
+  }
+  .exec-summary ol { padding-left: 20px; }
+  .exec-summary li { margin-bottom: 8px; color: var(--text); }
+  .exec-summary li strong { color: var(--accent); }
+
+  /* ── Section headings ── */
+  h2 {
+    font-size: 18px; font-weight: 800; color: var(--accent);
+    margin: 48px 0 16px; padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  h3 { font-size: 15px; font-weight: 700; color: #e6edf3; margin: 28px 0 10px; }
+  h4 { font-size: 13px; font-weight: 700; color: var(--muted); margin: 20px 0 8px; letter-spacing: 0.5px; }
+  p { margin-bottom: 12px; color: var(--text); }
+
+  /* ── Tables ── */
+  .table-wrap { overflow-x: auto; margin: 16px 0 24px; border-radius: 8px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead tr { background: var(--header-bg); }
+  th { padding: 10px 14px; text-align: left; font-weight: 700; color: var(--accent); font-size: 12px; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:nth-child(even) { background: #161b22; }
+  tbody tr:hover { background: #1c2a3a; }
+  td strong { color: var(--accent); }
+  td em { color: var(--green); font-style: normal; font-weight: 600; }
+
+  /* ── Code blocks ── */
+  pre {
+    background: var(--bg3); border: 1px solid var(--border); border-radius: 8px;
+    padding: 16px 20px; overflow-x: auto; margin: 16px 0 24px;
+    font-family: "Consolas", "Courier New", monospace; font-size: 13px;
+    line-height: 1.6; color: #adbac7;
+  }
+  code { font-family: "Consolas", monospace; font-size: 12px; color: #ff7b72; background: var(--bg3); padding: 2px 6px; border-radius: 4px; }
+
+  /* ── Lists ── */
+  ul, ol { padding-left: 22px; margin-bottom: 14px; }
+  li { margin-bottom: 6px; }
+  li strong { color: #e6edf3; }
+
+  /* ── Layer cards ── */
+  .layer-card {
+    border: 1px solid var(--border); border-radius: 10px;
+    margin-bottom: 28px; overflow: hidden;
+  }
+  .layer-header {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 20px; background: var(--bg2);
+  }
+  .layer-num {
+    width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900; font-size: 14px; flex-shrink: 0;
+  }
+  .layer-num.l1 { background: #1e3a5f; color: var(--accent); }
+  .layer-num.l2 { background: #1a3a1a; color: var(--green); }
+  .layer-num.l3 { background: #3a2a00; color: var(--yellow); }
+  .layer-num.l4 { background: #2a1a3a; color: var(--purple); }
+  .layer-title { font-weight: 800; font-size: 15px; }
+  .layer-body { padding: 16px 20px; }
+
+  /* ── Company cards ── */
+  .company-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  @media (max-width: 680px) { .company-grid { grid-template-columns: 1fr; } }
+  .company-card {
+    background: var(--bg2); border: 1px solid var(--border); border-radius: 8px;
+    padding: 16px;
+  }
+  .company-card .ticker { font-size: 11px; color: var(--accent); font-weight: 700; letter-spacing: 1px; margin-bottom: 4px; }
+  .company-card .name { font-size: 15px; font-weight: 800; color: var(--text); margin-bottom: 8px; }
+  .company-card .desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+  /* ── Portfolio tiers ── */
+  .portfolio-tier {
+    border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;
+  }
+  .portfolio-tier.core { background: #0d2137; border: 1px solid #1e3a5f; }
+  .portfolio-tier.flexible { background: #0d2a0d; border: 1px solid #1a3a1a; }
+  .portfolio-tier.options { background: #1a1a2a; border: 1px solid #2a2a4a; }
+  .portfolio-tier .tier-header {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 14px;
+  }
+  .tier-pct {
+    font-size: 22px; font-weight: 900;
+    min-width: 52px;
+  }
+  .core .tier-pct { color: var(--accent); }
+  .flexible .tier-pct { color: var(--green); }
+  .options .tier-pct { color: var(--purple); }
+  .tier-label { font-weight: 700; font-size: 14px; }
+  .tier-desc { font-size: 12px; color: var(--muted); }
+
+  /* ── Timeline ── */
+  .timeline { position: relative; padding-left: 28px; margin-bottom: 28px; }
+  .timeline::before {
+    content: ""; position: absolute; left: 8px; top: 0; bottom: 0;
+    width: 2px; background: var(--border);
+  }
+  .tl-item { position: relative; margin-bottom: 24px; }
+  .tl-dot {
+    position: absolute; left: -24px; top: 4px;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--bg);
+  }
+  .tl-item.yellow .tl-dot { background: var(--yellow); }
+  .tl-item.purple .tl-dot { background: var(--purple); }
+  .tl-year { font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: 1px; margin-bottom: 6px; }
+  .tl-item.yellow .tl-year { color: var(--yellow); }
+  .tl-item.purple .tl-year { color: var(--purple); }
+  .tl-content h4 { color: var(--text); font-size: 14px; margin: 0 0 6px; }
+  .tl-checklist { list-style: none; padding: 0; margin: 0; }
+  .tl-checklist li { font-size: 13px; color: var(--muted); padding: 3px 0; }
+  .tl-checklist li::before { content: "□ "; color: var(--accent); }
+
+  /* ── Risk boxes ── */
+  .risk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  @media (max-width: 680px) { .risk-grid { grid-template-columns: 1fr; } }
+  .risk-box { border-radius: 8px; padding: 16px 20px; }
+  .risk-box.up { background: #0d2a0d; border: 1px solid #1a3a1a; }
+  .risk-box.down { background: #2a0d0d; border: 1px solid #3a1a1a; }
+  .risk-box h4 { margin: 0 0 10px; font-size: 13px; }
+  .risk-box.up h4 { color: var(--green); }
+  .risk-box.down h4 { color: var(--red); }
+  .risk-box ul { padding-left: 16px; }
+  .risk-box li { font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+  .risk-box li strong { color: var(--text); }
+
+  /* ── Callout boxes ── */
+  .callout {
+    border-radius: 8px; padding: 16px 20px; margin: 16px 0 24px;
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+  .callout.insight { background: #0d2137; border-left: 3px solid var(--accent); }
+  .callout.warning { background: #2a1a00; border-left: 3px solid var(--yellow); }
+  .callout-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .callout-text { font-size: 13px; line-height: 1.6; color: var(--text); }
+  .callout-text strong { color: var(--accent); }
+  .callout.warning .callout-text strong { color: var(--yellow); }
+
+  /* ── Appendix ── */
+  .appendix { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 24px; margin-top: 40px; }
+  .appendix h3 { color: var(--muted); font-size: 13px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; }
+
+  /* ── Footer ── */
+  .footer {
+    margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border);
+    font-size: 12px; color: var(--muted); text-align: center; line-height: 1.8;
+  }
+
+  /* ── Highlight spans ── */
+  .hl { color: var(--accent); font-weight: 700; }
+  .hl-green { color: var(--green); font-weight: 700; }
+  .hl-yellow { color: var(--yellow); font-weight: 700; }
+  .hl-red { color: var(--red); font-weight: 700; }
+</style>
+</head>
+<body>
+
+<!-- ── COVER ── -->
+<div class="cover">
+  <div class="badge">Sector Deep Dive · AI Infrastructure</div>
+  <h1>AI 數據中心連接之戰<br>2026–2028 完整投資地圖</h1>
+  <p class="subtitle">Bernstein 97 頁研報深度解析 × 多方來源交叉驗證</p>
+  <div class="meta">
+    <div class="meta-item"><span class="meta-label">研究員</span><span class="meta-value">Jason × Claude Sonnet</span></div>
+    <div class="meta-item"><span class="meta-label">發布日期</span><span class="meta-value">2026-05-21</span></div>
+    <div class="meta-item"><span class="meta-label">研究類型</span><span class="meta-value">產業深度研究</span></div>
+    <div class="meta-item"><span class="meta-label">覆蓋市場</span><span class="meta-value">US / TW / JP / HK</span></div>
+  </div>
+</div>
+
+<!-- ── EXECUTIVE SUMMARY ── -->
+<div class="exec-summary">
+  <h2>執行摘要</h2>
+  <blockquote>AI 數據中心的瓶頸，正在從「算得快」轉向「連得快、連得穩、連得省電」。未來三年的投資主軸不是 CPO 獨贏，而是光、電、銅、板、封裝、測試共同升級。</blockquote>
+  <ol>
+    <li><strong>瓶頸已遷移：</strong>AI 算力已從 GPU 供不應求，轉向 GPU 之間的連接系統成為利用率瓶頸。</li>
+    <li><strong>銅光長期共存：</strong>Scale-up 銅纜 2028 年前仍主導；Scale-out 光學方案持續擴張，非「銅退光進」的簡單替代。</li>
+    <li><strong>CPO 時間表保守：</strong>2026H2 小規模試驗，Scale-up 場景 2028H2 之後。<strong>無一家雲廠商計劃 2026–2027 大規模部署 CPO。</strong></li>
+    <li><strong>LPO/NPO 是過渡主線：</strong>800G LPO 已量產，功耗降 1/3，是 CPO 前 2–3 年的真實收入窗口。</li>
+    <li><strong>PCB/ABF 是 2026 反共識機會：</strong>GB300 每 GPU PCB 含量翻倍；Ajinomoto ABF 膜 Q3 2026 宣布漲價 30%，業績確定性最高。</li>
+  </ol>
+</div>
+
+<!-- ── SECTION 1: RESEARCH SOURCES ── -->
+<h2>一、研究方法與資料來源</h2>
+<div class="table-wrap">
+<table>
+<thead><tr><th>來源</th><th>性質</th><th>用途</th></tr></thead>
+<tbody>
+<tr><td>Bernstein 97 頁研報（2025 年）</td><td>賣方一手研報</td><td>主論點框架</td></tr>
+<tr><td>PANews / Futunn 英文版摘要</td><td>已驗證摘要</td><td>補充具體數字</td></tr>
+<tr><td>Broadcom 官方新聞稿（2025/10/8）</td><td>第一手資料</td><td>Davisson 規格確認</td></tr>
+<tr><td>NVIDIA 產品發布（2025/3）</td><td>第一手資料</td><td>Spectrum-X/Quantum-X 確認</td></tr>
+<tr><td>LightCounting 預測</td><td>第三方研調</td><td>銅/光市場份額預測</td></tr>
+<tr><td>Yole Group CPO 報告</td><td>第三方研調</td><td>CPO 量產時間表</td></tr>
+<tr><td>Ajinomoto 官方 / BigGo Finance</td><td>第一手財報</td><td>ABF 漲價確認</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- ── SECTION 2: INDUSTRY ── -->
+<h2>二、產業分析：瓶頸遷移路徑</h2>
+
+<h3>2.1 為什麼連接性成為新瓶頸</h3>
+<p>AI 大模型訓練的兩種核心並行方式——<strong>張量並行</strong>與<strong>專家並行</strong>——GPU 之間需要頻繁、大規模交換數據。理論算力再強，一旦 GPU 間通信跟不上，實際利用率就會崩潰。</p>
+
+<div class="callout insight">
+  <span class="callout-icon">💡</span>
+  <div class="callout-text"><strong>GB300 具體案例：</strong>一個 1.6T 光模塊功耗約 30W，其中超過一半被 DSP（數位信號處理器）芯片消耗。一個機櫃數百個光模塊，光通信功耗直接壓頂 PUE。NVIDIA 官方：新一代 CPO 交換機比傳統光模塊節省 70% 功耗，一個 51.2T 交換機單此一項省 500W。</div>
+</div>
+
+<h3>2.2 AI 算力演進：瓶頸遷移時序</h3>
+<pre>Phase 1（2020–2023）：GPU 數量不夠
+→ NVIDIA A100/H100 供不應求，CoWoS 產能緊張
+
+Phase 2（2024–2026）：GPU 夠了，但連不起來
+→ AllReduce 通信成瓶頸，1.6T 光模塊、Scale-out 網絡成主角
+
+Phase 3（2026–2028）：連起來了，但功耗頂了
+→ DSP 功耗問題驅動 LPO/NPO 過渡，CPO 試驗性部署
+
+Phase 4（2028+）：架構重構
+→ CPO 從交換機側延伸到 XPU/GPU
+→ Optical I/O 進入先進封裝，算力架構根本改變</pre>
+
+<h3>2.3 Scale-up vs Scale-out：兩個平行市場</h3>
+<div class="callout warning">
+  <span class="callout-icon">⚠️</span>
+  <div class="callout-text"><strong>市場常見誤判：</strong>「光進銅退」是過度簡化的敘事。正確理解是場景分化的長期共存——銅在 GPU 核心互聯（Scale-up）維持優勢，光在跨機櫃長距離傳輸（Scale-out）擴張，兩條路線互不衝突。</div>
+</div>
+
+<div class="table-wrap">
+<table>
+<thead><tr><th>維度</th><th>Scale-up</th><th>Scale-out</th></tr></thead>
+<tbody>
+<tr><td>定義</td><td>GPU↔GPU，機櫃內/近機櫃</td><td>機櫃↔機櫃，集群間</td></tr>
+<tr><td>距離</td><td>&lt; 2 公尺</td><td>數公尺至數十公尺</td></tr>
+<tr><td>現有方案</td><td>銅纜 DAC/AEC / NVLink</td><td>可插拔光模塊 800G/1.6T</td></tr>
+<tr><td>過渡方案</td><td>CPC（共封裝銅纜）</td><td>LPO（去 DSP）→ NPO（光引擎靠近 ASIC）</td></tr>
+<tr><td>未來方案</td><td>光互連（2028+，可靠性壁壘高）</td><td>CPO（2026H2 試驗 → 2028 規模化）</td></tr>
+<tr><td>2029 銅纜市佔</td><td colspan="2" style="text-align:center;"><em>LightCounting 預測：銅纜仍佔 1.6T 連接市場約 50%</em></td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- ── SECTION 3: TECH ROADMAP ── -->
+<h2>三、技術路線圖</h2>
+
+<h3>演進路線</h3>
+<pre>傳統可插拔光模塊（含 DSP，功耗高）
+    ↓
+LPO（Linear Pluggable Optics）
+    → 去除 DSP，功耗降至原來 1/3
+    → 800G LPO 已量產，1.6T LPO 放量中
+    → 保留可插拔，可維護性佳
+    ↓
+NPO（Near-Packaged Optics）
+    → 光引擎放在交換機芯片旁的 PCB，但仍可拆卸
+    → NVIDIA 部分 CPO 產品嚴格說屬 NPO
+    ↓
+CPO（Co-Packaged Optics）
+    → 最終形態，光引擎與 ASIC 共封裝
+    → 2026H2：Scale-out 小規模試驗
+    → 2028H2+：Scale-up 場景導入
+    ↓（更遠未來）
+Optical I/O / Optical Fabric
+    → 光互連進入 GPU/XPU 封裝本體</pre>
+
+<h3>CPO 延遲的三個真實原因</h3>
+
+<div class="table-wrap">
+<table>
+<thead><tr><th>原因</th><th>說明</th></tr></thead>
+<tbody>
+<tr><td><strong>可靠性門檻</strong></td><td>傳統光模塊故障率 1/10 萬小時（1 萬個模塊每年約故障 9 個）。CPO 焊死在交換機內無法熱插拔，雲廠商要求可靠性提升數個數量級。</td></tr>
+<tr><td><strong>過渡方案已夠用</strong></td><td>LPO 800G 已量產，NPO 已可商用，雲廠商可用 LPO/NPO 撐 2–3 年。<strong>中際旭創直接告知 Bernstein：無任何雲廠商計劃 2026–2027 大規模部署 CPO。</strong></td></tr>
+<tr><td><strong>Scale-up 銅纜未死</strong></td><td>GPU 核心互聯場景，銅纜成本與可靠性無可替代，CPC 技術進一步延長銅纜生命週期。LightCounting：2029 年銅纜仍佔 1.6T 市場約 50%。</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>CPO 對利潤池的重構</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>時代</th><th>利潤鏈走向</th></tr></thead>
+<tbody>
+<tr><td><strong>傳統可插拔時代</strong></td><td>DSP 芯片 → 光芯片 → TOSA/ROSA → 模塊封裝 → <em>光模塊廠（利潤中心）</em> → 交換機廠</td></tr>
+<tr><td><strong>CPO 時代</strong></td><td><em>Switch ASIC</em> → 光引擎 → <em>外置激光源</em> → FAU → <em>先進封裝（TSMC COUPE）</em> → 測試</td></tr>
+</tbody>
+</table>
+</div>
+<p>Bernstein 估算：NVIDIA Quantum-X800 CPO 交換機（4 顆 ASIC × 18 光引擎 + 18 個外置光源）→ 單台成本約 <strong class="hl">57 萬美元</strong>。</p>
+
+<!-- ── SECTION 4: SUPPLY CHAIN ── -->
+<h2>四、產業鏈四層公司地圖</h2>
+
+<!-- Layer 1 -->
+<div class="layer-card">
+  <div class="layer-header">
+    <div class="layer-num l1">1</div>
+    <div>
+      <div class="layer-title">平台控制者（架構制定者）</div>
+      <div style="font-size:12px;color:var(--muted)">護城河最寬，無論哪條技術路線勝出都受益</div>
+    </div>
+  </div>
+  <div class="layer-body">
+    <div class="company-grid">
+      <div class="company-card">
+        <div class="ticker">NVDA · NASDAQ</div>
+        <div class="name">NVIDIA</div>
+        <div class="desc">GPU + NVLink + InfiniBand + Ethernet + Spectrum-X + Quantum-X + 軟件生態。2025/3 發布矽光交換機，將整個 AI Factory 網絡架構納入平台控制。無論 CPO/LPO/銅纜哪條路線勝出，NVIDIA 都是架構制定者。</div>
+      </div>
+      <div class="company-card">
+        <div class="ticker">TSM / 2330.TW</div>
+        <div class="name">台積電 TSMC</div>
+        <div class="desc">先進封裝唯一入口。CoWoS 壟斷主流 AI 芯片封裝；TSMC COUPE™ 是 CPO 時代的關鍵平台（Broadcom Davisson 採用）。CPO 強化的是台積電的壟斷地位。</div>
+      </div>
+      <div class="company-card">
+        <div class="ticker">AVGO · NASDAQ</div>
+        <div class="name">Broadcom</div>
+        <div class="desc">目前最快落地 CPO 的公司。TH6-Davisson（2025/10 出貨）102.4Tbps，光功耗降 70%，TSMC COUPE 技術。Custom ASIC 業務（Google TPU / Meta MTIA）提供強勁現金流支撐。</div>
+      </div>
+    </div>
+    <div class="callout insight" style="margin-top:8px">
+      <span class="callout-icon">📌</span>
+      <div class="callout-text"><strong>Broadcom Davisson 已確認出貨（2025/10/8）：</strong>這是目前市場上唯一量產出貨的 CPO 交換機，比市場普遍認知的「CPO 2028 才有」提前了約 2 年——但僅限 Scale-out 交換機側，非 GPU 核心連接。</div>
+    </div>
+  </div>
+</div>
+
+<!-- Layer 2 -->
+<div class="layer-card">
+  <div class="layer-header">
+    <div class="layer-num l2">2</div>
+    <div>
+      <div class="layer-title">光學與高速互連</div>
+      <div style="font-size:12px;color:var(--muted)">關鍵：跨階段能力（800G/1.6T + LPO/NPO + CPO 光源 + FAU）</div>
+    </div>
+  </div>
+  <div class="layer-body">
+    <div class="table-wrap" style="margin:0">
+    <table>
+    <thead><tr><th>公司</th><th>代碼</th><th>核心競爭力</th><th>2026 催化劑</th><th>主要風險</th></tr></thead>
+    <tbody>
+    <tr><td><strong>Coherent</strong></td><td>COHR</td><td>矽光、EML 激光器、1.6T 模塊、CPO 光引擎</td><td>1.6T 訂單放量 + 外置光源需求</td><td>II-VI 整合毛利率修復進度</td></tr>
+    <tr><td><strong>Lumentum</strong></td><td>LITE</td><td>泵浦激光器、EEL、VCSEL</td><td>CPO 外置激光源（必需元件）</td><td>週期性波動</td></tr>
+    <tr><td><strong>Fabrinet</strong></td><td>FN</td><td>高端光電製造代工，近壟斷高規格段</td><td>NVIDIA 矽光生態訂單擴大</td><td>客戶集中度高</td></tr>
+    <tr><td><strong>Corning</strong></td><td>GLW</td><td>光纖光纜（Cable + Connectivity）</td><td>AI 資料中心光纜基礎建設</td><td>建設週期波動</td></tr>
+    <tr><td><strong>中際旭創</strong></td><td>300308.SZ</td><td>中國最大光模塊廠，1.6T 主力</td><td>1.6T 量產時間點</td><td>中美脫鉤、CPO 長期顛覆</td></tr>
+    <tr><td><strong>新易盛</strong></td><td>300502.SZ</td><td>800G/1.6T 光模塊</td><td>800G 持續放量</td><td>毛利率競爭壓力</td></tr>
+    <tr><td><strong>SENKO</strong></td><td>9069.JP</td><td>FAU、精密光纖連接器，NVIDIA 生態供應商</td><td>CPO 試產 FAU 元件</td><td>小市值、流動性低</td></tr>
+    <tr><td><strong>住友電氣工業</strong></td><td>5802.JP</td><td>光纖、銅纜、連接器</td><td>日本供應鏈再定位</td><td>日圓匯率風險</td></tr>
+    </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+
+<!-- Layer 3 -->
+<div class="layer-card">
+  <div class="layer-header">
+    <div class="layer-num l3">3</div>
+    <div>
+      <div class="layer-title">PCB / ABF / CCL / 材料</div>
+      <div style="font-size:12px;color:var(--muted)">2026 最反共識機會 — 業績已在兌現</div>
+    </div>
+  </div>
+  <div class="layer-body">
+    <h4>PCB 每 GPU 含量升級</h4>
+    <div class="table-wrap">
+    <table>
+    <thead><tr><th>平台</th><th>每 GPU PCB 含量</th><th>變化</th></tr></thead>
+    <tbody>
+    <tr><td>H100 NVL</td><td>~$150</td><td>基準</td></tr>
+    <tr><td>GB200 NVL72</td><td><em>~$300（翻倍）</em></td><td>含量提升直接拉動</td></tr>
+    <tr><td>Vera Rubin（midplane 44 層，M8 CCL）</td><td>$300+ 繼續升</td><td>midplane 結構取代銅纜部分</td></tr>
+    <tr><td>Rubin Ultra（78 層，M9 CCL）</td><td>材料等級跳躍</td><td>持續升級</td></tr>
+    </tbody>
+    </table>
+    </div>
+
+    <h4>已確認業績（2025 年）</h4>
+    <div class="table-wrap">
+    <table>
+    <thead><tr><th>公司</th><th>代碼</th><th>2025 收入成長</th><th>客戶定位</th></tr></thead>
+    <tbody>
+    <tr><td><strong>勝宏科技</strong></td><td>02476.HK</td><td><em>YoY +63%</em></td><td>HDI 高密度互聯板，AI 伺服器</td></tr>
+    <tr><td><strong>滬電股份</strong></td><td>002463.SZ</td><td><em>YoY +45%</em></td><td>AI 伺服器主板龍頭</td></tr>
+    <tr><td><strong>Gold Circuit</strong></td><td>TW（非上市）</td><td><em>+40%/年</em></td><td>AWS Trinium 專屬供應商</td></tr>
+    </tbody>
+    </table>
+    </div>
+
+    <h4>ABF 供應鏈瓶頸：T-glass 壟斷驅動漲價</h4>
+    <p>T-glass（低膨脹係數玻璃纖維布，CTE = 2.8 ppm/°C）防止 AI 芯片高溫下基板膨脹焊點失效。全球唯一頂級規格供應商：<strong>日東紡（Nitto Boseki）</strong>。新產能 2026 年底上線，2027 年才正式出貨 → 全年 2026 持續短缺。</p>
+
+    <div class="table-wrap">
+    <table>
+    <thead><tr><th>公司</th><th>代碼</th><th>定位</th></tr></thead>
+    <tbody>
+    <tr><td><strong>Unimicron（欣興電子）</strong></td><td>3037.TW</td><td>台灣最大 ABF 基板廠，已與客戶重新談價</td></tr>
+    <tr><td><strong>Ibiden（揖斐電電子）</strong></td><td>4062.JP</td><td>日本最大 ABF 基板廠，AI 芯片封裝基板需求剛性</td></tr>
+    </tbody>
+    </table>
+    </div>
+
+    <h4>Ajinomoto（味之素，2802.JP）——ABF 膜 30 年壟斷者</h4>
+    <div class="table-wrap">
+    <table>
+    <thead><tr><th>指標</th><th>數據</th><th>說明</th></tr></thead>
+    <tbody>
+    <tr><td>全球 ABF 膜市佔率</td><td><em>95%</em></td><td>無實質競爭對手，30 年壁壘</td></tr>
+    <tr><td>Q3 2026 漲價幅度</td><td><em>+30%（已公告）</em></td><td>比 Bernstein 模型預估更激進</td></tr>
+    <tr><td>業務利潤率</td><td>50%+</td><td>稀缺性定價</td></tr>
+    <tr><td>ABF 用於伺服器/網絡佔比（2025）</td><td>70%</td><td>2017 年僅 40%，AI 驅動結構性升級</td></tr>
+    </tbody>
+    </table>
+    </div>
+    <div class="callout insight">
+      <span class="callout-icon">💡</span>
+      <div class="callout-text"><strong>反直覺標的：</strong>Ajinomoto 是一家「賣味精的日本食品公司」，但其 ABF 膜業務控制全球 95% 市場份額、毛利率 50%+、30 年無競爭對手。食品主業形成估值壓制，AI 業務 re-rating 空間在產業鏈中最大。</div>
+    </div>
+  </div>
+</div>
+
+<!-- Layer 4 -->
+<div class="layer-card">
+  <div class="layer-header">
+    <div class="layer-num l4">4</div>
+    <div>
+      <div class="layer-title">測試設備與可靠性驗證</div>
+      <div style="font-size:12px;color:var(--muted)">「賣鏟人」邏輯 — CPO 試產後最早出現訂單的環節</div>
+    </div>
+  </div>
+  <div class="layer-body">
+    <p>CPO 最大難點不是 PPT，而是量產良率（光電耦合良率、外置激光源穩定性、封裝應力、失效後維修）。測試設備廠商是 CPO 試產訂單最早出現的環節，比 CPO 概念股更早兌現。</p>
+    <div class="table-wrap" style="margin-top:12px">
+    <table>
+    <thead><tr><th>公司</th><th>代碼</th><th>角色</th><th>觸發點</th></tr></thead>
+    <tbody>
+    <tr><td><strong>Chroma ATE（致茂電子）</strong></td><td>2360.TW</td><td>光電測試設備，CPO 量產必需</td><td>CPO 試產訂單啟動（2026H2）</td></tr>
+    </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+
+<!-- ── SECTION 5: INVESTMENT FRAMEWORK ── -->
+<h2>五、投資框架</h2>
+
+<h3>核心策略原則</h3>
+<div class="callout insight">
+  <span class="callout-icon">🎯</span>
+  <div class="callout-text"><strong>不要買「最像概念的」，要買「最難繞開的」。</strong>無論最終是 CPO、LPO、NPO、還是傳統可插拔繼續升級，都必須先走過的環節——先進封裝、PCB 材料升級、外置激光源、測試設備——才是真正的共同瓶頸。</div>
+</div>
+
+<h3>投資組合配置</h3>
+
+<div class="portfolio-tier core">
+  <div class="tier-header">
+    <div class="tier-pct">60%</div>
+    <div>
+      <div class="tier-label">核心倉：難繞開的結構性贏家</div>
+      <div class="tier-desc">架構制定者，押注 AI Capex 長期成長</div>
+    </div>
+  </div>
+  <div class="table-wrap" style="margin:0">
+  <table>
+  <thead><tr><th>標的</th><th>代碼</th><th>核心邏輯</th><th>核心風險</th></tr></thead>
+  <tbody>
+  <tr><td><strong>NVIDIA</strong></td><td>NVDA</td><td>架構制定者，AI Factory 完整生態掌控</td><td>估值、監管、定制 ASIC 競爭</td></tr>
+  <tr><td><strong>TSMC</strong></td><td>TSM / 2330.TW</td><td>先進封裝唯一入口，CoWoS + COUPE 雙重護城河</td><td>地緣政治，產能週期</td></tr>
+  <tr><td><strong>Broadcom</strong></td><td>AVGO</td><td>Ethernet ASIC + Custom ASIC 現金流強，CPO 最快落地</td><td>NVIDIA Spectrum-X 直接競爭</td></tr>
+  </tbody>
+  </table>
+  </div>
+</div>
+
+<div class="portfolio-tier flexible">
+  <div class="tier-header">
+    <div class="tier-pct">30%</div>
+    <div>
+      <div class="tier-label">彈性倉：近期業績確定性</div>
+      <div class="tier-desc">跨階段供貨 + 2026 業績已在兌現</div>
+    </div>
+  </div>
+  <div class="table-wrap" style="margin:0">
+  <table>
+  <thead><tr><th>標的</th><th>代碼</th><th>核心邏輯</th><th>觸發事件</th></tr></thead>
+  <tbody>
+  <tr><td><strong>Coherent</strong></td><td>COHR</td><td>跨階段光學，最難被 CPO 顛覆</td><td>1.6T 訂單放量</td></tr>
+  <tr><td><strong>Fabrinet</strong></td><td>FN</td><td>光電代工護城河，NVIDIA 生態直接受益</td><td>生態訂單擴大</td></tr>
+  <tr><td><strong>味之素</strong></td><td>2802.JP</td><td>ABF 膜 95% 壟斷 + 食品估值壓制 re-rating</td><td>30% 漲價落地（Q3 2026）</td></tr>
+  <tr><td><strong>揖斐電電子</strong></td><td>4062.JP</td><td>ABF 基板漲價週期，T-glass 短缺受益</td><td>ABF ASP 每季漲幅確認</td></tr>
+  <tr><td><strong>勝宏科技</strong></td><td>02476.HK</td><td>HDI PCB 業績已驗證（+63%），Rubin 繼續拉動</td><td>Q2 2026 財報</td></tr>
+  </tbody>
+  </table>
+  </div>
+</div>
+
+<div class="portfolio-tier options">
+  <div class="tier-header">
+    <div class="tier-pct">10%</div>
+    <div>
+      <div class="tier-label">期權倉：遠期架構 beta</div>
+      <div class="tier-desc">CPO 爆發的前置佈局，小比例</div>
+    </div>
+  </div>
+  <div class="table-wrap" style="margin:0">
+  <table>
+  <thead><tr><th>標的</th><th>代碼</th><th>核心邏輯</th><th>時間窗口</th></tr></thead>
+  <tbody>
+  <tr><td><strong>Lumentum</strong></td><td>LITE</td><td>CPO 外置激光源，試產後最快拿訂單</td><td>2027 爆發點</td></tr>
+  <tr><td><strong>Chroma ATE</strong></td><td>2360.TW</td><td>測試設備「賣鏟人」，CPO 試產後先出現</td><td>2026H2–2027</td></tr>
+  <tr><td><strong>SENKO</strong></td><td>9069.JP</td><td>FAU 利基壟斷，NVIDIA 生態供應商</td><td>2026H2 CPO 試產啟動</td></tr>
+  </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- ── SECTION 6: TIMELINE ── -->
+<h2>六、時間軸追蹤指標</h2>
+<div class="timeline">
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <div class="tl-year">2026 ── 三條確定性（基礎設施先行）</div>
+    <div class="tl-content">
+      <ul class="tl-checklist">
+        <li>1.6T 可插拔光模塊實際出貨量趨勢（中際旭創/Coherent 季報）</li>
+        <li>LPO/NPO 是否獲得 AWS/Google/Microsoft 認證</li>
+        <li>ABF 基板 ASP 漲幅確認（Unimicron/Ibiden 財報）</li>
+        <li>Ajinomoto 30% 漲價落地情況（Q3 2026）</li>
+        <li>CPO 前置測試設備訂單（Chroma ATE 季報）</li>
+      </ul>
+    </div>
+  </div>
+  <div class="tl-item yellow">
+    <div class="tl-dot"></div>
+    <div class="tl-year">2027 ── 過渡技術兌現年</div>
+    <div class="tl-content">
+      <ul class="tl-checklist">
+        <li>NVIDIA Quantum-X Photonics 首批客戶（CoreWeave / Lambda）部署規模</li>
+        <li>Broadcom Davisson 擴展至 Meta / Google / Microsoft / Amazon</li>
+        <li>CPO 外置光源（Lumentum/Coherent）進入收入確認</li>
+        <li>LPO/NPO 是否取代傳統可插拔成為新訂單主流</li>
+      </ul>
+    </div>
+  </div>
+  <div class="tl-item purple">
+    <div class="tl-dot"></div>
+    <div class="tl-year">2028+ ── 架構期權兌現</div>
+    <div class="tl-content">
+      <ul class="tl-checklist">
+        <li>CPO 從交換機側延伸到 XPU/GPU 附近</li>
+        <li>光 I/O 進入高端 ASIC/GPU 封裝本體</li>
+        <li>OCS（光電路交換）/ Optical Fabric 開始改變資料中心網絡拓撲</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ── SECTION 7: RISKS ── -->
+<h2>七、風險因素</h2>
+<div class="risk-grid">
+  <div class="risk-box up">
+    <h4>▲ 上行風險</h4>
+    <ul>
+      <li><strong>CPO 量產良率超預期：</strong>Broadcom Davisson 若良率提前達標，加速採用</li>
+      <li><strong>AI Capex 持續加速：</strong>CSP 2026 年 capex 指引繼續上調</li>
+      <li><strong>ABF 短缺惡化：</strong>T-glass 若進一步延遲，漲幅超過預估</li>
+      <li><strong>Scale-up 銅纜需求超預期：</strong>立訊精密搶單成功，驗證市場規模</li>
+    </ul>
+  </div>
+  <div class="risk-box down">
+    <h4>▼ 下行風險</h4>
+    <ul>
+      <li><strong>PCB/材料供給過剩：</strong>高景氣引發擴產潮，毛利率快速反噬</li>
+      <li><strong>LPO 系統調試難度被低估：</strong>採用速度可能慢於預期</li>
+      <li><strong>Broadcom vs NVIDIA CPO 競爭：</strong>可能引發定價競爭</li>
+      <li><strong>DeepSeek 效率衝擊：</strong>AI 模型效率過快提升，短期壓制 AI Capex 斜率</li>
+      <li><strong>中美脫鉤加劇：</strong>影響中國光模塊廠供應鏈地位</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ── SECTION 8: INSIGHTS ── -->
+<h2>八、研究員補充觀點</h2>
+
+<h3>Jason 和 Claude 最認可的三個非共識</h3>
+
+<div class="callout insight" style="margin-bottom:12px">
+  <span class="callout-icon">1</span>
+  <div class="callout-text"><strong>Ajinomoto 是整條鏈裡定價權最強的隱藏標的。</strong>幾乎沒有賣方以 AI 投資角度覆蓋它，因為它是食品公司。但 ABF 膜 95% 市佔、50%+ 毛利率、30 年無競爭者、Q3 2026 直接漲 30%，這種商業模式在半導體材料領域極為罕見。食品主業估值壓制反而創造了 re-rating 機會。</div>
+</div>
+
+<div class="callout insight" style="margin-bottom:12px">
+  <span class="callout-icon">2</span>
+  <div class="callout-text"><strong>Broadcom 的 CPO 執行力被市場低估。</strong>市場把 AVGO 看成「受 NVIDIA 威脅的 Ethernet ASIC 廠」，卻忽略它是目前唯一有量產 CPO 交換機出貨的公司（Davisson，2025/10），且 Custom ASIC 業務每年提供強勁現金流支撐。這種執行力應該獲得更高的確定性溢價。</div>
+</div>
+
+<div class="callout insight">
+  <span class="callout-icon">3</span>
+  <div class="callout-text"><strong>PCB 已不再只是「跟隨件」。</strong>「半導體材料是跟隨件」在 AI 時代已過時。78 層板、M9 等級 CCL、midplane 結構，這些不是成本壓縮的目標，而是系統性能的前提條件。PCB 廠商正在從被定價的跟隨者，轉變為性能約束的提供者，定價能力顯著提升。</div>
+</div>
+
+<!-- ── APPENDIX ── -->
+<div class="appendix">
+  <h3>附錄 A：技術縮寫對照</h3>
+  <div class="table-wrap" style="margin-top:12px">
+  <table>
+  <thead><tr><th>縮寫</th><th>全稱</th><th>說明</th></tr></thead>
+  <tbody>
+  <tr><td>CPO</td><td>Co-Packaged Optics</td><td>共封裝光學</td></tr>
+  <tr><td>LPO</td><td>Linear Pluggable Optics</td><td>線性可插拔光學（去 DSP）</td></tr>
+  <tr><td>NPO</td><td>Near-Packaged Optics</td><td>近封裝光學（折中方案）</td></tr>
+  <tr><td>DSP</td><td>Digital Signal Processor</td><td>數位信號處理器（光模塊功耗主要來源）</td></tr>
+  <tr><td>FAU</td><td>Fiber Array Unit</td><td>光纖陣列單元（CPO 關鍵元件）</td></tr>
+  <tr><td>ABF</td><td>Ajinomoto Build-up Film</td><td>積層薄膜（封裝基板材料）</td></tr>
+  <tr><td>CCL</td><td>Copper Clad Laminate</td><td>覆銅板（PCB 核心材料）</td></tr>
+  <tr><td>DAC</td><td>Direct Attach Cable</td><td>直連銅纜</td></tr>
+  <tr><td>AEC</td><td>Active Electrical Cable</td><td>主動電纜</td></tr>
+  <tr><td>CPC</td><td>Co-Packaged Copper</td><td>共封裝銅纜（銅纜的過渡升級）</td></tr>
+  <tr><td>COUPE</td><td>Compact Universal Photonic Engine</td><td>TSMC CPO 封裝平台</td></tr>
+  </tbody>
+  </table>
+  </div>
+
+  <h3 style="margin-top:24px">附錄 B：關鍵事件時間軸</h3>
+  <div class="table-wrap" style="margin-top:12px">
+  <table>
+  <thead><tr><th>時間</th><th>事件</th><th>重要性</th></tr></thead>
+  <tbody>
+  <tr><td>2025/3</td><td>NVIDIA 發布 Spectrum-X Photonics + Quantum-X silicon photonics</td><td>宣示 NVIDIA 進入光互連市場</td></tr>
+  <tr><td><em>2025/10/8</em></td><td><strong>Broadcom Tomahawk 6 Davisson 宣布出貨，102.4Tbps CPO</strong></td><td>CPO 商用里程碑</td></tr>
+  <tr><td>2026/Q3（預計）</td><td>Ajinomoto ABF 膜漲價 30% 生效</td><td>ABF 供應鏈漲價確認訊號</td></tr>
+  <tr><td>2026/H2（預計）</td><td>CPO Scale-out 小規模試驗部署</td><td>監測 CoreWeave/Lambda 採用</td></tr>
+  <tr><td>2026 年底</td><td>日東紡 T-glass 新產能上線</td><td>ABF 供給緊張緩解訊號</td></tr>
+  <tr><td>2027（預計）</td><td>CPO 試點進入主流雲廠商</td><td>關鍵拐點確認</td></tr>
+  <tr><td>2028/H2+（預計）</td><td>CPO Scale-up 場景導入</td><td>架構期權開始兌現</td></tr>
+  </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<div class="footer">
+  <p>本報告為產業研究與投資框架參考，不構成具體投資建議。</p>
+  <p>所有預測性數據均為 Bernstein 模型估計或第三方研調機構預測，實際結果可能顯著不同。</p>
+  <p style="margin-top:12px;color:#58a6ff;font-weight:700">研究員：Jason × Claude Sonnet &nbsp;|&nbsp; 發布日期：2026-05-21</p>
+</div>
+
+</body>
+</html>

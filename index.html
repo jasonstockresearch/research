@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jason's Research Notes</title>
+<style>
+  :root {
+    --bg: #0d1117; --bg2: #161b22; --bg3: #21262d;
+    --border: #30363d; --text: #e6edf3; --muted: #8b949e;
+    --accent: #58a6ff; --green: #3fb950; --yellow: #d29922;
+    --red: #f85149; --purple: #bc8cff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", "Noto Sans TC", sans-serif;
+    background: var(--bg); color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  header {
+    background: linear-gradient(135deg, #0d1117 0%, #1c2a4a 60%, #0d1117 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 48px 24px 40px;
+    text-align: center;
+  }
+  header .tag {
+    display: inline-block; background: #1e3a5f; color: var(--accent);
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    padding: 4px 14px; border-radius: 20px; margin-bottom: 18px;
+    text-transform: uppercase;
+  }
+  header h1 { font-size: 28px; font-weight: 900; color: #fff; margin-bottom: 10px; }
+  header p { color: var(--muted); font-size: 14px; max-width: 520px; margin: 0 auto; line-height: 1.6; }
+
+  /* ── Main layout ── */
+  main { max-width: 900px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  /* ── Filter bar ── */
+  .filter-bar {
+    display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px;
+  }
+  .filter-btn {
+    background: var(--bg2); border: 1px solid var(--border);
+    color: var(--muted); font-size: 12px; padding: 6px 14px;
+    border-radius: 20px; cursor: pointer; transition: all 0.15s;
+    font-family: inherit;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: #1e3a5f; border-color: var(--accent); color: var(--accent);
+  }
+
+  /* ── Section title ── */
+  .section-title {
+    font-size: 11px; font-weight: 700; color: var(--muted);
+    letter-spacing: 1.5px; text-transform: uppercase;
+    margin-bottom: 16px; padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── Report cards ── */
+  .report-grid { display: flex; flex-direction: column; gap: 14px; margin-bottom: 48px; }
+
+  .report-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 20px 24px;
+    display: flex; gap: 20px; align-items: flex-start;
+    text-decoration: none; color: inherit;
+    transition: border-color 0.15s, background 0.15s;
+    cursor: pointer;
+  }
+  .report-card:hover {
+    border-color: var(--accent); background: #161d2a;
+  }
+
+  .card-icon {
+    width: 44px; height: 44px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; flex-shrink: 0; margin-top: 2px;
+  }
+  .card-icon.sector    { background: #1e3a5f; }
+  .card-icon.company   { background: #1a3a1a; }
+  .card-icon.macro     { background: #3a2a00; }
+  .card-icon.strategy  { background: #2a1a3a; }
+
+  .card-body { flex: 1; min-width: 0; }
+  .card-meta {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    align-items: center; margin-bottom: 8px;
+  }
+  .card-date { font-size: 11px; color: var(--muted); }
+  .card-tag {
+    font-size: 10px; font-weight: 700; padding: 2px 8px;
+    border-radius: 10px; letter-spacing: 0.5px;
+  }
+  .tag-sector   { background: #1e3a5f; color: var(--accent); }
+  .tag-company  { background: #1a3a1a; color: var(--green); }
+  .tag-macro    { background: #3a2a00; color: var(--yellow); }
+  .tag-strategy { background: #2a1a3a; color: var(--purple); }
+
+  .card-title {
+    font-size: 16px; font-weight: 800; color: var(--text);
+    margin-bottom: 6px; line-height: 1.3;
+  }
+  .card-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+  .card-arrow {
+    color: var(--muted); font-size: 18px; flex-shrink: 0;
+    align-self: center; transition: color 0.15s, transform 0.15s;
+  }
+  .report-card:hover .card-arrow { color: var(--accent); transform: translateX(3px); }
+
+  /* ── Empty state ── */
+  .empty { text-align: center; padding: 60px 0; color: var(--muted); font-size: 14px; }
+  .empty .emoji { font-size: 36px; margin-bottom: 12px; }
+
+  /* ── Footer ── */
+  footer {
+    text-align: center; padding: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 12px; color: var(--muted);
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="tag">Research Notes</div>
+  <h1>Jason's Research Hub</h1>
+  <p>產業深度研究 · 個股分析 · 投資主題<br>Jason × Claude Sonnet 共同研究</p>
+</header>
+
+<main>
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filter('all', this)">全部</button>
+    <button class="filter-btn" onclick="filter('sector', this)">產業研究</button>
+    <button class="filter-btn" onclick="filter('company', this)">個股分析</button>
+    <button class="filter-btn" onclick="filter('macro', this)">總經/主題</button>
+    <button class="filter-btn" onclick="filter('strategy', this)">策略</button>
+  </div>
+
+  <div class="section-title">最新報告</div>
+
+  <div class="report-grid" id="report-grid">
+    <!-- Reports are rendered by JS from the REPORTS array below -->
+  </div>
+
+  <div class="empty" id="empty-state" style="display:none">
+    <div class="emoji">📭</div>
+    <div>此分類尚無報告</div>
+  </div>
+</main>
+
+<footer>
+  <p>Jason × Claude Sonnet &nbsp;|&nbsp; <a href="https://github.com/jasonfu1222/research" target="_blank">GitHub</a></p>
+</footer>
+
+<script>
+// ─────────────────────────────────────────────────────
+// 新增報告只需在這裡加一筆，不需要改其他任何程式碼
+// ─────────────────────────────────────────────────────
+const REPORTS = [
+  {
+    date: "2026-05-21",
+    type: "sector",          // sector | company | macro | strategy
+    icon: "🔗",
+    title: "AI 數據中心連接之戰：2026–2028 完整投資地圖",
+    desc: "Bernstein 97 頁研報深度解析。連接性取代算力成新瓶頸，銅光長期共存，CPO 2028 才大規模部署，2026 確定性在 PCB/ABF/LPO/NPO。附四層公司地圖與三年追蹤指標。",
+    file: "20260521-ai-connectivity.html",
+    tags: ["AI Infrastructure", "半導體材料", "光互連"],
+  },
+  // ← 在這裡新增下一篇，例如：
+  // {
+  //   date: "2026-06-01",
+  //   type: "company",
+  //   icon: "💊",
+  //   title: "XXX 個股深度研究",
+  //   desc: "...",
+  //   file: "20260601-xxx.html",
+  //   tags: ["美股", "醫療"],
+  // },
+];
+
+// ─────────────────────────────────────────────────────
+// 以下不需要修改
+// ─────────────────────────────────────────────────────
+const tagLabel = { sector: "產業研究", company: "個股分析", macro: "總經/主題", strategy: "策略" };
+
+function renderCards(list) {
+  const grid = document.getElementById("report-grid");
+  const empty = document.getElementById("empty-state");
+  if (list.length === 0) {
+    grid.innerHTML = "";
+    empty.style.display = "block";
+    return;
+  }
+  empty.style.display = "none";
+  grid.innerHTML = list.map(r => `
+    <a class="report-card" href="${r.file}">
+      <div class="card-icon ${r.type}">${r.icon}</div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-date">${r.date}</span>
+          <span class="card-tag tag-${r.type}">${tagLabel[r.type]}</span>
+          ${(r.tags||[]).map(t => `<span class="card-tag" style="background:var(--bg3);color:var(--muted)">${t}</span>`).join("")}
+        </div>
+        <div class="card-title">${r.title}</div>
+        <div class="card-desc">${r.desc}</div>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+  `).join("");
+}
+
+function filter(type, btn) {
+  document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  const list = type === "all" ? REPORTS : REPORTS.filter(r => r.type === type);
+  renderCards(list);
+}
+
+// 初始渲染
+renderCards(REPORTS);
+</script>
+</body>
+</html>
