@@ -144,6 +144,39 @@
     border: none;
   }
 
+  /* ── CTC 籌碼追蹤 ── */
+  #ctc-view { display: none; }
+  .ctc-main { max-width: 900px; margin: 0 auto; padding: 40px 24px 80px; }
+  .ctc-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 28px;
+  }
+  .ctc-header-left h2 { font-size: 18px; font-weight: 800; color: var(--text); }
+  .ctc-header-left p  { font-size: 13px; color: var(--muted); margin-top: 4px; }
+  .ctc-grid { display: flex; flex-direction: column; gap: 10px; }
+  .ctc-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 16px 20px;
+    display: flex; gap: 16px; align-items: center;
+    text-decoration: none; color: inherit;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .ctc-card:hover { border-color: #10b981; background: #0f1f1a; }
+  .ctc-icon {
+    width: 40px; height: 40px; border-radius: 8px;
+    background: #0d2218; display: flex; align-items: center;
+    justify-content: center; font-size: 20px; flex-shrink: 0;
+  }
+  .ctc-body { flex: 1; min-width: 0; }
+  .ctc-date { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+  .ctc-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .ctc-stats { font-size: 12px; color: var(--muted); display: flex; gap: 14px; flex-wrap: wrap; }
+  .ctc-stat-p2 { color: #10b981; font-weight: 600; }
+  .ctc-stat-p1 { color: #3b82f6; font-weight: 600; }
+  .ctc-arrow { color: var(--muted); font-size: 16px; flex-shrink: 0; transition: color 0.15s, transform 0.15s; }
+  .ctc-card:hover .ctc-arrow { color: #10b981; transform: translateX(3px); }
+  .ctc-empty { text-align: center; padding: 60px 0; color: var(--muted); font-size: 14px; }
+
   /* ── Footer ── */
   footer {
     text-align: center; padding: 24px;
@@ -164,8 +197,23 @@
 
 <nav class="tab-nav">
   <button class="tab-btn active" onclick="switchTab('reports', this)">研究報告</button>
+  <button class="tab-btn" onclick="switchTab('ctc', this)">籌碼追蹤</button>
   <button class="tab-btn" onclick="switchTab('dashboard', this)">記憶體週期儀表板</button>
 </nav>
+
+<div id="ctc-view">
+  <div class="ctc-main">
+    <div class="ctc-header">
+      <div class="ctc-header-left">
+        <h2>CTC 籌碼追蹤日報</h2>
+        <p>全市場三大法人 × 融資借券 × 量價 → Phase 1~4 分類篩選</p>
+      </div>
+    </div>
+    <div class="section-title">歷史日報</div>
+    <div class="ctc-grid" id="ctc-grid"></div>
+    <div class="ctc-empty" id="ctc-empty" style="display:none">尚無已發布的日報</div>
+  </div>
+</div>
 
 <div id="dashboard-view">
   <iframe src="https://memory-cycle.netlify.app/" loading="lazy" title="記憶體週期儀表板"></iframe>
@@ -197,6 +245,50 @@
 </footer>
 
 <script>
+// ─────────────────────────────────────────────────────
+// CTC 籌碼追蹤日報清單（由 publish_ctc.py 自動維護）
+// ─────────────────────────────────────────────────────
+const CTC_REPORTS = [
+  {
+    "date": "2026-05-22",
+    "file": "ctc_20260522.html",
+    "p1": 43,
+    "p2": 7,
+    "p3": 0,
+    "p4": 0,
+    "total": 50,
+  },
+  // ← publish_ctc.py 會自動在這裡插入新紀錄
+];
+
+function renderCtc() {
+  const grid = document.getElementById("ctc-grid");
+  const empty = document.getElementById("ctc-empty");
+  if (!CTC_REPORTS.length) {
+    grid.innerHTML = "";
+    empty.style.display = "block";
+    return;
+  }
+  empty.style.display = "none";
+  grid.innerHTML = CTC_REPORTS.map(r => `
+    <a class="ctc-card" href="ctc/${r.file}">
+      <div class="ctc-icon">📊</div>
+      <div class="ctc-body">
+        <div class="ctc-date">${r.date}</div>
+        <div class="ctc-title">籌碼日報 ${r.date}</div>
+        <div class="ctc-stats">
+          <span class="ctc-stat-p2">Phase 2 拉抬 ${r.p2} 檔</span>
+          <span class="ctc-stat-p1">Phase 1 吸籌 ${r.p1} 檔</span>
+          <span>出貨 ${r.p3} 檔</span>
+          <span>退潮 ${r.p4} 檔</span>
+          <span style="color:var(--muted)">掃描 ${r.total} 檔</span>
+        </div>
+      </div>
+      <div class="ctc-arrow">→</div>
+    </a>
+  `).join("");
+}
+
 // ─────────────────────────────────────────────────────
 // 新增報告只需在這裡加一筆，不需要改其他任何程式碼
 // ─────────────────────────────────────────────────────
@@ -271,19 +363,17 @@ function filter(type, btn) {
 
 // 初始渲染
 renderCards(REPORTS);
+renderCtc();
 
 function switchTab(tab, btn) {
   document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
   btn.classList.add("active");
-  const reports = document.getElementById("reports-view");
+  const reports   = document.getElementById("reports-view");
+  const ctc       = document.getElementById("ctc-view");
   const dashboard = document.getElementById("dashboard-view");
-  if (tab === "dashboard") {
-    reports.style.display = "none";
-    dashboard.style.display = "block";
-  } else {
-    reports.style.display = "";
-    dashboard.style.display = "none";
-  }
+  reports.style.display   = tab === "reports"   ? "" : "none";
+  ctc.style.display       = tab === "ctc"       ? "block" : "none";
+  dashboard.style.display = tab === "dashboard" ? "block" : "none";
 }
 </script>
 </body>
