@@ -39,8 +39,14 @@ def run(cmd: str):
 
 def inject(date_str: str, filename: str) -> bool:
     content = INDEX.read_text(encoding="utf-8")
-    if f'"{date_str}"' in content:
-        print(f"[SKIP] {date_str} 已在 index.html 中，略過注入")
+    start = content.find("const MORNING_NOTES = [")
+    end   = content.find("];", start) if start != -1 else -1
+    if start == -1:
+        print("[ERROR] 找不到 MORNING_NOTES 陣列")
+        return False
+    morning_section = content[start:end]
+    if f'"date": "{date_str}"' in morning_section:
+        print(f"[SKIP] {date_str} 已在 MORNING_NOTES 中，略過注入")
         return False
     new_entry = f'\n  {{"date": "{date_str}", "file": "{filename}"}},\n  {MARKER}'
     content = content.replace(MARKER, new_entry, 1)
