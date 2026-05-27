@@ -204,6 +204,32 @@
   .ctc-card:hover .ctc-arrow { color: #10b981; transform: translateX(3px); }
   .ctc-empty { text-align: center; padding: 60px 0; color: var(--muted); font-size: 14px; }
 
+  /* ── ETF 追蹤 ── */
+  .etf-main { max-width: 900px; margin: 0 auto; padding: 32px 24px 80px; }
+  .etf-header { margin-bottom: 24px; }
+  .etf-header h2 { font-size: 20px; font-weight: 800; margin-bottom: 6px; }
+  .etf-header p  { color: var(--muted); font-size: 13px; }
+  .etf-grid { display: flex; flex-direction: column; gap: 10px; }
+  .etf-card {
+    background: var(--bg2); border: 1px solid var(--border); border-radius: 10px;
+    padding: 16px 20px; display: flex; align-items: center; gap: 16px;
+    text-decoration: none; color: inherit; transition: border-color 0.15s, background 0.15s;
+  }
+  .etf-card:hover { border-color: #a78bfa; background: #1a1626; }
+  .etf-icon {
+    width: 40px; height: 40px; border-radius: 8px; background: rgba(167,139,250,0.15);
+    display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;
+  }
+  .etf-body { flex: 1; min-width: 0; }
+  .etf-date { font-size: 11px; color: var(--muted); margin-bottom: 3px; }
+  .etf-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .etf-stats { font-size: 12px; color: var(--muted); display: flex; gap: 12px; flex-wrap: wrap; }
+  .etf-stat-buy  { color: #22c55e; font-weight: 600; }
+  .etf-stat-sell { color: #ef4444; font-weight: 600; }
+  .etf-arrow { color: var(--muted); font-size: 16px; flex-shrink: 0; transition: color 0.15s, transform 0.15s; }
+  .etf-card:hover .etf-arrow { color: #a78bfa; transform: translateX(3px); }
+  .etf-empty { text-align: center; padding: 60px 0; color: var(--muted); font-size: 14px; }
+
   /* ── Footer ── */
   footer {
     text-align: center; padding: 24px;
@@ -226,6 +252,7 @@
   <button class="tab-btn active" onclick="switchTab('reports', this)">研究報告</button>
   <button class="tab-btn" onclick="switchTab('morning', this)">每日晨報</button>
   <button class="tab-btn" onclick="switchTab('ctc', this)">籌碼追蹤</button>
+  <button class="tab-btn" onclick="switchTab('etf', this)">主動式ETF追蹤</button>
   <button class="tab-btn" onclick="switchTab('dashboard', this)">記憶體週期儀表板</button>
 </nav>
 
@@ -252,6 +279,18 @@
     <div class="section-title">歷史日報</div>
     <div class="ctc-grid" id="ctc-grid"></div>
     <div class="ctc-empty" id="ctc-empty" style="display:none">尚無已發布的日報</div>
+  </div>
+</div>
+
+<div id="etf-view" style="display:none">
+  <div class="etf-main">
+    <div class="etf-header">
+      <h2>主動式 ETF 追蹤日報</h2>
+      <p>22 檔主動式 ETF 每日持股異動 · 買賣雷達 · 連續追蹤 · 市場體溫</p>
+    </div>
+    <div class="section-title">歷史日報</div>
+    <div class="etf-grid" id="etf-grid"></div>
+    <div class="etf-empty" id="etf-empty" style="display:none">尚無已發布的日報</div>
   </div>
 </div>
 
@@ -388,6 +427,43 @@ function renderCtc() {
 }
 
 // ─────────────────────────────────────────────────────
+// 主動式 ETF 追蹤日報清單（由 publish_etf.py 自動維護）
+// ─────────────────────────────────────────────────────
+const ETF_REPORTS = [
+  
+  {"date": "2026-05-27", "file": "etf_20260527.html", "buy": 7, "sell": 20, "add": 20, "cut": 20},
+  // ← publish_etf.py 會自動在這裡插入新紀錄
+];
+
+function renderEtf() {
+  const grid = document.getElementById("etf-grid");
+  const empty = document.getElementById("etf-empty");
+  if (!ETF_REPORTS.length) {
+    grid.innerHTML = "";
+    empty.style.display = "block";
+    return;
+  }
+  empty.style.display = "none";
+  grid.innerHTML = ETF_REPORTS.map(r => `
+    <a class="etf-card" href="etf/${r.file}">
+      <div class="etf-icon">📈</div>
+      <div class="etf-body">
+        <div class="etf-date">${r.date}</div>
+        <div class="etf-title">ETF 監測日報 ${r.date}</div>
+        <div class="etf-stats">
+          <span class="etf-stat-buy">買進 ${r.buy || 0} 檔</span>
+          <span class="etf-stat-sell">賣出 ${r.sell || 0} 檔</span>
+          <span>加碼 ${r.add || 0} 檔</span>
+          <span>減碼 ${r.cut || 0} 檔</span>
+          <span style="color:var(--muted)">追蹤 22 檔</span>
+        </div>
+      </div>
+      <div class="etf-arrow">→</div>
+    </a>
+  `).join("");
+}
+
+// ─────────────────────────────────────────────────────
 // 新增報告只需在這裡加一筆，不需要改其他任何程式碼
 // ─────────────────────────────────────────────────────
 const REPORTS = [
@@ -463,6 +539,7 @@ function filter(type, btn) {
 renderCards(REPORTS);
 renderCtc();
 renderMorning();
+renderEtf();
 
 function switchTab(tab, btn) {
   document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
@@ -470,10 +547,12 @@ function switchTab(tab, btn) {
   const reports   = document.getElementById("reports-view");
   const morning   = document.getElementById("morning-view");
   const ctc       = document.getElementById("ctc-view");
+  const etf       = document.getElementById("etf-view");
   const dashboard = document.getElementById("dashboard-view");
   reports.style.display   = tab === "reports"   ? "" : "none";
   morning.style.display   = tab === "morning"   ? "block" : "none";
   ctc.style.display       = tab === "ctc"       ? "block" : "none";
+  etf.style.display       = tab === "etf"       ? "block" : "none";
   dashboard.style.display = tab === "dashboard" ? "block" : "none";
 }
 </script>
