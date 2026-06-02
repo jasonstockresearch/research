@@ -351,7 +351,7 @@ function renderMorning() {
     return;
   }
   empty.style.display = "none";
-  grid.innerHTML = MORNING_NOTES.map(r => `
+  grid.innerHTML = [...MORNING_NOTES].reverse().map(r => `
     <a class="morning-card" href="morning-notes/${r.file}">
       <div class="morning-icon">☀️</div>
       <div class="morning-body">
@@ -496,7 +496,7 @@ function renderEtf() {
     return;
   }
   empty.style.display = "none";
-  grid.innerHTML = ETF_REPORTS.map(r => `
+  grid.innerHTML = [...ETF_REPORTS].reverse().map(r => `
     <a class="etf-card" href="etf/${r.file}">
       <div class="etf-icon">📈</div>
       <div class="etf-body">
