@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>白宮 AI 安全行政命令：政府從監管者轉為買家的投資機會地圖</title>
+<style>
+  :root {
+    --bg: #0d1117; --bg2: #161b22; --bg3: #21262d;
+    --border: #30363d; --text: #e6edf3; --muted: #8b949e;
+    --accent: #58a6ff; --green: #3fb950; --yellow: #d29922;
+    --red: #f85149; --purple: #bc8cff; --teal: #39d353;
+    --header-bg: #1c2128;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", "Noto Sans TC", sans-serif;
+    background: var(--bg); color: var(--text);
+    font-size: 15px; line-height: 1.7;
+    max-width: 1000px; margin: 0 auto; padding: 40px 24px 80px;
+  }
+
+  /* ── Cover ── */
+  .cover {
+    background: linear-gradient(135deg, #0d1117 0%, #1c2a3a 50%, #0d1117 100%);
+    border: 1px solid #1e3a5f; border-radius: 12px;
+    padding: 48px 40px; margin-bottom: 40px; text-align: center;
+  }
+  .cover .badge {
+    display: inline-block; background: #1e3a5f; color: var(--accent);
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    padding: 4px 14px; border-radius: 20px; margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  .cover h1 { font-size: 26px; font-weight: 900; color: #fff; line-height: 1.3; margin-bottom: 12px; }
+  .cover .subtitle { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
+  .cover .meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; font-size: 13px; }
+  .cover .meta-item { display: flex; flex-direction: column; gap: 2px; }
+  .cover .meta-label { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
+  .cover .meta-value { color: var(--text); font-weight: 600; }
+
+  /* ── Disclaimer ── */
+  .disclaimer {
+    background: #2a1a00; border: 1px solid #5a3a00; border-radius: 8px;
+    padding: 14px 20px; margin-bottom: 36px; font-size: 12px; color: #c8a060;
+  }
+
+  /* ── Executive Summary ── */
+  .exec-summary {
+    background: #0d2137; border: 1px solid #1e3a5f; border-left: 4px solid var(--accent);
+    border-radius: 8px; padding: 24px 28px; margin-bottom: 36px;
+  }
+  .exec-summary h2 { color: var(--accent); font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 16px; border: none; padding: 0; }
+  .exec-summary blockquote {
+    color: #8ebbff; font-size: 15px; font-style: italic; line-height: 1.6;
+    border-left: 2px solid var(--accent); padding-left: 16px; margin-bottom: 20px;
+  }
+  .exec-summary ol { padding-left: 20px; }
+  .exec-summary li { margin-bottom: 8px; }
+  .exec-summary li strong { color: var(--accent); }
+
+  /* ── Section headings ── */
+  h2 {
+    font-size: 18px; font-weight: 800; color: var(--accent);
+    margin: 48px 0 16px; padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  h3 { font-size: 15px; font-weight: 700; color: #e6edf3; margin: 28px 0 10px; }
+  h4 { font-size: 13px; font-weight: 700; color: var(--muted); margin: 20px 0 8px; letter-spacing: 0.5px; }
+  p { margin-bottom: 12px; }
+  strong { color: #e6edf3; }
+
+  /* ── Tables ── */
+  .table-wrap { overflow-x: auto; margin: 16px 0 24px; border-radius: 8px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead tr { background: var(--header-bg); }
+  th { padding: 10px 14px; text-align: left; font-weight: 700; color: var(--accent); font-size: 12px; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:nth-child(even) { background: #161b22; }
+  tbody tr:hover { background: #1c2a3a; }
+  td strong { color: var(--accent); }
+
+  /* ── Probability badge ── */
+  .prob {
+    display: inline-block; font-size: 11px; font-weight: 700;
+    padding: 2px 8px; border-radius: 12px; white-space: nowrap;
+  }
+  .prob.high { background: #0d2a0d; color: var(--green); border: 1px solid #1a4a1a; }
+  .prob.mid  { background: #2a1f00; color: var(--yellow); border: 1px solid #4a3a00; }
+  .prob.low  { background: #2a1a2a; color: var(--purple); border: 1px solid #3a2a3a; }
+
+  /* ── EO clause cards ── */
+  .eo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  @media (max-width: 680px) { .eo-grid { grid-template-columns: 1fr; } }
+  .eo-card {
+    background: var(--bg2); border: 1px solid var(--border); border-radius: 10px;
+    padding: 20px; border-top: 3px solid var(--accent);
+  }
+  .eo-card.yellow { border-top-color: var(--yellow); }
+  .eo-card.green  { border-top-color: var(--green); }
+  .eo-card.purple { border-top-color: var(--purple); }
+  .eo-card .eo-tag { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .eo-card.yellow .eo-tag { color: var(--yellow); }
+  .eo-card.green .eo-tag  { color: var(--green); }
+  .eo-card.purple .eo-tag { color: var(--purple); }
+  .eo-card h3 { font-size: 14px; margin: 0 0 10px; color: var(--text); }
+  .eo-card p  { font-size: 13px; color: var(--muted); margin: 0; }
+  .eo-card .deadline {
+    display: inline-block; margin-top: 10px;
+    font-size: 11px; font-weight: 700; color: var(--yellow);
+    background: #2a1f00; border: 1px solid #4a3a00;
+    padding: 2px 8px; border-radius: 4px;
+  }
+
+  /* ── Theme cards ── */
+  .theme-block { border: 1px solid var(--border); border-radius: 10px; margin-bottom: 36px; overflow: hidden; }
+  .theme-header { padding: 16px 22px; background: var(--bg2); display: flex; align-items: center; gap: 16px; }
+  .theme-num {
+    width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; font-weight: 900; font-size: 14px; flex-shrink: 0;
+  }
+  .t1 .theme-num { background: #1e3a5f; color: var(--accent); }
+  .t2 .theme-num { background: #1a3a1a; color: var(--green); }
+  .t3 .theme-num { background: #3a2a00; color: var(--yellow); }
+  .t4 .theme-num { background: #2a1a3a; color: var(--purple); }
+  .theme-title { font-size: 16px; font-weight: 800; }
+  .t1 .theme-title { color: var(--accent); }
+  .t2 .theme-title { color: var(--green); }
+  .t3 .theme-title { color: var(--yellow); }
+  .t4 .theme-title { color: var(--purple); }
+  .theme-body { padding: 20px 22px; }
+  .theme-trigger {
+    background: var(--bg3); border-radius: 6px; padding: 10px 14px;
+    font-size: 12px; color: var(--muted); margin-bottom: 16px;
+  }
+  .theme-trigger strong { color: var(--text); }
+
+  /* ── Stock rows ── */
+  .stock-list { display: flex; flex-direction: column; gap: 10px; }
+  .stock-row {
+    background: var(--bg2); border: 1px solid var(--border); border-radius: 8px;
+    padding: 14px 16px; display: flex; gap: 14px; align-items: flex-start;
+  }
+  .stock-left { flex-shrink: 0; min-width: 90px; }
+  .stock-ticker { font-size: 13px; font-weight: 900; color: var(--accent); letter-spacing: 0.5px; }
+  .stock-name { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .stock-body { flex: 1; }
+  .stock-thesis { font-size: 13px; color: var(--text); margin-bottom: 6px; }
+  .stock-note { font-size: 12px; color: var(--muted); }
+  .stock-right { flex-shrink: 0; }
+
+  /* ── Timeline ── */
+  .timeline { position: relative; padding-left: 28px; margin: 20px 0 28px; }
+  .timeline::before {
+    content: ""; position: absolute; left: 8px; top: 0; bottom: 0;
+    width: 2px; background: var(--border);
+  }
+  .tl-item { position: relative; margin-bottom: 22px; }
+  .tl-dot {
+    position: absolute; left: -24px; top: 5px;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--bg);
+  }
+  .tl-item.yellow .tl-dot { background: var(--yellow); }
+  .tl-item.green  .tl-dot { background: var(--green); }
+  .tl-item.red    .tl-dot { background: var(--red); }
+  .tl-date { font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: 1px; margin-bottom: 4px; }
+  .tl-item.yellow .tl-date { color: var(--yellow); }
+  .tl-item.green  .tl-date { color: var(--green); }
+  .tl-item.red    .tl-date { color: var(--red); }
+  .tl-title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .tl-desc { font-size: 13px; color: var(--muted); }
+
+  /* ── Risk grid ── */
+  .risk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  @media (max-width: 680px) { .risk-grid { grid-template-columns: 1fr; } }
+  .risk-box { border-radius: 8px; padding: 16px 20px; }
+  .risk-box.up   { background: #0d2a0d; border: 1px solid #1a3a1a; }
+  .risk-box.down { background: #2a0d0d; border: 1px solid #3a1a1a; }
+  .risk-box h4 { margin: 0 0 10px; font-size: 13px; }
+  .risk-box.up h4   { color: var(--green); }
+  .risk-box.down h4 { color: var(--red); }
+  .risk-box ul { padding-left: 16px; }
+  .risk-box li { font-size: 13px; color: var(--muted); margin-bottom: 5px; }
+
+  /* ── Matrix table ── */
+  .matrix-high { color: var(--green); font-weight: 700; }
+  .matrix-mid  { color: var(--yellow); font-weight: 700; }
+  .matrix-low  { color: var(--purple); font-weight: 700; }
+
+  /* ── Footer ── */
+  .footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--border); font-size: 12px; color: var(--muted); text-align: center; line-height: 1.8; }
+
+  ul, ol { padding-left: 22px; margin-bottom: 14px; }
+  li { margin-bottom: 6px; }
+</style>
+</head>
+<body>
+
+<!-- ─────────── COVER ─────────── -->
+<div class="cover">
+  <div class="badge">事件研究 · 政策驅動</div>
+  <h1>白宮 AI 安全行政命令<br>政府從「監管者」轉為「買家」的投資機會地圖</h1>
+  <div class="subtitle">Promoting Advanced AI Innovation and Security — 2026/06/02 簽署</div>
+  <div class="meta">
+    <div class="meta-item"><span class="meta-label">發布日期</span><span class="meta-value">2026-06-02</span></div>
+    <div class="meta-item"><span class="meta-label">類別</span><span class="meta-value">事件研究 · 政策</span></div>
+    <div class="meta-item"><span class="meta-label">市場</span><span class="meta-value">美股 + 台股連動</span></div>
+    <div class="meta-item"><span class="meta-label">近期催化劑</span><span class="meta-value">30天 / 60天指令截止</span></div>
+  </div>
+</div>
+
+<!-- ─────────── DISCLAIMER ─────────── -->
+<div class="disclaimer">
+  本報告僅供個人研究參考，所有投資判斷及受惠機率均為作者主觀評估，非投資建議。市場實際表現受多重因素影響，可能與本報告預測存在重大差異。
+</div>
+
+<!-- ─────────── EXECUTIVE SUMMARY ─────────── -->
+<div class="exec-summary">
+  <h2>執行摘要</h2>
+  <blockquote>
+    這份行政命令最重要的訊號，不在條款本身，而在語氣的轉變：政府放棄了「強制預審」與「強制授權」，改以「主動採購者」姿態進場。這可能是近兩年 AI 監管風險最重要的一次解除，同時開啟了政府 AI 支出的新一輪週期。
+  </blockquote>
+  <ol>
+    <li><strong>監管尾風轉為採購順風</strong>：EO 明文規定「不得強制授權或預審 AI 模型」，AI 前沿公司的監管折價有機會部分回補。</li>
+    <li><strong>30天/60天硬截止創造近期催化劑</strong>：CISA 指令（30天）、可信合作夥伴選定（60天）可能成為市場重新評估特定標的的時間窗口。</li>
+    <li><strong>政府成為 AI 資安工具的強制性買家</strong>：CISA、財政部、各聯邦機構均有明確採購授權，AI 資安子板塊可能率先反應。</li>
+    <li><strong>台股以製造底層受益</strong>：美國政府採購浪潮最終可能流向台積電晶片、廣達/緯穎伺服器，屬於第二層傳導，時間滯後 1–2 季。</li>
+  </ol>
+</div>
+
+<!-- ─────────── SECTION 1: EO 解析 ─────────── -->
+<h2>一、行政命令條款解析</h2>
+<p>EO 共四個核心 Section，對應四個投資向量。以下為逐款拆解：</p>
+
+<div class="eo-grid">
+  <div class="eo-card">
+    <div class="eo-tag">Section 2</div>
+    <h3>升級聯邦 AI 網路防禦</h3>
+    <p>CISA 需發布約束性指令，要求各聯邦機構加速部署 AI 防禦工具。財政部主導建立 AI 漏洞掃描清算所。工具需同步開放地方政府與關鍵基礎設施營運商。</p>
+    <span class="deadline">硬截止：30天</span>
+  </div>
+  <div class="eo-card yellow">
+    <div class="eo-tag">Section 3</div>
+    <h3>前沿模型安全基準</h3>
+    <p>由財政部、NSA、CISA 聯合制定機密 AI 基準測試程序。政府有權在前沿模型公開前取得存取與評估。可信合作夥伴框架於 60 天內確立。明文禁止強制授權與預審。</p>
+    <span class="deadline">硬截止：60天</span>
+  </div>
+  <div class="eo-card green">
+    <div class="eo-tag">Section 2 延伸</div>
+    <h3>科技人力擴充（Tech Force）</h3>
+    <p>OPM 需在 60 天內拓展 Tech Force 招募管道，專注資安職能。OMB 評估聯邦補助款用於 AI 漏洞偵測的可行性，為後續預算授權鋪路。</p>
+    <span class="deadline">硬截止：60天</span>
+  </div>
+  <div class="eo-card purple">
+    <div class="eo-tag">Section 4</div>
+    <h3>AI 輔助網攻犯罪執法</h3>
+    <p>司法部優先追訴利用 AI 進行未授權電腦存取的犯罪，涵蓋直接攻擊與後續利用。此條款雖無直接採購觸發，但可能強化企業與政府的資安合規支出動機。</p>
+    <span class="deadline">無截止：持續</span>
+  </div>
+</div>
+
+<p><strong>核心轉變一句話：</strong>「政府不管你怎麼做，但政府要成為你最大的客戶，並且要求你在政府採購前先讓我們看看。」</p>
+
+<!-- ─────────── SECTION 2: 投資邏輯 ─────────── -->
+<h2>二、核心投資邏輯</h2>
+
+<h3>為什麼這次可能不同於過去的 AI 政策聲明</h3>
+<p>過去的 AI 政策聲明（包括 Biden 時期的 EO 14110）多為原則性框架，缺乏硬性時間節點與資金授權。這份 EO 有三個較不同的特徵，使其<strong>可能</strong>產生更直接的市場影響：</p>
+<ul>
+  <li><strong>硬性截止日期</strong>：30天/60天截止有助於量化催化劑時間窗口，媒體與分析師可追蹤進度。</li>
+  <li><strong>明確授權採購路徑</strong>：CISA 約束性指令 + 財政部清算所 = 政府可直接下單，不需再通過立法程序。</li>
+  <li><strong>監管方向明確反轉</strong>：「不得強制授權或預審」移除了 AI 公司最擔心的尾部風險情境，估值壓縮的來源之一可能消失。</li>
+</ul>
+
+<p>但也需注意：行政命令的最終採購規模取決於國會撥款，EO 本身無法直接授權大規模支出。以下的受惠機率評估均已納入此不確定性。</p>
+
+<!-- ─────────── SECTION 3: 主題一 ─────────── -->
+<h2>三、四大投資主題與受惠股票</h2>
+
+<div class="theme-block t1">
+  <div class="theme-header">
+    <div class="theme-num t1">1</div>
+    <div>
+      <div class="theme-title">AI 資安工具：最直接的政府採購受益方</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:4px;">AI-Enabled Cyber Defense Infrastructure</div>
+    </div>
+  </div>
+  <div class="theme-body">
+    <div class="theme-trigger">
+      <strong>觸發條款：</strong>Section 2 — CISA 30天約束性指令 + AI防禦工具計畫 + 州政府/關鍵基礎設施開放使用
+    </div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">這是四個主題中政策連結最直接的一條。CISA 的約束性指令（Binding Operational Directive）對聯邦機構有強制力，且財政部建立漏洞掃描清算所意味著需要平台型資安廠商提供基礎設施。已有聯邦合約基礎的 AI 原生資安公司，有機會率先受惠。</p>
+    <div class="stock-list">
+      <div class="stock-row">
+        <div class="stock-left">
+          <div class="stock-ticker">CRWD</div>
+          <div class="stock-name">CrowdStrike</div>
+        </div>
+        <div class="stock-body">
+          <div class="stock-thesis">AI 原生端點資安，聯邦政府已是主要客戶群，Falcon 平台架構與 CISA 指令的「AI 防禦工具」定義高度吻合。若 CISA 指令在 30 天內落地，CRWD 的合約管線可能快速擴大。</div>
+          <div class="stock-note">風險：估值偏高（NTM P/S ~18x），需要實際合約落地才能支撐股價繼續上漲。</div>
+        </div>
+        <div class="stock-right"><span class="prob high">高機率 75%</span></div>
+      </div>
+      <div class="stock-row">
+        <div class="stock-left">
+          <div class="stock-ticker">PANW</div>
+          <div class="stock-name">Palo Alto Networks</div>
+        </div>
+        <div class="stock-body">
+          <div class="stock-thesis">平台化資安策略（Platformization）與政府客戶基礎龐大，AI 驅動的 Cortex 平台可能被定位為漏洞清算所的核心節點。管理層已在法說會多次提及政府採購加速的訊號。</div>
+          <div class="stock-note">風險：平台化轉型期間短期收入增速放緩，需觀察 FY27 指引。</div>
+        </div>
+        <div class="stock-right"><span class="prob high">高機率 72%</span></div>
+      </div>
+      <div class="stock-row">
+        <div class="stock-left">
+          <div class="stock-ticker">MSFT</div>
+          <div class="stock-name">Microsoft</div>
+        </div>
+        <div class="stock-body">
+          <div class="stock-thesis">Copilot for Security 直接對應「AI 資安工具」定義，Azure Government 雲端與 M365 在聯邦機構已高度滲透。EO 更像是在既有地盤上追加訂單，而非全新競賽。</div>
+          <div class="stock-note">AI EO 貢獻可能在 MSFT 整體財務中體積較小，作為純粹 AI EO 主題的槓桿較低，更適合作為基本面配置。</div>
+        </div>
+        <div class="stock-right"><span class="prob high">高機率 70%</span></div>
+      </div>
+      <div class="stock-row">
+        <div class="stock-left">
+          <div class="stock-ticker">S</div>
+          <div class="stock-name">SentinelOne</div>
+        </div>
+        <div class="stock-body">
+          <div class="stock-thesis">AI 端點資安，政府合約處於高速成長期，比 CRWD 規模小但增速更快，如果聯邦合約加速，有機會帶來更大的相對估值重估。</div>
+          <div class="stock-note">尚未盈利，聯邦市占仍低於 CRWD，需確認 60天內合約訊號才能提升信心。</div>
+        </div>
+        <div class="stock-right"><span class="prob mid">中機率 58%</span></div>
+      </div>
+      <div class="stock-row">
+        <div class="stock-left">
+          <div class="stock-ticker">ZS</div>
+          <div class="stock-name">Zscaler</div>
+        </div>
+        <div class="stock-body">
+          <div class="stock-thesis">Zero Trust 架構對應 AI 模型存取控制的安全需求，CISA 已多次推薦 ZT 架構作為聯邦標準，可能從 CISA 指令中間接受惠。</div>
+          <div class="stock-note">對 AI EO 的直接敏感度稍低於端點資安公司，更多屬於 AI 時代資安架構的長期受益者。</div>
+        </div>
+        <div class="stock-right"><span class="prob mid">中機率 55%</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="theme-block t2">
+  <div class="theme-header">
+    <div class="theme-num t2">2</div>
+    <div>
+      <div class="theme-title">可信合作夥伴：60天內選定，稀缺性溢價</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:4px;">Trusted Partner Ecosystem + Frontier Model Access</div>
+    </div>
+  </div>
+  <div class="theme-body">
+    <div class="theme-trigger">
+      <strong>觸發條款：</strong>Section 3 — 60天內選定可信合作夥伴、前沿模型發布前政府取得存取、機密基準測試程序
+    </div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">「可信合作夥伴」的稀缺性可能創造先行者優勢：一旦被指定，後續政府 AI 採購的門檻會大幅降低。最有機會入選的公司，通常同時具備：已有 FedRAMP/DoD 合規認證、前沿模型能力、與現任政府的既有關係。</p>
+    <div class="stock-list">
+      <div class="stock-row">
+        <div class="stock-left">
+          <div class="stock-ticker">PLTR</div>
+          <div class="stock-name">Palantir</div>
+        </div>
+        <div class="stock-body">
+          <div class="stock-thesis">Palantir 可能是「可信合作夥伴」概念最直接受益者。AIP（AI Platform）已在 DoD、CIA、NSA 部署，CEO Alex Karp 與現任政府關係密切，且公司定位本身就是「政府 AI 整合商」。60天截止可能直接以 PLTR 相關新聞作收。</div>
+          <div class="stock-note">已是高估值（NTM P/S ~35x），「可信夥伴」指定即使落地，市場可能已有部分預期。需要觀察指定後的實際合約規模。</div>
+        </div>
+        <div class="stock-right"><span class="prob high">高機率 78%</span></div>
+      </div>
+      <div class="stock-row">
+        <div class="stock-left">
+          <div class="stock-ticker">GOOGL</div>
+          <div class="stock-name">Alphabet / Google</div>
+        </div>
+        <div class="stock-body">
+          <div class="stock-thesis">Gemini Ultra 是前沿模型候選，GCP 已有廣泛聯邦部署，Google DeepMind 有機密研究能力。作為科技巨頭，進入可信夥伴框架的機率較高，但與政府關係的深度不如 PLTR。</div>
+          <div class="stock-note">GOOGL 財務規模大，EO 單一政策的影響在整體估值中可能被稀釋，適合作為長期配置而非純粹 EO 主題交易。</div>
+        </div>
+        <div class="stock-right"><span class="prob high">高機率 65%</span></div>
+      </div>
+      <div class="stock-row">
+        <div class="stock-left">
+          <div class="stock-ticker">BAH</div>
+          <div class="stock-name">Booz Allen Hamilton</div>
+        </div>
+        <div class="stock-body">
+          <div class="stock-thesis">政府 AI 整合商的核心橋接者，收入高度依賴聯邦採購，「可信夥伴」框架一旦成型，BAH 可能是把前沿模型包裝成政府可用解決方案的最大受益中間商。近期 AI 業務增速持續加快。</div>
+          <div class="stock-note">估值相對合理（P/E ~25x），若政府 AI 支出加速，EPS 上修空間可能超過市場預期，屬於低調但穩定的受益標的。</div>
+        </div>
+        <div class="stock-right"><span class="prob high">高機率 70%</span></div>
+      </div>
+      <div class="stock-row">
+        <div class="stock-left">
+          <div class="stock-ticker">META</div>
+          <div class="stock-name">Meta Platforms</div>
+        </div>
+        <div class="stock-body">
+          <div class="stock-thesis">Llama 系列開源模型讓政府可以在自有基礎設施部署，不依賴 Meta 直接服務，這反而可能降低選定門檻。Llama 的廣泛採用可能讓 Meta 間接成為政府前沿模型生態系的基礎提供者。</div>
+          <div class="stock-note">Meta 本身的企業基本面（廣告/元宇宙）與 EO 受惠程度關聯較低，AI EO 對 META 股價的影響可能較間接，更多屬於敘事層面的支撐。</div>
+        </div>
+        <div class="stock-right"><span class="prob mid">中機率 50%</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="theme-block t3">
+  <div class="theme-header">
+    <div class="theme-num t3">3</div>
+    <div>
+      <div class="theme-title">政府 AI 基礎設施升級：算力底層</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:4px;">Federal AI Infrastructure + Cloud Procurement</div>
+    </div>
+  </div>
+  <div class="theme-body">
+    <div class="theme-trigger">
+      <strong>觸發條款：</strong>Section 2 — OMB 評估 AI 漏洞偵測補助款、CISA 工具部署要求、OPM Tech Force 擴充
+    </div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">政府 AI 工具的大規模部署需要算力支撐。聯邦雲端基礎設施擴充可能帶動 GovCloud 需求，而補助款若通過，州政府與地方政府的 AI 建設也可能加速。這一層的受惠時間滯後最長，可能要 2–4 季後才反映在財務數據中。</p>
+    <div class="stock-list">
+      <div class="stock-row">
+        <div class="stock-left">
+          <div class="stock-ticker">NVDA</div>
+          <div class="stock-name">NVIDIA</div>
+        </div>
+        <div class="stock-body">
+          <div class="stock-thesis">所有政府 AI 部署的最終底層硬體受益者。無論是 CISA 的防禦工具還是可信夥伴的前沿模型，算力需求都會流向 NVDA 的 GPU。政府採購占 NVDA 整體收入比例偏低，但 EO 可能加速聯邦 AI 採購週期，形成增量需求。</div>
+          <div class="stock-note">NVDA 本身已有強大的基本面驅動，EO 更多是錦上添花而非根本性改變，建議作為核心持倉的敘事補充，而非單純 EO 主題交易。</div>
+        </div>
+        <div class="stock-right"><span class="prob high">高機率 68%</span></div>
+      </div>
+      <div class="stock-row">
+        <div class="stock-left">
+          <div class="stock-ticker">AMZN</div>
+          <div class="stock-name">Amazon / AWS</div>
+        </div>
+        <div class="stock-body">
+          <div class="stock-thesis">AWS GovCloud 是聯邦雲端最大供應商，CISA 指令落地後，各機構可能加速遷移或擴充雲端 AI 工作負載到 AWS。Bedrock 平台也可能成為政府前沿模型存取的中介層。</div>
+          <div class="stock-note">AWS 政府業務增速已在近幾季加速，EO 可能讓這個趨勢持續，但受 AMZN 整體電商季節性影響，短期股價動能較難單一歸因。</div>
+        </div>
+        <div class="stock-right"><span class="prob mid">中機率 60%</span></div>
+      </div>
+      <div class="stock-row">
+        <div class="stock-left">
+          <div class="stock-ticker">LDOS</div>
+          <div class="stock-name">Leidos</div>
+        </div>
+        <div class="stock-body">
+          <div class="stock-thesis">純聯邦 IT + 資安 prime contractor，幾乎所有收入來自政府採購。如果聯邦 AI 資安支出加速，Leidos 作為執行端（系統整合、部署、維護）可能最直接受惠，且估值較科技股顯著偏低。</div>
+          <div class="stock-note">業務增長與政府預算決策高度連動，若有繼續性決議（Continuing Resolution）或凍結，可能延遲採購決定。</div>
+        </div>
+        <div class="stock-right"><span class="prob mid">中機率 62%</span></div>
+      </div>
+      <div class="stock-row">
+        <div class="stock-left">
+          <div class="stock-ticker">SAIC</div>
+          <div class="stock-name">Science Applications International</div>
+        </div>
+        <div class="stock-body">
+          <div class="stock-thesis">類似 Leidos，聯邦 IT 整合商，AI 業務增速加快。EO 帶動的政府 AI 採購需要系統整合能力，SAIC 有機會取得多個部門合約。</div>
+          <div class="stock-note">與 LDOS 高度相似，可擇一配置，SAIC 規模稍小，EPS 改善的彈性可能更大。</div>
+        </div>
+        <div class="stock-right"><span class="prob mid">中機率 58%</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="theme-block t4">
+  <div class="theme-header">
+    <div class="theme-num t4">4</div>
+    <div>
+      <div class="theme-title">台股連動：製造底層的第二層傳導</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:4px;">Taiwan Supply Chain — Second-Order Effects</div>
+    </div>
+  </div>
+  <div class="theme-body">
+    <div class="theme-trigger">
+      <strong>觸發條款：</strong>間接傳導 — 美國政府 AI 算力採購 → 超大規模雲端廠商 Capex 加速 → AI 伺服器 ODM 出貨 → 台積電晶片需求
+    </div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">台股受惠屬於第二層傳導，需要美國政府採購實際落地並擴大 Hyperscaler 的 Capex 計畫才會顯現。傳導時間可能落後 1–2 個季度，且台股受更多本地因素影響（匯率、地緣政治）。以下機率是「美股 AI EO 受惠成立」作為前提條件下的條件機率。</p>
+    <div class="stock-list">
+      <div class="stock-row">
+        <div class="stock-left">
+          <div class="stock-ticker">2330</div>
+          <div class="stock-name">台積電</div>
+        </div>
+        <div class="stock-body">
+          <div class="stock-thesis">所有 AI 晶片的最終製造者，受惠邏輯最清晰：政府買 NVDA H100/B200 → NVDA 增產需求 → TSMC N3/N4 先進製程加單。已有的強勁需求訊號下，EO 可能提供額外的敘事支撐，有助於估值維持高位。</div>
+          <div class="stock-note">台積電本身基本面強勁，EO 對其貢獻屬於增量敘事，單純依據 EO 追高需謹慎。</div>
+        </div>
+        <div class="stock-right"><span class="prob mid">中機率 60%</span></div>
+      </div>
+      <div class="stock-row">
+        <div class="stock-left">
+          <div class="stock-ticker">2382</div>
+          <div class="stock-name">廣達電腦</div>
+        </div>
+        <div class="stock-body">
+          <div class="stock-thesis">AI 伺服器最大 ODM 之一，供應 Google、Meta、Microsoft 等超大規模客戶。若 EO 帶動政府雲端 AI 擴建，最終採購很可能流向廣達的訂單，尤其是 Google GCP 和 AWS 政府業務。</div>
+          <div class="stock-note">傳導鏈較長，需要觀察 Q3 法說會是否有客戶指向政府端的加速訊號。</div>
+        </div>
+        <div class="stock-right"><span class="prob mid">中機率 52%</span></div>
+      </div>
+      <div class="stock-row">
+        <div class="stock-left">
+          <div class="stock-ticker">6669</div>
+          <div class="stock-name">緯穎科技</div>
+        </div>
+        <div class="stock-body">
+          <div class="stock-thesis">超大規模資料中心伺服器專家，主要客戶為 Microsoft Azure 與其他雲端巨頭。Azure GovCloud 擴建需求有機會傳導至緯穎出貨，且緯穎的 AI 伺服器比例持續提升。</div>
+          <div class="stock-note">台股中的高彈性標的，受惠若成立，股價反應可能相對快速，但不確定性也更高。</div>
+        </div>
+        <div class="stock-right"><span class="prob mid">中機率 48%</span></div>
+      </div>
+      <div class="stock-row">
+        <div class="stock-left">
+          <div class="stock-ticker">2345</div>
+          <div class="stock-name">智邦科技</div>
+        </div>
+        <div class="stock-body">
+          <div class="stock-thesis">資料中心交換器龍頭，AI 漏洞清算所與政府資安工具部署需要強化網路基礎設施，交換器需求可能同步拉升。主要客戶包含多家超大規模雲端廠商。</div>
+          <div class="stock-note">傳導最為間接，需確認政府 AI 安全基礎設施建設的規模才能評估影響。</div>
+        </div>
+        <div class="stock-right"><span class="prob low">低機率 38%</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─────────── SECTION 4: 催化劑時間軸 ─────────── -->
+<h2>四、催化劑時間軸</h2>
+<p>這份 EO 少見地提供了硬性截止日期，讓市場可追蹤執行進度。以下為主要催化劑節點：</p>
+
+<div class="timeline">
+  <div class="tl-item yellow">
+    <div class="tl-dot"></div>
+    <div class="tl-date">2026年7月初（+30天）</div>
+    <div class="tl-title">CISA 約束性指令截止</div>
+    <div class="tl-desc">CISA 發布 AI 防禦工具計畫及對聯邦機構的約束性指令。此為最近期催化劑，可能推動資安廠商（CRWD、PANW）合約訊號出現。若延遲或內容薄弱，可能成為短期利空。</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <div class="tl-date">2026年8月初（+60天）</div>
+    <div class="tl-title">可信合作夥伴選定 + 前沿模型基準框架</div>
+    <div class="tl-desc">財政部、NSA、CISA 需完成機密基準測試程序設計，並公告可信合作夥伴框架。PLTR 的敘事可能在此時得到最直接的驗證或修正。</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <div class="tl-date">2026年8月初（+60天）</div>
+    <div class="tl-title">OPM Tech Force 招募計畫</div>
+    <div class="tl-desc">資安人力擴充，短期對市場影響有限，但代表政府長期 AI 建設意圖。</div>
+  </div>
+  <div class="tl-item green">
+    <div class="tl-dot"></div>
+    <div class="tl-date">2026 Q3–Q4 財報季</div>
+    <div class="tl-title">實際合約兌現驗證</div>
+    <div class="tl-desc">CRWD、PANW、BAH、LDOS 的 Q2/Q3 財報將是驗證 EO 是否轉化為實際採購的最重要窗口。如果聯邦合約加速，可能有額外的上修機會。</div>
+  </div>
+  <div class="tl-item green">
+    <div class="tl-dot"></div>
+    <div class="tl-date">2026 Q4–2027 Q1</div>
+    <div class="tl-title">台股傳導窗口</div>
+    <div class="tl-desc">美國政府採購若在 Q3 加速，台積電/廣達/緯穎可能在 1–2 季後看到政府端需求傳導至訂單數字。</div>
+  </div>
+</div>
+
+<!-- ─────────── SECTION 5: 機率矩陣 ─────────── -->
+<h2>五、受惠機率矩陣總覽</h2>
+<p>以下根據「EO 條款連結明確度」×「現有政府合約基礎」×「估值消化程度」三個維度綜合評估，以受惠機率由高至低排序：</p>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>代碼</th>
+        <th>公司</th>
+        <th>主題</th>
+        <th>受惠機率</th>
+        <th>受惠機制</th>
+        <th>主要風險</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>PLTR</strong></td><td>Palantir</td><td>可信合作夥伴</td><td><span class="matrix-high">78%</span></td><td>政府 AI 整合平台首選，與現任政府關係最深</td><td>估值已充分定價，需實際合約規模支撐</td></tr>
+      <tr><td><strong>CRWD</strong></td><td>CrowdStrike</td><td>AI 資安工具</td><td><span class="matrix-high">75%</span></td><td>CISA 30天指令最直接對應廠商</td><td>估值偏高，需實際採購加速</td></tr>
+      <tr><td><strong>PANW</strong></td><td>Palo Alto</td><td>AI 資安工具</td><td><span class="matrix-high">72%</span></td><td>平台化資安 + 政府漏洞清算所節點</td><td>平台化轉型期財務能見度</td></tr>
+      <tr><td><strong>BAH</strong></td><td>Booz Allen</td><td>可信合作夥伴</td><td><span class="matrix-high">70%</span></td><td>聯邦 AI 整合中間商，估值合理</td><td>政府預算風險，增速改善需持續驗證</td></tr>
+      <tr><td><strong>MSFT</strong></td><td>Microsoft</td><td>AI 資安 / 基礎設施</td><td><span class="matrix-high">70%</span></td><td>Azure Gov + Copilot for Security 雙線受惠</td><td>EO 貢獻在整體財務占比小，槓桿低</td></tr>
+      <tr><td><strong>NVDA</strong></td><td>NVIDIA</td><td>基礎設施算力</td><td><span class="matrix-high">68%</span></td><td>政府 AI 算力底層，需求傳導明確</td><td>已有強基本面，EO 屬增量敘事</td></tr>
+      <tr><td><strong>GOOGL</strong></td><td>Alphabet</td><td>可信合作夥伴</td><td><span class="matrix-high">65%</span></td><td>Gemini + GCP Gov + DOGE 關係</td><td>EO 貢獻稀釋於龐大財務規模</td></tr>
+      <tr><td><strong>LDOS</strong></td><td>Leidos</td><td>政府基礎設施</td><td><span class="matrix-mid">62%</span></td><td>聯邦 IT prime contractor，估值低</td><td>政府預算凍結風險</td></tr>
+      <tr><td><strong>AMZN</strong></td><td>Amazon/AWS</td><td>政府基礎設施</td><td><span class="matrix-mid">60%</span></td><td>AWS GovCloud 聯邦雲端第一大</td><td>EO 對 AMZN 整體影響有限</td></tr>
+      <tr><td><strong>2330</strong></td><td>台積電</td><td>台股連動</td><td><span class="matrix-mid">60%</span></td><td>AI 晶片製造底層，傳導清晰</td><td>傳導時間滯後，台股受多重因素影響</td></tr>
+      <tr><td><strong>S</strong></td><td>SentinelOne</td><td>AI 資安工具</td><td><span class="matrix-mid">58%</span></td><td>政府合約高速成長，有機會加速</td><td>未盈利，聯邦市占仍低</td></tr>
+      <tr><td><strong>SAIC</strong></td><td>SAIC</td><td>政府基礎設施</td><td><span class="matrix-mid">58%</span></td><td>聯邦 IT 整合商，AI 業務增速</td><td>與 LDOS 高度相似，可擇一</td></tr>
+      <tr><td><strong>ZS</strong></td><td>Zscaler</td><td>AI 資安工具</td><td><span class="matrix-mid">55%</span></td><td>Zero Trust 聯邦標準，長線受益</td><td>直接政策連結較弱，偏長期</td></tr>
+      <tr><td><strong>2382</strong></td><td>廣達電腦</td><td>台股連動</td><td><span class="matrix-mid">52%</span></td><td>AI 伺服器 ODM，客戶含政府雲端供應商</td><td>傳導鏈長，訊號慢</td></tr>
+      <tr><td><strong>META</strong></td><td>Meta</td><td>可信合作夥伴</td><td><span class="matrix-mid">50%</span></td><td>Llama 開源降低政府採用門檻</td><td>EO 與廣告主業關聯低，屬敘事層面</td></tr>
+      <tr><td><strong>6669</strong></td><td>緯穎科技</td><td>台股連動</td><td><span class="matrix-mid">48%</span></td><td>Azure 伺服器 ODM，GovCloud 擴建受益</td><td>高彈性但高不確定性</td></tr>
+      <tr><td><strong>2345</strong></td><td>智邦科技</td><td>台股連動</td><td><span class="matrix-low">38%</span></td><td>資料中心交換器，傳導最間接</td><td>需確認政府 AI 建設規模才可評估</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ─────────── SECTION 6: 風險因素 ─────────── -->
+<h2>六、風險因素</h2>
+
+<div class="risk-grid">
+  <div class="risk-box up">
+    <h4>可能超預期的情境（上行）</h4>
+    <ul>
+      <li>可信合作夥伴清單在 60 天內公告，點名特定公司名稱，帶動市場快速重新定價</li>
+      <li>CISA 約束性指令規模超預期，强制聯邦機構在特定時限內完成 AI 資安工具部署</li>
+      <li>國會補充預算通過，為 OMB 補助款提供資金支持，加速地方政府 AI 採購</li>
+      <li>多個前沿 AI 公司在 Q2 法說會引用 EO 為政府業務加速的驅動因素</li>
+    </ul>
+  </div>
+  <div class="risk-box down">
+    <h4>可能低於預期的情境（下行）</h4>
+    <ul>
+      <li>政府繼續決議（Continuing Resolution）凍結採購，30/60天截止變成空話</li>
+      <li>機密基準測試框架設計週期拖延，可信合作夥伴選定延後數月</li>
+      <li>「自願性」條款被廣泛解讀：EO 沒有強制力，企業參與度不足</li>
+      <li>政治風險：下一個財政年度 CISA 預算遭削減，與 EO 方向背道而馳</li>
+      <li>台股地緣政治壓力加劇，覆蓋所有台股受惠邏輯</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ─────────── SECTION 7: 與現有研究的連接 ─────────── -->
+<h2>七、與現有研究的連接點</h2>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>現有報告 / 專案</th>
+        <th>此 EO 新增的角度</th>
+        <th>建議動作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>AI 數據中心連接之戰（2026/05/21）</strong></td>
+        <td>政府成為 AI 算力採購新需求曲線，可補充「政府需求篇」作為原報告的後續更新</td>
+        <td>低優先，敘事補充</td>
+      </tr>
+      <tr>
+        <td><strong>量子計算撥款報告（2026/05/21）</strong></td>
+        <td>直接連結有限；但 NIST 後量子密碼標準可能在 AI 安全基準中被引用，有機會成為後續 EO 衍生條款</td>
+        <td>觀察後續 EO</td>
+      </tr>
+      <tr>
+        <td><strong>美股盤前分析師（causal_map）</strong></td>
+        <td>應加入因果鏈：「白宮 AI EO → 政府 AI 預算加速 → CRWD/PLTR/BAH 合約增加 → AI 伺服器需求 → 台積電/廣達」</td>
+        <td>高優先，更新 causal_map.json</td>
+      </tr>
+      <tr>
+        <td><strong>抄底王策略系統（台股當沖）</strong></td>
+        <td>2330 台積電若因 AI EO 敘事走強，可能影響台股大盤氛圍與大型科技股當日走勢，需加入「美國政策敘事」作為盤前判斷因素</td>
+        <td>中優先，盤前變數更新</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ─────────── SECTION 8: 結語 ─────────── -->
+<h2>八、結語</h2>
+<p>
+  這份行政命令代表的訊號是：美國政府在 AI 領域的角色，有機會從「潛在監管者」轉變為「主動買家 + 標準制定者」。過去兩年 AI 股估值中隱含的監管尾部風險，可能因此部分消散；而政府採購週期的啟動，則可能為特定公司創造新的收入成長動能。
+</p>
+<p>
+  然而，行政命令的承諾兌現需要時間。最關鍵的驗證時間節點是：<strong>2026年7月初 CISA 指令</strong>和<strong>2026年8月初可信合作夥伴公告</strong>。在此之前，EO 帶來的市場反應可能更多屬於敘事層面的重新定價，而非基本面的實質改變。
+</p>
+<p>
+  建議策略：以短期催化劑（30/60天截止）為時間框架觀察 <strong>CRWD、PLTR、BAH</strong> 的消息流；以中期基本面角度配置 <strong>NVDA、MSFT、PANW</strong>；台股連動則等待美國端合約實際落地後，再觀察 <strong>台積電（2330）、廣達（2382）</strong> 的訂單訊號。
+</p>
+
+<!-- ─────────── FOOTER ─────────── -->
+<div class="footer">
+  本報告由 Jason 研究工作站生成 · 2026-06-02<br>
+  資料來源：白宮行政命令原文（whitehouse.gov）· 各公司公開財務資料<br>
+  所有機率評估為作者主觀判斷，非投資建議，投資前請自行進行盡職調查
+</div>
+
+</body>
+</html>
