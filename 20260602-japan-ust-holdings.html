@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本持有美債深度研究 — 兆元棋局與隱性外交協議</title>
+<style>
+:root {
+  --bg: #0d1117; --surface: #161b22; --surface2: #1c2128;
+  --border: #30363d; --text: #c9d1d9; --muted: #8b949e;
+  --green: #3fb950; --yellow: #d29922; --orange: #db6d28; --red: #f85149;
+  --accent: #58a6ff; --purple: #bc8cff;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: 'Microsoft JhengHei', 'Noto Sans TC', 'Segoe UI', sans-serif; font-size: 15px; line-height: 1.7; padding: 32px 20px; max-width: 960px; margin: 0 auto; }
+h1 { font-size: 26px; color: var(--accent); margin-bottom: 6px; font-weight: 700; }
+h2 { font-size: 19px; color: var(--accent); margin: 36px 0 14px; padding-bottom: 6px; border-bottom: 1px solid var(--border); font-weight: 600; }
+h3 { font-size: 16px; color: var(--purple); margin: 22px 0 10px; font-weight: 600; }
+p { margin-bottom: 14px; }
+.meta { color: var(--muted); font-size: 13px; margin-bottom: 28px; }
+.tag { display: inline-block; background: rgba(88,166,255,.15); color: var(--accent); border-radius: 4px; padding: 2px 8px; font-size: 12px; margin-right: 6px; }
+
+/* Executive Summary */
+.exec-summary {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin-bottom: 32px;
+}
+.exec-summary h2 { margin: 0 0 14px; border: none; font-size: 16px; }
+.exec-list { list-style: none; padding: 0; }
+.exec-list li { padding: 5px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+.exec-list li:last-child { border-bottom: none; }
+.exec-list li::before { content: "▸ "; color: var(--accent); }
+
+/* Key stats grid */
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 20px 0; }
+.stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; text-align: center; }
+.stat-value { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+.stat-label { font-size: 11px; color: var(--muted); }
+.stat-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+/* Data tables */
+table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13px; }
+th { background: var(--surface2); color: var(--muted); font-weight: 600; padding: 8px 12px; text-align: left; border-bottom: 2px solid var(--border); }
+td { padding: 7px 12px; border-bottom: 1px solid var(--border); }
+tr:hover td { background: rgba(88,166,255,.04); }
+.num { text-align: right; font-variant-numeric: tabular-nums; }
+.up { color: var(--green); }
+.dn { color: var(--red); }
+.warn { color: var(--orange); }
+.note { color: var(--muted); font-size: 12px; }
+
+/* Section blocks */
+.block { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 18px 22px; margin: 16px 0; }
+.block-title { font-size: 13px; color: var(--muted); margin-bottom: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* Alert boxes */
+.alert { border-radius: 8px; padding: 14px 18px; margin: 16px 0; font-size: 14px; }
+.alert-red    { background: rgba(248,81,73,.1);  border: 1px solid rgba(248,81,73,.3);  border-left: 4px solid var(--red); }
+.alert-yellow { background: rgba(210,153,34,.1); border: 1px solid rgba(210,153,34,.3); border-left: 4px solid var(--yellow); }
+.alert-green  { background: rgba(63,185,80,.1);  border: 1px solid rgba(63,185,80,.3);  border-left: 4px solid var(--green); }
+.alert-title  { font-weight: 700; margin-bottom: 6px; }
+
+/* Causal chain */
+.chain { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 14px 0; }
+.chain-step { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 6px 14px; font-size: 13px; }
+.chain-arrow { color: var(--muted); font-size: 16px; }
+
+/* Timeline */
+.timeline { margin: 14px 0; }
+.tl-item { display: flex; gap: 16px; margin-bottom: 14px; }
+.tl-dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+.tl-content { flex: 1; }
+.tl-date { font-size: 12px; color: var(--muted); margin-bottom: 2px; }
+
+/* Scenario table */
+.scenario-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 14px 0; }
+.scenario-card { border-radius: 8px; padding: 14px 16px; }
+.scenario-base { background: rgba(63,185,80,.08); border: 1px solid rgba(63,185,80,.2); }
+.scenario-bear { background: rgba(248,81,73,.08); border: 1px solid rgba(248,81,73,.2); }
+.scenario-tail { background: rgba(210,153,34,.08); border: 1px solid rgba(210,153,34,.2); }
+.sc-title { font-weight: 700; margin-bottom: 8px; font-size: 14px; }
+.sc-list { font-size: 13px; color: var(--muted); }
+.sc-list li { margin-bottom: 4px; list-style: none; }
+.sc-list li::before { content: "• "; }
+
+/* Quote */
+blockquote { border-left: 3px solid var(--border); padding-left: 16px; color: var(--muted); font-style: italic; margin: 14px 0; }
+
+/* Footer */
+.footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 12px; color: var(--muted); }
+
+@media (max-width: 640px) {
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .scenario-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<h1>日本持有美債深度研究</h1>
+<h1 style="font-size:18px; color:var(--text); font-weight:400; margin-top:4px">兆元棋局：升息、拋售、外交協議，與美國財政的脆弱平衡</h1>
+<p class="meta">
+  <span class="tag">宏觀研究</span>
+  <span class="tag">美債殖利率</span>
+  <span class="tag">日本央行</span>
+  <span class="tag">Carry Trade</span>
+  2026-06-02 ｜ 資料截至 2025-12（TIC）、2026-06（市場）
+</p>
+
+<!-- Executive Summary -->
+<div class="exec-summary">
+  <h2>執行摘要</h2>
+  <ul class="exec-list">
+    <li>日本持有 <strong>$1.186 兆</strong>美債，是全球最大外國債主，高於中國（~$0.76兆），佔美國可流通債務約 <strong>4.5%</strong>。</li>
+    <li>2025 年日本實際上是<strong>淨買家</strong>（全年增持 +$124B），並非賣方——風險是<strong>前瞻性</strong>的，不是當下正在發生的事。</li>
+    <li>核心機制：<strong>美日 10 年利差目前僅 1.95%</strong>（已觸及 YPI 橘色警示門檻），日本國內殖利率持續上升，讓日本機構投資人持有美債的動機持續削弱。</li>
+    <li>2024/08 提供最直接的歷史前例：BOJ 一次意外升息（+15bps）導致 <strong>Carry Trade 大規模解倉</strong>，台股 3 日跌 18.2%，遠超基本面能解釋的幅度。</li>
+    <li>貝森特訪日外交的核心邏輯：容許日本進行<strong>匯率干預</strong>（買日圓），換取日本不採取破壞美債市場的激進升息路徑——這是美國財政安全的理性選擇。</li>
+    <li><strong>最大尾端風險</strong>：日本國內政治壓力（通膨 + 選舉）逼迫 BOJ 無視外交默契而激進升息。概率不高，但一旦發生的傳導速度極快。</li>
+  </ul>
+</div>
+
+<!-- Current Key Stats -->
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="stat-value" style="color:var(--accent)">$1.186兆</div>
+    <div class="stat-label">日本持有美債（2025/12）</div>
+    <div class="stat-sub">1M 變動 −$17.2B</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value" style="color:var(--orange)">1.95%</div>
+    <div class="stat-label">美日 10 年利差</div>
+    <div class="stat-sub">US 4.46% − JP 2.52%</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value" style="color:var(--yellow)">$10兆</div>
+    <div class="stat-label">2026 美債到期規模</div>
+    <div class="stat-sub">佔可流通債務 ≈33%</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value" style="color:var(--red)">0.3%</div>
+    <div class="stat-label">BOJ 政策利率</div>
+    <div class="stat-sub">市場預期 2026 年再升 2 次</div>
+  </div>
+</div>
+
+<!-- Section A -->
+<h2>A ｜ 數據基礎：日本持倉規模與歷史趨勢</h2>
+
+<h3>A.1 規模與排名</h3>
+<p>根據美國財政部 TIC（Treasury International Capital）月度報告，日本長期是美國國債的最大外國持有國。目前持有量約 <strong>$1.186 兆</strong>（截至 2025 年 12 月），遠超中國（~$0.76 兆）。即便如此，外國持有人合計僅持有約 <strong>23%</strong> 的可流通美債（Federal Reserve、國內機構與個人持有剩餘）——因此日本的影響力在邊際上更為重要，在市場流動性差的時期尤其如此。</p>
+
+<h3>A.2 近期趨勢：2025 年是增持年</h3>
+<p>一個關鍵但常被忽視的事實：<strong>日本在 2025 年是淨買家</strong>，全年持倉從 $1,079.3B 增至 $1,185.5B，增加 <strong>+$106.2B</strong>。這與「日本隨時會拋售」的市場敘事有顯著落差——當前的持有量接近 5 年高點。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>年份</th><th class="num">期末持倉（十億美元）</th><th class="num">全年增減</th><th>解讀</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>2021</td><td class="num">1,300.8</td><td class="num up">+59.9</td><td class="note">歷史高峰期，超低利率環境</td></tr>
+    <tr><td>2022</td><td class="num">1,075.1</td><td class="num dn">−225.7</td><td class="note">Fed 快速升息 → 美債跌價 + 日本減持</td></tr>
+    <tr><td>2023</td><td class="num">1,115.3</td><td class="num up">+40.2</td><td class="note">反彈，部分回補</td></tr>
+    <tr><td>2024</td><td class="num">1,061.5</td><td class="num dn">−53.8</td><td class="note">Carry unwind + BOJ 首次升息</td></tr>
+    <tr><td>2025</td><td class="num">1,185.5</td><td class="num up">+124.0</td><td class="note" style="color:var(--green)">大幅增持，支撐美債供需</td></tr>
+  </tbody>
+</table>
+
+<div class="alert alert-green">
+  <div class="alert-title">當前狀態：日本是穩定力量，但邊際在轉變</div>
+  <p style="margin:0; font-size:14px">2025 年的大幅增持對美債市場是支撐性的。然而，美日利差已從 2023 年高峰的 ~3.8% 收窄至當前的 1.95%，接近歷史上觸發資金回流的關鍵水位。繼續增持的動機正在系統性地削弱。</p>
+</div>
+
+<h3>A.3 月度波動與訊號解讀</h3>
+<table>
+  <thead>
+    <tr><th>月份</th><th class="num">持倉（十億美元）</th><th class="num">月增減（十億美元）</th><th>市場背景</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>2025-09</td><td class="num">1,189.3</td><td class="num up">+8.9</td><td class="note">增持</td></tr>
+    <tr><td>2025-10</td><td class="num">1,200.0</td><td class="num up">+10.7</td><td class="note">增持加速</td></tr>
+    <tr><td>2025-11</td><td class="num">1,202.7</td><td class="num up">+2.7</td><td class="note">近期高點</td></tr>
+    <tr><td>2025-12</td><td class="num">1,185.5</td><td class="num dn warn">−17.2</td><td class="note">小幅減持（正常波動範圍內）</td></tr>
+  </tbody>
+</table>
+<p class="note">單月 −$17.2B 屬於正常波動。歷史上真正的警示訊號通常是連續 3 個月 −$30B 以上，或單月超過 −$50B，代表系統性減持而非月底調倉。</p>
+
+<!-- Section B -->
+<h2>B ｜ 機制解析：升息如何導致美債拋售</h2>
+
+<h3>B.1 傳導鏈完整圖示</h3>
+<div class="chain">
+  <div class="chain-step">BOJ 升息</div>
+  <div class="chain-arrow">→</div>
+  <div class="chain-step">日本國債殖利率上升</div>
+  <div class="chain-arrow">→</div>
+  <div class="chain-step">美日利差收窄</div>
+  <div class="chain-arrow">→</div>
+  <div class="chain-step">日本機構回流資本</div>
+  <div class="chain-arrow">→</div>
+  <div class="chain-step">美債供過於求</div>
+  <div class="chain-arrow">→</div>
+  <div class="chain-step">美債殖利率上升</div>
+  <div class="chain-arrow">→</div>
+  <div class="chain-step">美國借貸成本飆升</div>
+</div>
+
+<h3>B.2 利差閾值與資本流動</h3>
+<p>日本機構投資人（壽險公司、年金基金、銀行信託）在評估是否持有外幣資產時，通常會計算「匯率避險後收益率」。以目前美日 10 年利差 1.95% 為基礎：</p>
+
+<table>
+  <thead>
+    <tr><th>美日利差</th><th>資本流向傾向</th><th>YPI 警示</th><th>歷史例子</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="up">> 3.5%</td><td>日本資本大幅流入美元資產</td><td class="note">綠色</td><td class="note">2023 年初（Fed 高峰期）</td></tr>
+    <tr><td class="up">2.5% – 3.5%</td><td>持續流入，美元資產仍有吸引力</td><td class="note">黃色</td><td class="note">2024 年初</td></tr>
+    <tr><td class="warn">1.5% – 2.5%</td><td>邊際減少，觀望情緒增加</td><td class="warn">橘色（當前）</td><td class="note">2024/08 前夕</td></tr>
+    <tr><td class="dn">< 1.5%</td><td>系統性回流，機構主動賣出美債</td><td class="dn">紅色</td><td class="note">2022 年 Fed 升息前日本持倉急減</td></tr>
+  </tbody>
+</table>
+
+<div class="alert alert-yellow">
+  <div class="alert-title">⚠ 當前利差 1.95%：已進入橘色警示區間</div>
+  <p style="margin:0; font-size:14px">美日利差收窄至 1.95%，低於 2.5% 的橙色門檻。若 BOJ 再升息 50–75 bps 或美 Fed 降息 50 bps，利差將跌破 1.5% 的紅色門檻，屆時日本機構的資本回流動機將顯著強化。</p>
+</div>
+
+<h3>B.3 誰是主要的潛在賣家？</h3>
+<table>
+  <thead>
+    <tr><th>機構類型</th><th class="num">估計持有規模</th><th>對利差敏感度</th><th>行動時機</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>日本生命、第一生命等壽險</td><td class="num">~$400–500B</td><td class="warn">高</td><td class="note">年度資產配置調整期（Q1/Q4）</td></tr>
+    <tr><td>年金積立管理運用獨立行政法人（GPIF）</td><td class="num">~$200–300B</td><td>中</td><td class="note">有長期配置框架，行動較慢</td></tr>
+    <tr><td>銀行信託部門</td><td class="num">~$200–250B</td><td class="dn">極高</td><td class="note">利差縮小即可觸發再平衡</td></tr>
+    <tr><td>個人投資人（投資信託）</td><td class="num">~$100B</td><td>中</td><td class="note">市場恐慌時會贖回</td></tr>
+  </tbody>
+</table>
+
+<!-- Section C -->
+<h2>C ｜ 歷史案例：2024 年 8 月 Carry Trade 解倉解剖</h2>
+
+<h3>C.1 事件時間軸</h3>
+<div class="timeline">
+  <div class="tl-item">
+    <div class="tl-dot" style="background:var(--yellow)"></div>
+    <div class="tl-content">
+      <div class="tl-date">2024/07/31</div>
+      <div>BOJ 在市場未充分定價的情況下，宣布升息從 0.1% 至 0.25%（+15bps），並暗示未來可能繼續緊縮。市場衝擊遠大於預期。</div>
+    </div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot" style="background:var(--orange)"></div>
+    <div class="tl-content">
+      <div class="tl-date">2024/08/01–02</div>
+      <div>日圓從 USD/JPY 153 急升至 146。全球估計規模約 <strong>$4–8 兆</strong>的日圓 Carry Trade（借低利率日圓，投資美股/高息資產）開始強制平倉。</div>
+    </div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot" style="background:var(--red)"></div>
+    <div class="tl-content">
+      <div class="tl-date">2024/08/05（黑色星期一）</div>
+      <div>日本股市 Nikkei 225 單日暴跌 <strong>12.4%</strong>（史上最大單日跌幅之一）。台灣加權指數跌 <strong>8.4%</strong>。美股 VIX 指數飆至 <strong>65</strong>（COVID 後最高）。</div>
+    </div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot" style="background:var(--yellow)"></div>
+    <div class="tl-content">
+      <div class="tl-date">2024/08/05–09</div>
+      <div>台股 3 日累計跌幅 <strong>18.2%</strong>，加權指數從 23,100 跌至 18,900。電子股跌幅更深達 22%。美 10Y 殖利率先降至 3.67%（避險），後在市場穩定後反彈至 4.19%（+52 bps）。</div>
+    </div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot" style="background:var(--green)"></div>
+    <div class="tl-content">
+      <div class="tl-date">2024/08/23 起</div>
+      <div>BOJ 副總裁安達誠司發表鴿派聲明，保證不會在市場不穩定時升息，日圓回穩，Carry Trade 重建，市場 6 週後基本回補。</div>
+    </div>
+  </div>
+</div>
+
+<h3>C.2 關鍵數據：這次衝擊有多大？</h3>
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="stat-value" style="color:var(--red)">−10.5%</div>
+    <div class="stat-label">日圓 1 個月升值幅度</div>
+    <div class="stat-sub">USD/JPY 161 → 142</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value" style="color:var(--red)">−18.2%</div>
+    <div class="stat-label">台股 3 日跌幅</div>
+    <div class="stat-sub">電子股 −22%</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value" style="color:var(--orange)">65</div>
+    <div class="stat-label">VIX 高峰</div>
+    <div class="stat-sub">COVID 後最高點</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value" style="color:var(--green)">6 週</div>
+    <div class="stat-label">市場回補時間</div>
+    <div class="stat-sub">台股完全回補約 3 個月</div>
+  </div>
+</div>
+
+<h3>C.3 為什麼台股跌這麼多？</h3>
+<p>台股（特別是台積電等電子股）遭受了明顯超過基本面的跌幅，原因是多重因素疊加：</p>
+<ol style="padding-left:20px; font-size:14px; line-height:2;">
+  <li><strong>外資持倉高</strong>：台股外資持有比例約 40%，而外資中有部分是用日圓 Carry Trade 融資的——日圓急升導致強制回補，不得不賣台股。</li>
+  <li><strong>流動性代替品</strong>：台積電流動性高、市值大，成為「緊急時最先賣的資產」。</li>
+  <li><strong>ADR 折溢價放大</strong>：TSM ADR 跌幅與本地股差距在當天一度超過 5%。</li>
+  <li><strong>槓桿強平連鎖</strong>：部分本地散戶用融資持有電子股，VIX 飆升觸發斷頭。</li>
+</ol>
+
+<div class="alert alert-red">
+  <div class="alert-title">核心教訓：Carry Trade 解倉是非線性事件</div>
+  <p style="margin:0; font-size:14px">2024/08 的跌幅無法用台股或科技股的基本面解釋——台積電的訂單並未在 3 天內下降 18%。這是純粹的流動性 / 去槓桿事件。類似事件的特徵：速度極快（3–5 個交易日完成主要跌幅）、自我強化（跌越多越多人被強制平倉）、恢復也快（去槓桿完成後市場迅速恢復）。</p>
+</div>
+
+<h3>C.4 現在的風險比 2024/08 更大還是更小？</h3>
+<table>
+  <thead>
+    <tr><th>指標</th><th>2024/08 事件前</th><th>目前（2026/06）</th><th>比較</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>BOJ 政策利率</td><td class="note">0.1%</td><td class="warn">0.3%</td><td class="warn">偏緊但已部分消化</td></tr>
+    <tr><td>美日利差</td><td class="note">~3.5%</td><td class="dn">1.95%</td><td class="dn">顯著收窄，壓力更大</td></tr>
+    <tr><td>JP 10Y 殖利率</td><td class="note">~1.0%</td><td class="warn">2.52%</td><td class="warn">日本資產吸引力上升</td></tr>
+    <tr><td>USD/JPY 水位</td><td class="note">~160（超貶值）</td><td class="note">~145–150（已部分修正）</td><td class="up">Carry 已部分解倉</td></tr>
+    <tr><td>市場警覺性</td><td class="note">低（意外事件）</td><td class="up">高（已有前例）</td><td class="up">市場更有準備</td></tr>
+  </tbody>
+</table>
+
+<!-- Section D -->
+<h2>D ｜ 外交層面：貝森特訪日與隱性協議</h2>
+
+<h3>D.1 為什麼美國需要和日本協調？</h3>
+<p>美國財政部 2026 年面臨的 <strong>$10 兆到期牆</strong> 是歷史性規模——約佔所有可流通美債的三分之一需要在 12 個月內「以債養債」（發行新債償還舊債）。在此情境下，美債市場的穩定性是財政部的核心訴求，任何可能打亂需求基礎的事件都必須盡量規避。</p>
+
+<h3>D.2 美日各自的算盤</h3>
+<div class="block">
+  <div class="block-title">美國的利益</div>
+  <ul style="font-size:14px; line-height:2; padding-left:18px;">
+    <li>確保日本繼續持有（或至少不大幅減少）美債，維持 $10 兆展期的可行性</li>
+    <li>避免日本被迫激進升息，那將引發更大規模 Carry Trade 解倉，波及美股和美債</li>
+    <li>維持美元相對穩定（日圓急升也會讓美元指數下行，影響美國通膨預期）</li>
+  </ul>
+</div>
+<div class="block" style="margin-top:0">
+  <div class="block-title">日本的利益</div>
+  <ul style="font-size:14px; line-height:2; padding-left:18px;">
+    <li>恢復日圓購買力（日本進口通膨嚴重，民眾對弱日圓不滿），允許適度升值</li>
+    <li>不想被美國貼上「匯率操縱國」標籤，特別是在貿易談判期間</li>
+    <li>需要空間讓 BOJ 逐步正常化利率，但不想製造市場動盪影響出口企業</li>
+  </ul>
+</div>
+
+<h3>D.3 「默契」的表現形式</h3>
+<p>基於公開資訊推論（非官方確認），貝森特訪日後形成的工作框架大致是：</p>
+<ol style="padding-left:20px; font-size:14px; line-height:2.2;">
+  <li>美方<strong>不公開反對</strong>日本財務省進行外匯干預（買日圓/賣美元），避免把日本推向更激進的 BOJ 升息路徑</li>
+  <li>日方維持 BOJ 升息節奏的<strong>可預期性與漸進性</strong>，避免再次給市場「意外衝擊」</li>
+  <li>雙方在貿易談判中將<strong>匯率問題與關稅問題脫鉤</strong>，降低對話複雜度</li>
+</ol>
+
+<blockquote>「美日雙方在應對匯率過度波動的協調上，保持持續且強韌。」<br>— Scott Bessent，訪日後公開聲明</blockquote>
+
+<div class="alert alert-yellow">
+  <div class="alert-title">分析觀點：這是利益一致，不是施壓</div>
+  <p style="margin:0; font-size:14px">這個「默契」並非美國在對日本施壓。恰恰相反：兩國利益在短期內高度一致，貝森特只是讓日本明確知道「美國這次不會反對你干預」。這比強迫日本要有效得多——日本因此有了明確的政策空間，BOJ 的激進升息壓力因此暫時降低。</p>
+</div>
+
+<!-- Section E -->
+<h2>E ｜ 多資產傳導矩陣：若日本行動，誰先受衝擊？</h2>
+
+<h3>E.1 衝擊傳導序列</h3>
+<p>基於 2024/08 實證數據與結構性分析，若日本採取大規模資本回流動作（BOJ 激進升息 + 機構減持美債），傳導序列如下：</p>
+
+<table>
+  <thead>
+    <tr><th>傳導波次</th><th>資產/市場</th><th>方向與幅度（基準情境）</th><th>時間窗口</th></tr>
+  </thead>
+  <tbody>
+    <tr><td style="color:var(--red)">第一波（即時）</td><td>USD/JPY</td><td class="dn">JPY 急升 5–10%</td><td>數小時至 1 日</td></tr>
+    <tr><td style="color:var(--red)">第一波（即時）</td><td>日本 Carry 資產（美股、EM）</td><td class="dn">強制賣出，VIX 飆升</td><td>1–3 日</td></tr>
+    <tr><td style="color:var(--orange)">第二波</td><td>美債（10Y）</td><td class="dn">需求下降 → 殖利率上升 +30–80 bps</td><td>1–2 週</td></tr>
+    <tr><td style="color:var(--orange)">第二波</td><td>台股電子（外資持倉高）</td><td class="dn">−15% 至 −25%（跌幅超基本面）</td><td>3–7 日</td></tr>
+    <tr><td style="color:var(--orange)">第二波</td><td>美股科技（高估值/高持倉）</td><td class="dn">−8% 至 −15%</td><td>3–10 日</td></tr>
+    <tr><td style="color:var(--yellow)">第三波</td><td>美國新發債券成本</td><td class="dn">展期利率更高 → 財政壓力加大</td><td>1–4 週</td></tr>
+    <tr><td style="color:var(--yellow)">第三波</td><td>美元指數（DXY）</td><td class="dn">美元走弱（USD/JPY 下跌主導）</td><td>1–2 週</td></tr>
+    <tr><td style="color:var(--green)">相對受益</td><td>日本股市（以JPY計）</td><td class="up">日本出口商受壓，但金融股因利率上升受益</td><td>混合</td></tr>
+    <tr><td style="color:var(--green)">相對受益</td><td>日圓、瑞郎（避險貨幣）</td><td class="up">升值</td><td>即時</td></tr>
+  </tbody>
+</table>
+
+<h3>E.2 台股的特殊脆弱性</h3>
+<p>台股在 Carry Trade 解倉中的傷害遠超市場直觀感受，原因在於：</p>
+<ul style="padding-left:18px; font-size:14px; line-height:2.2;">
+  <li><strong>外資集中度</strong>：外資持有台股約 40%，其中部分外資（特別是槓桿型基金）是 Carry Trade 的參與方，日圓急升時他們必須賣台股。</li>
+  <li><strong>產業集中度</strong>：台積電、聯發科等少數股票佔指數比重極高，成為外資緊急去槓桿的優先賣出標的（流動性好）。</li>
+  <li><strong>指數期貨放大效應</strong>：台指期在 Carry 解倉期間往往折價劇烈，追繳保證金的連鎖反應加大跌幅。</li>
+</ul>
+
+<!-- Section F -->
+<h2>F ｜ 反向情境與尾端風險</h2>
+
+<h3>F.1 三種情境框架</h3>
+<div class="scenario-grid">
+  <div class="scenario-card scenario-base">
+    <div class="sc-title" style="color:var(--green)">基準情境（概率 ~60%）</div>
+    <ul class="sc-list">
+      <li>BOJ 每季升息 10–15 bps，維持漸進節奏</li>
+      <li>美日利差維持 1.5–2.5%</li>
+      <li>日本維持當前持倉，小幅波動</li>
+      <li>美債 $10 兆展期順利完成，利率 4.2–4.8%</li>
+      <li>台股波動性上升但維持中性</li>
+    </ul>
+  </div>
+  <div class="scenario-card scenario-bear">
+    <div class="sc-title" style="color:var(--red)">壓力情境（概率 ~25%）</div>
+    <ul class="sc-list">
+      <li>BOJ 單次升息 ≥ 25 bps（意外衝擊）</li>
+      <li>美日利差跌破 1.5%</li>
+      <li>日本機構啟動系統性減持（3–6 個月 −$100–200B）</li>
+      <li>10Y 殖利率飆至 5.0–5.5%</li>
+      <li>台股跌 15–25%，科技股跌更深</li>
+    </ul>
+  </div>
+  <div class="scenario-card scenario-tail">
+    <div class="sc-title" style="color:var(--yellow)">尾端風險（概率 ~15%）</div>
+    <ul class="sc-list">
+      <li>日本政治壓力（通膨選舉）逼迫 BOJ 無視外交默契</li>
+      <li>美日協議破裂（貿易衝突升溫）</li>
+      <li>BOJ 會議前後美債拍賣嚴重失敗</li>
+      <li>10Y 殖利率衝破 5.5%，流動性危機</li>
+      <li>Fed 被迫出手 QE 穩定市場</li>
+    </ul>
+  </div>
+</div>
+
+<h3>F.2 監控清單：哪些訊號代表情境惡化？</h3>
+<table>
+  <thead>
+    <tr><th>訊號</th><th>警示門檻</th><th>意義</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>美日 10 年利差</td><td class="dn">< 1.5%</td><td class="note">資本回流動機強烈，紅色警示</td></tr>
+    <tr><td>BOJ 升息幅度（單次）</td><td class="dn">≥ 25 bps</td><td class="note">市場意外衝擊，觸發去槓桿</td></tr>
+    <tr><td>日圓 30 日升值幅度</td><td class="dn">> 5%</td><td class="note">Carry Trade 解倉啟動訊號</td></tr>
+    <tr><td>TIC 月度日本減持</td><td class="dn">連續 3 個月 < −$30B</td><td class="note">系統性撤出，非月底調倉</td></tr>
+    <tr><td>10Y 拍賣尾部（Tail）</td><td class="dn">> 2.0 bps</td><td class="note">需求嚴重不足，供需失衡</td></tr>
+    <tr><td>VIX 指數</td><td class="dn">> 30</td><td class="note">風險情緒惡化，可能正在去槓桿</td></tr>
+  </tbody>
+</table>
+
+<h3>F.3 為什麼尾端風險值得關注（即使概率只有 15%）？</h3>
+<p>金融市場中，尾端風險的期望值（概率 × 衝擊幅度）往往超過基準情境的期望值。15% 的日本系統性拋售情境，若對應的台股跌幅是 20–30%，它的期望損失高達 <strong>3–4.5 個百分點</strong>（相當於基準情境台股一年平均漲幅的一半以上）。</p>
+<p>更重要的是，這類事件具有<strong>時間集中性</strong>——衝擊在 3–7 個交易日內完成，幾乎沒有「慢慢跑」的機會。正確的應對是在訊號出現前就建立防禦倉位，而非等到確認後才動。</p>
+
+<!-- Section G: Conclusion -->
+<h2>結論</h2>
+
+<div class="block">
+  <div class="block-title">核心結論</div>
+  <p style="font-size:14px; margin-bottom:10px">日本持有美債的「兆元棋局」是一個典型的<strong>潛在風險大於當前風險</strong>的情境。當下日本在 2025 年積極增持美債（+$124B），是美債市場的穩定力量。但美日利差已收窄至 1.95%，進入了 YPI 橘色警示區間，且 BOJ 的正常化路徑仍在進行中。</p>
+  <p style="font-size:14px; margin-bottom:0">貝森特-日本的外交協調提供了緩衝，但這個框架的有效性取決於日本國內政治能否容忍緩慢的利率正常化。一旦日本政治或通膨壓力突破這個框架，2024/08 的劇本可能以更大的規模重演。<strong>YPI 儀表板的 Module A 和 Module C（JPY 指標）已整合這一訊號，請定期關注。</strong></p>
+</div>
+
+<table>
+  <thead><tr><th>行動建議</th><th>具體做法</th></tr></thead>
+  <tbody>
+    <tr><td>日常監控</td><td class="note">每週五 YPI 更新時，優先看 Module A 的 US-JP spread 和 TIC 趨勢</td></tr>
+    <tr><td>觸發準備</td><td class="note">若 BOJ 會議前後 USD/JPY 30 日升值超過 3%，提升防禦比例</td></tr>
+    <tr><td>歷史參考</td><td class="note">2024/08 為基準情境，預期台股跌幅 −15%～−25%，持續 3–7 日</td></tr>
+    <tr><td>機會視角</td><td class="note">Carry unwind 後 6–8 週通常是進場機會，基本面未改變</td></tr>
+  </tbody>
+</table>
+
+<div class="footer">
+  <p>本報告為研究性質，基於公開資料（美國財政部 TIC、FRED、yfinance）分析，不構成投資建議。</p>
+  <p>資料來源：US Treasury TIC / FRED / yfinance ｜ 報告版本：v1.0（2026-06-02）</p>
+  <p>歸檔：宏觀研究 / 美債殖利率壓力研究 / 04_日本持倉分析</p>
+</div>
+
+</body>
+</html>
