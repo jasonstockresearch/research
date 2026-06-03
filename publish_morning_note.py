@@ -89,7 +89,7 @@ def main():
     run(f'git commit -m "feat: 發布晨報 {date_str}"')
     run("git push")
     print(f"[OK] 已推送到 GitHub")
-    print(f"     https://jasonfu1222.github.io/research/")
+    print(f"     https://jasonstockresearch.github.io/research/")
 
 
 if __name__ == "__main__":

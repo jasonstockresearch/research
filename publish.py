@@ -141,8 +141,8 @@ def main():
     print(f"[OK] 已 push 到 GitHub")
     print()
     print(f"報告網址（約 1 分鐘後生效）：")
-    print(f"  https://jasonfu1222.github.io/research/{dest_name}")
-    print(f"首頁：https://jasonfu1222.github.io/research/")
+    print(f"  https://jasonstockresearch.github.io/research/{dest_name}")
+    print(f"首頁：https://jasonstockresearch.github.io/research/")
 
 
 if __name__ == "__main__":

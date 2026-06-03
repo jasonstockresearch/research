@@ -120,8 +120,8 @@ def main():
     run(f'git commit -m "feat: 發布ETF追蹤日報 {date_str}"')
     run("git push")
     print(f"[OK] 已推送到 GitHub")
-    print(f"     https://jasonfu1222.github.io/research/")
-    print(f"直連日報：https://jasonfu1222.github.io/research/etf/{filename}")
+    print(f"     https://jasonstockresearch.github.io/research/")
+    print(f"直連日報：https://jasonstockresearch.github.io/research/etf/{filename}")
 
 
 if __name__ == "__main__":
