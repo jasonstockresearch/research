@@ -1,25 +1,25 @@
 """
-publish_morning_note.py — 將晨報 HTML 推送到 GitHub Pages
+publish_morning_note.py — 將盤後報告 HTML 推送到 GitHub Pages，並在本機存一份 PDF
 
 用法：
   python publish_morning_note.py --date YYYY-MM-DD
 
-來源路徑（自動推算）：
-  C:\\Users\\USER\\Claude\\Projects\\每日簡報_daily-briefs\\晨報\\晨報_YYYY-MM-DD.html
+來源路徑：
+  C:\\Users\\USER\\Claude\\Projects\\每日簡報_daily-briefs\\盤後報告\\盤後_YYYY-MM-DD.html
 
 目標：
-  research-site/morning-notes/晨報_YYYY-MM-DD.html
+  research-site/morning-notes/盤後_YYYY-MM-DD.html
   research-site/index.html（MORNING_NOTES 陣列自動注入）
+  C:\\Users\\USER\\Claude\\Projects\\每日簡報_daily-briefs\\盤後報告\\盤後_YYYY-MM-DD.pdf（本機留存）
 """
 
 import sys
-import re
 import shutil
 import subprocess
 from pathlib import Path
-from datetime import date, datetime
+from datetime import datetime
 
-SRC_DIR  = Path(r"C:\Users\USER\Claude\Projects\每日簡報_daily-briefs\晨報")
+SRC_DIR  = Path(r"C:\Users\USER\Claude\Projects\每日簡報_daily-briefs\盤後報告")
 HUB_DIR  = Path(__file__).parent
 INDEX    = HUB_DIR / "index.html"
 DEST_DIR = HUB_DIR / "morning-notes"
@@ -54,6 +54,21 @@ def inject(date_str: str, filename: str) -> bool:
     return True
 
 
+def save_local_pdf(html_path: Path, date_str: str):
+    pdf_path = SRC_DIR / f"盤後_{date_str}.pdf"
+    if pdf_path.exists():
+        print(f"[SKIP] 本機 PDF 已存在：{pdf_path.name}")
+        return
+    try:
+        from weasyprint import HTML
+        HTML(filename=str(html_path)).write_pdf(str(pdf_path))
+        print(f"[OK] 本機 PDF 存至 {pdf_path}")
+    except ImportError:
+        print("[WARN] weasyprint 未安裝，略過本機 PDF（pip install weasyprint）")
+    except Exception as e:
+        print(f"[WARN] PDF 轉換失敗：{e}")
+
+
 def main():
     args = sys.argv[1:]
     if "--date" not in args:
@@ -69,14 +84,14 @@ def main():
         print(f"[ERROR] 日期格式應為 YYYY-MM-DD，收到：{date_str}")
         sys.exit(1)
 
-    src = SRC_DIR / f"晨報_{date_str}.html"
+    src = SRC_DIR / f"盤後_{date_str}.html"
     if not src.exists():
         print(f"[ERROR] 找不到 HTML：{src}")
-        print("       請先執行 generate_morning_note.py 或加 --html-only 旗標")
+        print("       請先執行 generate_morning_note.py")
         sys.exit(1)
 
     DEST_DIR.mkdir(exist_ok=True)
-    filename = f"晨報_{date_str}.html"
+    filename = f"盤後_{date_str}.html"
     dest = DEST_DIR / filename
     shutil.copy2(src, dest)
     print(f"[OK] 複製：{filename}")
@@ -85,8 +100,11 @@ def main():
     if injected:
         print(f"[OK] index.html 已更新")
 
+    # 本機留存 PDF
+    save_local_pdf(src, date_str)
+
     run("git add -A")
-    run(f'git commit -m "feat: 發布晨報 {date_str}"')
+    run(f'git commit -m "feat: 發布盤後追蹤 {date_str}"')
     run("git push")
     print(f"[OK] 已推送到 GitHub")
     print(f"     https://jasonstockresearch.github.io/research/")
