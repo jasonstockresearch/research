@@ -250,7 +250,7 @@
 
 <nav class="tab-nav">
   <button class="tab-btn active" onclick="switchTab('reports', this)">研究報告</button>
-  <button class="tab-btn" onclick="switchTab('morning', this)">每日晨報</button>
+  <button class="tab-btn" onclick="switchTab('morning', this)">盤後追蹤</button>
   <button class="tab-btn" onclick="switchTab('ctc', this)">籌碼追蹤</button>
   <button class="tab-btn" onclick="switchTab('etf', this)">主動式ETF追蹤</button>
   <button class="tab-btn" onclick="switchTab('dashboard', this)">記憶體週期儀表板</button>
@@ -259,12 +259,12 @@
 <div id="morning-view">
   <div class="morning-main">
     <div class="morning-header">
-      <h2>每日晨報</h2>
+      <h2>盤後追蹤</h2>
       <p>台股 × 美股 × 重要事件 × 交易想法 — Claude Sonnet 自動生成</p>
     </div>
-    <div class="section-title">歷史晨報</div>
+    <div class="section-title">歷史盤後</div>
     <div class="morning-grid" id="morning-grid"></div>
-    <div class="morning-empty" id="morning-empty" style="display:none">尚無已發布的晨報</div>
+    <div class="morning-empty" id="morning-empty" style="display:none">尚無已發布的盤後報告</div>
   </div>
 </div>
 
@@ -325,7 +325,7 @@
 
 <script>
 // ─────────────────────────────────────────────────────
-// 每日晨報清單（由 publish_morning_note.py 自動維護）
+// 盤後追蹤清單（由 publish_morning_note.py 自動維護）
 // ─────────────────────────────────────────────────────
 const MORNING_NOTES = [
   {"date": "2026-05-26", "file": "晨報_2026-05-26.html"},
@@ -362,7 +362,7 @@ function renderMorning() {
       <div class="morning-icon">☀️</div>
       <div class="morning-body">
         <div class="morning-date">${r.date}</div>
-        <div class="morning-title">晨報 ${r.date}</div>
+        <div class="morning-title">${r.date} 盤後</div>
       </div>
       <div class="morning-arrow">→</div>
     </a>
