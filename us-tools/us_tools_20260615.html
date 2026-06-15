@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>美股工具日報 20260615</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #0d1117; color: #e6edf3; font-family: "Microsoft JhengHei", "PingFang TC", sans-serif; }
+.ust-topbar { background: #0d1117; border-bottom: 1px solid #21262d; padding: 12px 20px 10px; }
+.ust-topbar h1 { font-size: 16px; font-weight: 800; color: #e6edf3; display: inline; }
+.ust-topbar span { font-size: 12px; color: #8b949e; margin-left: 12px; }
+.ust-nav { display: flex; gap: 0; background: #161b22; border-bottom: 1px solid #30363d; padding: 0 20px; position: sticky; top: 0; z-index: 100; overflow-x: auto; }
+.ust-nav a { color: #8b949e; font-size: 12px; font-weight: 600; padding: 10px 16px; text-decoration: none; border-bottom: 2px solid transparent; white-space: nowrap; transition: all 0.15s; }
+.ust-nav a:hover { color: #e6edf3; }
+.ust-section-header { background: #1e3a5f; color: #79c0ff; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 10px 20px; border-bottom: 1px solid #30363d; }
+.ust-content { padding: 0; }
+.ust-sep { height: 6px; background: #161b22; border-top: 1px solid #21262d; border-bottom: 1px solid #21262d; }
+
+  
+  h2{color:#79c0ff;margin-bottom:6px}
+  p.sub{color:#8b949e;font-size:13px;margin-top:0}
+  table{border-collapse:collapse;width:100%;font-size:13px}
+  th{background:#161b22;color:#79c0ff;padding:8px 10px;border:1px solid #30363d;text-align:left}
+  td{padding:7px 10px;border:1px solid #30363d}
+  tr:nth-child(even) td{background:#161b22}
+  .consec{color:#3fb950;font-weight:bold}
+  .big{color:#f0883e;font-weight:bold}
+  .muted{color:#8b949e}
+
+
+  
+  h2{color:#79c0ff;margin-bottom:6px}
+  p.sub{color:#8b949e;font-size:13px;margin-top:0}
+  .cards{display:flex;gap:16px;flex-wrap:wrap;margin:16px 0}
+  .card{background:#161b22;border:1px solid #30363d;border-radius:6px;padding:12px 16px;min-width:160px}
+  .card-title{color:#8b949e;font-size:12px;margin-bottom:4px}
+  .card-val{font-size:18px;font-weight:bold}
+  table{border-collapse:collapse;width:100%;font-size:13px;margin-top:8px}
+  th{background:#161b22;color:#79c0ff;padding:8px 10px;border:1px solid #30363d;text-align:left}
+  td{padding:7px 10px;border:1px solid #30363d}
+  tr:nth-child(even) td{background:#0d1117}
+  .inflow{color:#3fb950;font-weight:bold}
+  .outflow{color:#f85149;font-weight:bold}
+  .neutral{color:#8b949e}
+  .pos{color:#3fb950}
+  .neg{color:#f85149}
+
+
+  
+  h2{color:#79c0ff;margin-bottom:6px}
+  h3{color:#f0883e;margin:20px 0 6px}
+  p.sub{color:#8b949e;font-size:13px;margin-top:0}
+  .summary{display:flex;gap:16px;flex-wrap:wrap;margin:12px 0}
+  .badge{background:#161b22;border:1px solid #30363d;border-radius:6px;padding:8px 16px;font-size:14px}
+  .badge b{color:#79c0ff}
+  table{border-collapse:collapse;width:100%;font-size:13px;margin-bottom:20px}
+  th{background:#161b22;color:#79c0ff;padding:8px 10px;border:1px solid #30363d;text-align:left}
+  td{padding:7px 10px;border:1px solid #30363d}
+  tr:nth-child(even) td{background:#0d1117}
+  .rsi-low{color:#f85149}
+  .rsi-mid{color:#d29922}
+  .rsi-high{color:#3fb950}
+
+
+  
+  h2{color:#79c0ff;margin-bottom:6px}
+  h3{color:#f0883e;margin:20px 0 6px}
+  p.sub{color:#8b949e;font-size:13px;margin-top:0}
+  .alert{background:#1c1c2e;border-left:3px solid #f85149;padding:10px 14px;margin:10px 0;border-radius:4px}
+  .wave{background:#1c2a1c;border-left:3px solid #3fb950;padding:10px 14px;margin:10px 0;border-radius:4px}
+  table{border-collapse:collapse;width:100%;font-size:13px;margin-bottom:20px}
+  th{background:#161b22;color:#79c0ff;padding:8px 10px;border:1px solid #30363d;text-align:left}
+  td{padding:7px 10px;border:1px solid #30363d}
+  tr:nth-child(even) td{background:#0d1117}
+  .activist{color:#f85149;font-weight:bold}
+  a{color:#79c0ff;text-decoration:none}
+
+
+  
+  h2{color:#79c0ff;margin-bottom:6px}
+  p.sub{color:#8b949e;font-size:13px;margin-top:0}
+  .summary{display:flex;gap:14px;flex-wrap:wrap;margin:12px 0}
+  .badge{background:#161b22;border:1px solid #30363d;border-radius:6px;padding:8px 14px;font-size:13px}
+  .badge b{color:#79c0ff}
+  table{border-collapse:collapse;width:100%;font-size:13px}
+  th{background:#161b22;color:#79c0ff;padding:8px 10px;border:1px solid #30363d;text-align:left}
+  td{padding:7px 10px;border:1px solid #30363d}
+  tr:nth-child(even) td{background:#0d1117}
+  .hot{color:#f0883e;font-weight:bold}
+
+</style>
+</head>
+<body>
+<div class="ust-topbar">
+  <h1>美股工具日報</h1>
+  <span>2026-06-15</span>
+</div>
+<nav class="ust-nav">
+  <a href="#ust-form4">Form 4 內部人交易</a>
+  <a href="#ust-sector">板塊 ETF 資金流向</a>
+  <a href="#ust-radar">美股趨勢雷達</a>
+  <a href="#ust-13dg">13D/13G 機構申報</a>
+  <a href="#ust-13f">13F 狼群偵測（季報快照）</a>
+</nav>
+
+<div id="ust-form4">
+  <div class="ust-section-header">A — Form 4 內部人交易</div>
+  <div class="ust-content"><h2>📋 Form 4 內部人買入報告</h2>
+<p class="sub">日期：2026-06-15 ｜ 過濾條件：市場買入(P) ｜ 職位：CEO/CFO/COO/Director/President ｜ 金額 > $100,000</p>
+<p style='color:#8b949e'>今日無符合條件的內部人買入。</p>
+<p class="sub" style="margin-top:16px">🟢 連續買入 = 同標的近期 ≥2 筆 ｜ 🟠 大額 = 單筆 > $500,000</p></div>
+</div>
+<div class="ust-sep"></div>
+
+<div id="ust-sector">
+  <div class="ust-section-header">C — 板塊 ETF 資金流向</div>
+  <div class="ust-content"><h2>📊 板塊 ETF 資金流向</h2>
+<p class="sub">產生時間：2026-06-15 19:42 ｜ 強度分數 = 5日報酬率 × 當日量/20日均量</p>
+<div class="cards">
+  <div class="card"><div class="card-title">強流入板塊</div><div class="card-val inflow">費城半導體 / VanEck半導體 / Russell2000</div></div>
+  <div class="card"><div class="card-title">強流出板塊</div><div class="card-val outflow">機器人AI / 太陽能 / 黃金</div></div>
+  <div class="card"><div class="card-title">SPY 5日</div><div class="card-val pos">0.57%</div></div>
+  <div class="card"><div class="card-title">QQQ 5日</div><div class="card-val pos">2.31%</div></div>
+</div>
+<table><thead><tr><th>Ticker</th><th>名稱</th><th>5日漲跌%</th><th>20日漲跌%</th><th>量比(1日/20日均)</th><th>排名_5日</th><th>排名_20日</th><th>資金方向</th></tr></thead><tbody><tr><td class="">SOXX</td><td class="">費城半導體</td><td class="pos">10.46%</td><td class="pos">12.49%</td><td class="">0.89</td><td class="">1</td><td class="">1</td><td class="inflow">強流入</td></tr><tr><td class="">SMH</td><td class="">VanEck半導體</td><td class="pos">8.82%</td><td class="pos">7.2%</td><td class="">0.79</td><td class="">2</td><td class="">4</td><td class="inflow">強流入</td></tr><tr><td class="">IWM</td><td class="">Russell2000</td><td class="pos">4.01%</td><td class="pos">2.99%</td><td class="">1.16</td><td class="">3</td><td class="">8</td><td class="inflow">強流入</td></tr><tr><td class="">XLB</td><td class="">原材料</td><td class="pos">3.06%</td><td class="pos">0.99%</td><td class="">1.21</td><td class="">4</td><td class="">12</td><td class="neutral">中性</td></tr><tr><td class="">XLF</td><td class="">金融</td><td class="pos">1.99%</td><td class="pos">4.0%</td><td class="">1.35</td><td class="">5</td><td class="">6</td><td class="inflow">強流入</td></tr><tr><td class="">QQQ</td><td class="">NASDAQ100</td><td class="pos">2.31%</td><td class="pos">0.22%</td><td class="">1.06</td><td class="">6</td><td class="">17</td><td class="neutral">中性</td></tr><tr><td class="">XLK</td><td class="">科技</td><td class="pos">2.5%</td><td class="pos">2.95%</td><td class="">0.96</td><td class="">7</td><td class="">9</td><td class="inflow">強流入</td></tr><tr><td class="">ARKK</td><td class="">ARK創新</td><td class="pos">1.56%</td><td class="neg">-3.01%</td><td class="">1.41</td><td class="">8</td><td class="">24</td><td class="neutral">中性</td></tr><tr><td class="">XLP</td><td class="">必需消費</td><td class="pos">2.85%</td><td class="pos">0.99%</td><td class="">0.74</td><td class="">9</td><td class="">12</td><td class="neutral">中性</td></tr><tr><td class="">XLY</td><td class="">非必需消費</td><td class="pos">1.51%</td><td class="neg">-1.74%</td><td class="">0.94</td><td class="">10</td><td class="">21</td><td class="neutral">中性</td></tr><tr><td class="">XLRE</td><td class="">房地產</td><td class="pos">1.48%</td><td class="pos">3.3%</td><td class="">0.82</td><td class="">11</td><td class="">7</td><td class="neutral">中性</td></tr><tr><td class="">XLI</td><td class="">工業</td><td class="pos">1.15%</td><td class="pos">0.96%</td><td class="">0.84</td><td class="">12</td><td class="">14</td><td class="neutral">中性</td></tr><tr><td class="">TLT</td><td class="">長債20Y</td><td class="pos">0.83%</td><td class="pos">1.4%</td><td class="">0.85</td><td class="">13</td><td class="">10</td><td class="neutral">中性</td></tr><tr><td class="">LQD</td><td class="">投資級債</td><td class="pos">0.78%</td><td class="pos">0.8%</td><td class="">0.88</td><td class="">14</td><td class="">15</td><td class="neutral">中性</td></tr><tr><td class="">SPY</td><td class="">S&P500</td><td class="pos">0.57%</td><td class="neg">-0.86%</td><td class="">1.05</td><td class="">15</td><td class="">19</td><td class="neutral">中性</td></tr><tr><td class="">HYG</td><td class="">高收益債</td><td class="pos">0.64%</td><td class="pos">0.63%</td><td class="">0.84</td><td class="">16</td><td class="">16</td><td class="neutral">中性</td></tr><tr><td class="">XLV</td><td class="">醫療</td><td class="pos">0.52%</td><td class="pos">4.9%</td><td class="">0.83</td><td class="">17</td><td class="">5</td><td class="neutral">中性</td></tr><tr><td class="">XLU</td><td class="">公用事業</td><td class="pos">0.41%</td><td class="neg">-0.82%</td><td class="">0.86</td><td class="">18</td><td class="">18</td><td class="neutral">中性</td></tr><tr><td class="">QCLN</td><td class="">清潔能源2</td><td class="pos">0.16%</td><td class="neg">-2.49%</td><td class="">0.31</td><td class="">19</td><td class="">22</td><td class="neutral">中性</td></tr><tr><td class="">XLC</td><td class="">通訊</td><td class="neg">-0.02%</td><td class="neg">-4.66%</td><td class="">1.29</td><td class="">20</td><td class="">25</td><td class="outflow">強流出</td></tr><tr><td class="">XLE</td><td class="">能源</td><td class="neg">-0.21%</td><td class="neg">-0.9%</td><td class="">0.82</td><td class="">21</td><td class="">20</td><td class="outflow">強流出</td></tr><tr><td class="">UUP</td><td class="">美元指數</td><td class="neg">-0.25%</td><td class="pos">1.19%</td><td class="">0.99</td><td class="">22</td><td class="">11</td><td class="neutral">中性</td></tr><tr><td class="">ICLN</td><td class="">清潔能源</td><td class="neg">-1.88%</td><td class="neg">-5.47%</td><td class="">0.57</td><td class="">23</td><td class="">26</td><td class="outflow">強流出</td></tr><tr><td class="">CIBR</td><td class="">網路安全</td><td class="neg">-1.58%</td><td class="pos">8.89%</td><td class="">0.69</td><td class="">24</td><td class="">3</td><td class="neutral">中性</td></tr><tr><td class="">BOTZ</td><td class="">機器人AI</td><td class="neg">-2.26%</td><td class="neg">-9.73%</td><td class="">0.7</td><td class="">25</td><td class="">28</td><td class="outflow">強流出</td></tr><tr><td class="">TAN</td><td class="">太陽能</td><td class="neg">-1.59%</td><td class="neg">-2.96%</td><td class="">1.36</td><td class="">26</td><td class="">23</td><td class="outflow">強流出</td></tr><tr><td class="">GLD</td><td class="">黃金</td><td class="neg">-2.45%</td><td class="neg">-9.52%</td><td class="">1.03</td><td class="">27</td><td class="">27</td><td class="outflow">強流出</td></tr><tr><td class="">WCLD</td><td class="">雲端</td><td class="neg">-4.94%</td><td class="pos">9.67%</td><td class="">0.86</td><td class="">28</td><td class="">2</td><td class="neutral">中性</td></tr></tbody></table></div>
+</div>
+<div class="ust-sep"></div>
+
+<div id="ust-radar">
+  <div class="ust-section-header">D — 美股趨勢雷達</div>
+  <div class="ust-content"><h2>🎯 美股趨勢雷達（三視角）</h2>
+<p class="sub">產生時間：2026-06-15 19:42 ｜ 掃描宇宙：NASDAQ100(97檔) ｜ 共 97 檔</p>
+<div class="summary">
+  <div class="badge">🔴 反轉候選 <b>1</b> 檔</div>
+  <div class="badge">🟡 蓄勢待發 <b>10</b> 檔</div>
+  <div class="badge">🟢 趨勢穩健 <b>12</b> 檔</div>
+</div>
+<h3 style='color:#f85149'>反轉候選 — RSI<35 + 收盤>前日低 + 量比>1.3x</h3><table><thead><tr><th>Ticker</th><th>Price</th><th>RSI</th><th>Vol比</th><th>EMA50</th><th>EMA200</th><th>視角</th></tr></thead><tbody><tr><td class="">TTD</td><td class="">19.28</td><td class="rsi-low">34.6</td><td class="">1.46</td><td class="">22.2</td><td class="">34.21</td><td class="">反轉候選</td></tr></tbody></table><h3 style='color:#d29922'>蓄勢待發 — BB寬度收縮<30日均×0.7 + RSI 45~55</h3><table><thead><tr><th>Ticker</th><th>Price</th><th>RSI</th><th>Vol比</th><th>EMA50</th><th>EMA200</th><th>視角</th></tr></thead><tbody><tr><td class="">INTC</td><td class="">124.57</td><td class="rsi-mid">53.4</td><td class="">1.16</td><td class="">97.37</td><td class="">61.3</td><td class="">蓄勢待發</td></tr><tr><td class="">CHTR</td><td class="">145.82</td><td class="rsi-mid">50.8</td><td class="">1.1</td><td class="">164.5</td><td class="">220.5</td><td class="">蓄勢待發</td></tr><tr><td class="">DDOG</td><td class="">229.9</td><td class="rsi-mid">53.2</td><td class="">0.93</td><td class="">192.58</td><td class="">153.29</td><td class="">蓄勢待發</td></tr><tr><td class="">CTSH</td><td class="">52.17</td><td class="rsi-mid">47.8</td><td class="">0.73</td><td class="">54.93</td><td class="">64.89</td><td class="">蓄勢待發</td></tr><tr><td class="">MCHP</td><td class="">95.24</td><td class="rsi-mid">52.3</td><td class="">0.73</td><td class="">88.3</td><td class="">75.41</td><td class="">蓄勢待發</td></tr><tr><td class="">ABNB</td><td class="">132.28</td><td class="rsi-mid">49.8</td><td class="">0.7</td><td class="">133.94</td><td class="">131.59</td><td class="">蓄勢待發</td></tr><tr><td class="">CSCO</td><td class="">121.1</td><td class="rsi-mid">50.9</td><td class="">0.69</td><td class="">106.15</td><td class="">85.46</td><td class="">蓄勢待發</td></tr><tr><td class="">GEHC</td><td class="">65.18</td><td class="rsi-mid">54.5</td><td class="">0.67</td><td class="">66.13</td><td class="">72.35</td><td class="">蓄勢待發</td></tr><tr><td class="">TXN</td><td class="">301.12</td><td class="rsi-mid">46.6</td><td class="">0.65</td><td class="">275.27</td><td class="">223.95</td><td class="">蓄勢待發</td></tr><tr><td class="">NXPI</td><td class="">304.86</td><td class="rsi-mid">45.2</td><td class="">0.54</td><td class="">280.22</td><td class="">239.87</td><td class="">蓄勢待發</td></tr></tbody></table><h3 style='color:#3fb950'>趨勢穩健 — 收盤>EMA50>EMA200 + RSI 55~75 + 近5日無跌幅>3%</h3><table><thead><tr><th>Ticker</th><th>Price</th><th>RSI</th><th>Vol比</th><th>EMA50</th><th>EMA200</th><th>視角</th></tr></thead><tbody><tr><td class="">MNST</td><td class="">92.83</td><td class="rsi-high">72.5</td><td class="">0.84</td><td class="">84.14</td><td class="">76.55</td><td class="">趨勢穩健</td></tr><tr><td class="">EA</td><td class="">203.27</td><td class="rsi-high">72.4</td><td class="">0.88</td><td class="">201.89</td><td class="">194.07</td><td class="">趨勢穩健</td></tr><tr><td class="">MAR</td><td class="">402.54</td><td class="rsi-high">71.6</td><td class="">0.78</td><td class="">365.89</td><td class="">325.31</td><td class="">趨勢穩健</td></tr><tr><td class="">LRCX</td><td class="">366.81</td><td class="rsi-high">68.7</td><td class="">0.92</td><td class="">291.81</td><td class="">217.97</td><td class="">趨勢穩健</td></tr><tr><td class="">FAST</td><td class="">46.57</td><td class="rsi-high">67.1</td><td class="">0.69</td><td class="">45.07</td><td class="">44.19</td><td class="">趨勢穩健</td></tr><tr><td class="">ASML</td><td class="">1863.55</td><td class="rsi-high">66.7</td><td class="">1.35</td><td class="">1570.09</td><td class="">1288.99</td><td class="">趨勢穩健</td></tr><tr><td class="">AMGN</td><td class="">355.2</td><td class="rsi-high">62.5</td><td class="">1.02</td><td class="">340.74</td><td class="">329.76</td><td class="">趨勢穩健</td></tr><tr><td class="">PANW</td><td class="">279.62</td><td class="rsi-high">57.7</td><td class="">0.7</td><td class="">228.94</td><td class="">198.01</td><td class="">趨勢穩健</td></tr><tr><td class="">BIIB</td><td class="">200.05</td><td class="rsi-high">57.6</td><td class="">0.83</td><td class="">191.08</td><td class="">174.84</td><td class="">趨勢穩健</td></tr><tr><td class="">MDLZ</td><td class="">62.99</td><td class="rsi-high">56.9</td><td class="">1.07</td><td class="">60.62</td><td class="">59.52</td><td class="">趨勢穩健</td></tr><tr><td class="">ADI</td><td class="">417.79</td><td class="rsi-high">56.9</td><td class="">0.57</td><td class="">391.37</td><td class="">323.31</td><td class="">趨勢穩健</td></tr><tr><td class="">ROST</td><td class="">240.13</td><td class="rsi-high">56.0</td><td class="">0.81</td><td class="">223.06</td><td class="">194.05</td><td class="">趨勢穩健</td></tr></tbody></table></div>
+</div>
+<div class="ust-sep"></div>
+
+<div id="ust-13dg">
+  <div class="ust-section-header">E — 13D/13G 機構申報</div>
+  <div class="ust-content"><h2>🏦 機構申報 13D/13G 監控</h2>
+<p class="sub">產生時間：2026-06-15 19:42 ｜ 期間：2026-06-13 ~ 2026-06-15</p>
+<p style="color:#8b949e">本週無特殊警示。</p>
+<table><thead><tr><th>申報類型</th><th>申報日期</th><th>申報人</th><th>目標公司</th><th>Ticker</th><th>Activist</th><th>連結</th></tr></thead><tbody><tr><td>SC 13D</td><td>2026-06-15</td><td>InterPrivate Investment Partners V, Inc.  (IPVV, IPVVU)</td><td>InterPrivate Acquisition Management V LLC</td><td>—</td><td>—</td><td><a href="https://www.sec.gov/Archives/edgar/data/2105175/000121390026068497/0001213900-26-068497-index.htm" target="_blank">SEC↗</a></td></tr><tr><td>SC 13D</td><td>2026-06-15</td><td>InterPrivate Investment Partners V, Inc.  (IPVV, IPVVU)</td><td>InterPrivate Acquisition Management V LLC</td><td>—</td><td>—</td><td><a href="https://www.sec.gov/Archives/edgar/data/2105175/000121390026068497/0001213900-26-068497-index.htm" target="_blank">SEC↗</a></td></tr></tbody></table></div>
+</div>
+<div class="ust-sep"></div>
+
+<div id="ust-13f">
+  <div class="ust-section-header">G — 13F 狼群偵測（季報快照）</div>
+  <div class="ust-content"><h2>🐺 13F 狼群偵測</h2>
+<p class="sub">產生時間：2026-06-15 19:42 ｜ 追蹤機構：13 家 ｜ 最低持有機構數：3</p>
+<div class="summary">
+  <div class="badge">狼群股 <b>12</b> 檔</div>
+  <div class="badge">最高持有機構數 <b>13</b></div>
+</div>
+<table><thead><tr><th>名稱</th><th>CUSIP</th><th>持有機構數</th><th>總持倉($M)</th><th>機構清單</th></tr></thead><tbody><tr><td>APPLE INC</td><td>037833100</td><td class="hot">13</td><td>57843.4</td><td>APPALOOSA MANAGEMENT, BERKSHIRE HATHAWAY</td></tr><tr><td>COCA COLA CO</td><td>191216100</td><td class="hot">10</td><td>30420.0</td><td>BERKSHIRE HATHAWAY</td></tr><tr><td>BANK AMERICA CORP</td><td>060505104</td><td class="hot">9</td><td>25039.2</td><td>BERKSHIRE HATHAWAY</td></tr><tr><td>ALLY FINL INC</td><td>02005N100</td><td class="hot">6</td><td>1137.7</td><td>BERKSHIRE HATHAWAY</td></tr><tr><td>KROGER CO</td><td>501044101</td><td class="hot">5</td><td>3618.0</td><td>BERKSHIRE HATHAWAY</td></tr><tr><td>CHEVRON CORPORATION</td><td>166764100</td><td>4</td><td>17457.4</td><td>BERKSHIRE HATHAWAY</td></tr><tr><td>ALPHABET INC</td><td>02079K305</td><td>4</td><td>15600.1</td><td>BERKSHIRE HATHAWAY</td></tr><tr><td>LIBERTY LIVE HOLDINGS INC</td><td>530909308</td><td>4</td><td>996.4</td><td>BERKSHIRE HATHAWAY</td></tr><tr><td>LIBERTY LIVE HOLDINGS INC</td><td>530909100</td><td>4</td><td>457.0</td><td>BERKSHIRE HATHAWAY</td></tr><tr><td>AMERICAN EXPRESS CO</td><td>025816109</td><td>3</td><td>45859.2</td><td>BERKSHIRE HATHAWAY</td></tr><tr><td>MOODYS CORP</td><td>615369105</td><td>3</td><td>10762.2</td><td>BERKSHIRE HATHAWAY</td></tr><tr><td>CAPITAL ONE FINL CORP</td><td>14040H105</td><td>3</td><td>1304.4</td><td>BERKSHIRE HATHAWAY</td></tr></tbody></table><p style='color:#8b949e;font-size:12px;margin-top:16px'>已排除 1 家量化基金（持股過多會灌水狼群計數）：<ul style='color:#8b949e;font-size:12px'><li>RENAISSANCE TECHNOLOGIES：3,212 檔</li></ul></p></div>
+</div>
+<div class="ust-sep"></div>
+</body>
+</html>
