@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8">
+<title>美光 MU FQ3 2026 財報後深度研究</title>
+<style>
+  :root { --ink:#1a1f2e; --muted:#5b6577; --line:#e2e6ee; --accent:#1f6feb; --bg:#fff; --soft:#f6f8fb; }
+  * { box-sizing:border-box; }
+  body { font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC",-apple-system,Segoe UI,sans-serif;
+         color:var(--ink); line-height:1.75; max-width:880px; margin:0 auto; padding:48px 40px; background:var(--bg);
+         font-size:15.5px; }
+  h1 { font-size:27px; line-height:1.35; border-bottom:3px solid var(--accent); padding-bottom:14px; margin:0 0 6px; }
+  h2 { font-size:21px; margin:36px 0 12px; padding-left:11px; border-left:5px solid var(--accent); }
+  h3 { font-size:17px; margin:24px 0 8px; color:#243; }
+  h4 { font-size:15.5px; margin:16px 0 6px; color:var(--muted); }
+  p, li { margin:7px 0; }
+  strong { color:#0a2540; }
+  table { border-collapse:collapse; width:100%; margin:16px 0; font-size:14px; }
+  th, td { border:1px solid var(--line); padding:8px 11px; text-align:left; vertical-align:top; }
+  th { background:var(--accent); color:#fff; font-weight:600; }
+  tr:nth-child(even) td { background:var(--soft); }
+  blockquote { margin:16px 0; padding:11px 18px; background:#fff8e6; border-left:4px solid #f0b429;
+                color:#5c4708; border-radius:4px; }
+  blockquote strong { color:#7a5c00; }
+  hr { border:none; border-top:1px solid var(--line); margin:30px 0; }
+  code { background:var(--soft); padding:2px 6px; border-radius:4px; font-size:13px; }
+  a { color:var(--accent); text-decoration:none; }
+  em { color:var(--muted); }
+  @media print { body { padding:0; font-size:11.5px; } h2 { page-break-after:avoid; } table { page-break-inside:avoid; } }
+</style></head><body>
+<h1 id="micron-nasdaq-mu">美光科技 (Micron / NASDAQ: MU)</h1>
+<h2 id="fq3-fy2026">FQ3 FY2026 財報後深度研究 — 記憶體市況最新分析</h2>
+<p><strong>報告日期：2026-06-26｜財報日：2026-06-24（盤後）｜分析師：Claude（量化研究員模式）</strong>
+<strong>標的價格：$1,213.56（2026-06-25 收盤，+15.74%）｜市值 $1.37T｜Forward P/E 8.45x</strong></p>
+<blockquote>
+<p>本報告數字經多源交叉查證；架構與資料蒐集階段已啟用跨 AI 互審（Claude + Gemini；Codex 因額度上限本輪未參與，詳附錄 D）。</p>
+</blockquote>
+<hr />
+<h2 id="0">0. 執行摘要 — 一句話結論</h2>
+<p><strong>美光交出一份「教科書等級的超級週期財報」，基本面無可挑剔；但這份完美正是風險所在。</strong> 營收 $41.5B（YoY +346%）、毛利率 84.9%（史上任何週期高點都沒到過的水準）、FQ4 財測 EPS $31，每一個數字都在喊「景氣頂峰」。真正的多空分歧不在「公司好不好」（毫無疑問地好），而在<strong>「這是不是 peak earnings、現在 8.45x 的低本益比到底是便宜還是陷阱」</strong>。</p>
+<ul>
+<li><strong>多方核心</strong>：這次是 hyperscaler 需求驅動（非消費內容驅動）、$100B 長約鎖定能見度到 2030、即使按合約最低價毛利率仍高於歷史任何高點 → 商業模式質變，舊週期估值框架失效。</li>
+<li><strong>空方核心</strong>：週期已走 30 個月（史上最長）、毛利率 84.9% 屬均值回歸的極端值、消費端需求正在被高價破壞（PC −11%、手機 −8%）、中國 CXMT/YMTC 2027 供給洪水在路上、歷史上記憶體股在 4–8x forward 觸頂後反而本益比擴張（peak-earnings 陷阱）。</li>
+<li><strong>我方週期儀表板</strong>：Cycle Score <strong>3.2 / green / Mid Cycle</strong>「持有、密切監控」，內部推估高點落在 <strong>2026 Q4 ～ 2027 H2</strong>。</li>
+<li><strong>給裁量交易者的定位</strong>：基本面動能仍在，但風險報酬已從「便宜的成長」轉向「定價精準的晚週期」。<strong>不是放空的時候，但也過了無腦追的時候</strong>；催化劑日曆（7/15 雲端資本支出、8/27 NVDA）比估值更重要。</li>
+</ul>
+<hr />
+<h2 id="1-vs-vs">1. 財報速覽：本季 vs 預估 vs 財測</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>FQ3 實際</th>
+<th>市場預估</th>
+<th>beat 幅度</th>
+<th>去年同期</th>
+<th>YoY</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>總營收</td>
+<td><strong>$41.5B</strong></td>
+<td>~$35.5B</td>
+<td>+16.8%</td>
+<td>$9.3B</td>
+<td><strong>+346%</strong></td>
+</tr>
+<tr>
+<td>Non-GAAP EPS</td>
+<td><strong>$25.11</strong></td>
+<td>$20.39</td>
+<td>+$4.72</td>
+<td>$1.91</td>
+<td><strong>+1,214%</strong></td>
+</tr>
+<tr>
+<td>Non-GAAP 毛利率</td>
+<td><strong>84.9%</strong></td>
+<td>82.2%</td>
+<td>+270bps</td>
+<td>~75%(FQ2)</td>
+<td>—</td>
+</tr>
+<tr>
+<td>資料中心營收</td>
+<td><strong>&gt;$25B</strong></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>年化 run-rate &gt;$100B</td>
+</tr>
+</tbody>
+</table>
+<p><strong>FQ4 FY2026 財測（公司給）：</strong>
+- 營收 <strong>$50B ± $1B</strong>（再環比 +20%）
+- Non-GAAP 毛利率 <strong>~84–86%</strong>
+- Non-GAAP EPS <strong>$31 ± $1</strong>
+- 全年 Capex 上修 <strong>$25B → $27B</strong>（Q4 單季 $10B）</p>
+<blockquote>
+<p><strong>數字合理性查核</strong>：$41.5B 單季營收、$50B 財測在歷史脈絡下確屬極端（美光過去常態單季 $8–9B），但與產業層數據自洽 —— Q1–Q2'26 合約價合計暴漲約 1.5–2 倍、ASP 環比 +60%+、毛利率 84.9% 已多源（含 TradingKey、StockMarketNerd）確認為「record 84.9%」。這不是輸入錯誤，是超級週期的真實量級。</p>
+</blockquote>
+<hr />
+<h2 id="2">2. 拆解這個「超級數字」：營收從哪來</h2>
+<table>
+<thead>
+<tr>
+<th>業務</th>
+<th>FQ3 營收</th>
+<th>占比</th>
+<th>YoY</th>
+<th>驅動</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>DRAM</strong></td>
+<td>$31.3B</td>
+<td>76%</td>
+<td>+343%</td>
+<td>HBM + 高容量 DDR5（資料中心）</td>
+</tr>
+<tr>
+<td><strong>NAND</strong></td>
+<td>$9.9B</td>
+<td>24%</td>
+<td>+361%</td>
+<td>資料中心 SSD（&gt;$5B，環比翻倍以上）</td>
+</tr>
+<tr>
+<td>其中 HBM4</td>
+<td>&gt;$1B</td>
+<td>—</td>
+<td>新品</td>
+<td>爬坡速度為 HBM3E 的 ~2 倍</td>
+</tr>
+</tbody>
+</table>
+<p>兩個關鍵觀察：
+1. <strong>資料中心 = 整個故事</strong>：&gt;$25B、年化 &gt;$100B run-rate。美光已實質從「記憶體商品供應商」轉為「AI 基礎設施供應商」。
+2. <strong>毛利率躍升的引擎是 mix + price</strong>：HBM 與高容量 DDR5 單價高、加上合約價暴漲，共同把毛利率推到 84.9%。這是 DRAM 76% 占比 + 量價齊揚的結果，不是會計一次性項目。</p>
+<hr />
+<h2 id="3-100b-rpo">3. 商業模式質變：$100B RPO 的真正意義</h2>
+<p>本季最被低估的不是 EPS，是<strong>結構性轉變</strong>：</p>
+<ul>
+<li><strong>16 份多年期 SCA（Strategic Customer Agreement）</strong>，RPO/backlog <strong>~$100B</strong></li>
+<li>覆蓋約 <strong>20% DRAM 量、~33% NAND 量</strong>，部分延伸到 <strong>2030</strong></li>
+<li>管理層關鍵一句：<strong>「即使按 SCA 約定的最低價格，毛利率仍高於過去任何週期的高點」</strong></li>
+</ul>
+<p><strong>為什麼這條最重要</strong>：傳統記憶體股是「現貨價週期股」——價格三個月一變、能見度近乎零，所以市場永遠給谷底估值。$100B 長約把一部分營收變成「類訂閱、有底價」的合約收入，等於替原本最劇烈的下行週期裝了<strong>避震器</strong>。如果市場接受這個論點，美光的估值框架就該從「週期股 P/B」往「半導體成長股 P/E」移動 —— 這正是多方最有力的論點，也是估值之爭的核心戰場（見 §8）。</p>
+<blockquote>
+<p><strong>反方提醒</strong>：「合約底價高於歷史高點」是管理層說法，且 80% DRAM / 67% NAND 的量仍曝險於現貨。長約能緩衝、不能免疫。</p>
+</blockquote>
+<hr />
+<h2 id="4-15">4. 記憶體市況全景：這是 15 年來最嚴重的缺貨</h2>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>數值</th>
+<th>註</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q2'26 DRAM 合約價 QoQ</td>
+<td><strong>+58–63%</strong></td>
+<td>Q1 為 +90–95%</td>
+</tr>
+<tr>
+<td>Q2'26 NAND 合約價 QoQ</td>
+<td><strong>+70–75%</strong></td>
+<td>反而加速</td>
+</tr>
+<tr>
+<td>DRAM 供需缺口</td>
+<td><strong>−4.9%</strong></td>
+<td>2011 以來最大</td>
+</tr>
+<tr>
+<td>NAND 供需缺口</td>
+<td><strong>−4.2%</strong></td>
+<td>2011 以來最大</td>
+</tr>
+<tr>
+<td>HBM 供需缺口</td>
+<td><strong>−5.1%</strong></td>
+<td>2011 以來最大</td>
+</tr>
+<tr>
+<td>2026 HBM 市場</td>
+<td><strong>$54.6B</strong>（YoY +58%）</td>
+<td>占 DRAM 營收 41%（2023 僅 8%）</td>
+</tr>
+<tr>
+<td>總記憶體營收</td>
+<td>2026 $551.6B → 2027 峰值 <strong>$842.7B</strong>（+53%）</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>核心機制 — HBM 對傳統 DRAM 的「排擠效應」</strong>：
+美光揭露 <strong>HBM 與 DDR5 的晶圓轉換比約 3:1</strong> —— 每一片晶圓轉去做 HBM，從商品供應池抽走的位元數，是它新增 HBM 位元的約 3 倍。這解釋了為何 Samsung 量產 HBM4 反而<strong>加劇</strong>缺貨：產能轉移讓商品 DRAM 更稀缺。供給端新增產能在 2027 年底～2028 前難以放量。</p>
+<hr />
+<h2 id="5-hbm4">5. 競爭格局：三強鼎立，戰場移到 HBM4</h2>
+<table>
+<thead>
+<tr>
+<th>公司</th>
+<th>HBM 市占(Q2)</th>
+<th>DRAM 市占(Q1)</th>
+<th>HBM4 / Rubin 定位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SK Hynix</strong></td>
+<td>62%</td>
+<td>29%</td>
+<td>NVIDIA Rubin HBM4 拿 ~70%（約 2/3），龍頭</td>
+</tr>
+<tr>
+<td><strong>Micron</strong></td>
+<td>21%</td>
+<td>第三</td>
+<td>HBM4 12-high 已量產供 NVDA，爬坡 2x；毛利結構最佳</td>
+</tr>
+<tr>
+<td><strong>Samsung</strong></td>
+<td>17%</td>
+<td>38%</td>
+<td>HBM4 良率追趕中，DRAM 總量龍頭</td>
+</tr>
+</tbody>
+</table>
+<p><strong>三個關鍵動態</strong>：
+1. <strong>SK Hynix 仍是 HBM 王者</strong>，但它選擇延後部分 HBM3E→HBM4 轉換、回頭做高價 DDR5 → 間接讓 DDR5 在 H2'26 續貴，對美光是利多。
+2. <strong>美光 HBM 份額（21%）低於其 DRAM 整體地位</strong>，HBM4 在 NVDA Rubin 的份額落後 SK Hynix 是<strong>結構性隱憂</strong>（空方論點）。
+3. <strong>Samsung 是 wildcard</strong>：一旦 HBM4 良率突破、大量供貨 NVDA/AMD，HBM 供給釋放可能是這輪週期的<strong>第一張下行骨牌</strong>。</p>
+<hr />
+<h2 id="6">6. 多空辯論（空方已用硬數據強化）</h2>
+<h3 id="bull">多方（Bull）</h3>
+<table>
+<thead>
+<tr>
+<th>論點</th>
+<th>支撐數據</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>需求底紮實</td>
+<td>hyperscaler 全數上修 capex；NVDA $119B+ 供給承諾；Google backlog QoQ 翻倍</td>
+</tr>
+<tr>
+<td>供給紀律</td>
+<td>新產能 2027 底前難放量；HBM 3:1 排擠商品供給</td>
+</tr>
+<tr>
+<td>能見度質變</td>
+<td>$100B RPO、16 SCA、覆蓋到 2030，合約底價 &gt; 歷史高點</td>
+</tr>
+<tr>
+<td>估值仍低</td>
+<td>Forward P/E <strong>8.45x</strong>，淨現金資產負債表（現金+投資 $31B vs 債務 $5.6B）</td>
+</tr>
+<tr>
+<td>模式轉型</td>
+<td>資料中心年化 &gt;$100B，從週期股→AI 基建股</td>
+</tr>
+</tbody>
+</table>
+<h3 id="bear">空方（Bear）— 量化版</h3>
+<table>
+<thead>
+<tr>
+<th>論點</th>
+<th>硬數據</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>週期已過半甚至到頂</strong></td>
+<td>距 2023 中谷底已 <strong>30 個月</strong>，已<strong>追平或超過史上最長上行週期</strong>；ASP +60% QoQ 屬歷史極端</td>
+</tr>
+<tr>
+<td><strong>毛利率是均值回歸極端值</strong></td>
+<td><strong>84.9%</strong> 遠超任何前次週期高點（2018 約 59–61%）；歷史上記憶體毛利率從不在此停留</td>
+</tr>
+<tr>
+<td><strong>peak-earnings 陷阱</strong></td>
+<td>記憶體股在週期頂部慣常交易於 <strong>4–8x forward</strong>（現 8.45x 正落此帶），下行時本益比反而<strong>擴張到 18–24x</strong>；低 P/E 常源於峰值 EPS 而非便宜</td>
+</tr>
+<tr>
+<td><strong>消費端需求破壞（新增硬數據）</strong></td>
+<td>2026 PC 出貨 <strong>−11.3%</strong>、智慧手機 <strong>−8.4%</strong>；Gartner：DRAM+SSD 成本年底前 <strong>+130%</strong>，PC 售價 +17%、手機 +13%；OEM 已警告漲價 15–20%、規格縮水（12GB→8GB）</td>
+</tr>
+<tr>
+<td><strong>中國供給洪水（新增硬數據）</strong></td>
+<td>CXMT 2026 底達 ~<strong>350k 晶圓/月</strong>（2024 初 100k→290k）、2025 營收 ~$8B；UBS 估中國 2026 新增 <strong>120–140k 晶圓/月</strong>；YMTC 武漢新廠 H2'26 投產（半數做 DRAM）、CXMT 年底拚 HBM3</td>
+</tr>
+<tr>
+<td><strong>好消息 priced in</strong></td>
+<td>股價單日 +15.7%、年內 EPS 預估 +650%，市場已在反映完美劇本，任何雜訊都是下行不對稱風險</td>
+</tr>
+<tr>
+<td><strong>HBM4 份額落後</strong></td>
+<td>NVDA Rubin HBM4 美光僅 ~21% HBM 份額 vs SK Hynix ~70%，下一代成長分配居弱勢</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7">7. 週期定位：硬指標版（回應互審）</h2>
+<p>不只用「30 個月最長」這種軟敘事，以下是<strong>量化錨點</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>週期高點訊號</th>
+<th>當前讀數</th>
+<th>歷史對照</th>
+<th>判讀</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>毛利率 vs 歷史峰值</td>
+<td><strong>84.9%</strong></td>
+<td>2018 峰 ~59–61%</td>
+<td><strong>遠超頂、極端</strong></td>
+</tr>
+<tr>
+<td>ASP QoQ 增速</td>
+<td><strong>+60%+</strong></td>
+<td>正常上行 +10~20%</td>
+<td><strong>過熱區</strong></td>
+</tr>
+<tr>
+<td>合約價 QoQ 軌跡</td>
+<td>Q1 +95% → Q2 +60%</td>
+<td>—</td>
+<td>DRAM 增速<strong>已在減速</strong>（NAND 仍加速）</td>
+</tr>
+<tr>
+<td>Forward P/E</td>
+<td><strong>8.45x</strong></td>
+<td>峰部帶 4–8x</td>
+<td><strong>正落峰部估值帶</strong></td>
+</tr>
+<tr>
+<td>週期時長</td>
+<td>30 個月</td>
+<td>史上最長 ~28–30 個月</td>
+<td><strong>已達/超歷史上限</strong></td>
+</tr>
+<tr>
+<td>供需缺口</td>
+<td>−4.9% / −5.1%</td>
+<td>2011 來最大</td>
+<td>缺口極端但<strong>極端本身常近頂</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>我方記憶體週期儀表板（V3, 2026-06-26）</strong>：Cycle Score <strong>3.2 / green / Mid Cycle</strong>。9 訊號中：需求底（hyperscaler）3.2、Micron 毛利 trajectory 3.4 偏正面；<strong>中國對手擴產 5.2（黃旗）、週期結束校準 5.0（黃旗）</strong> 是兩個警示。內部與業內共識（BofA/Goldman）一致：<strong>高點落在 2026 Q4 ～ 2027 H2 ±一季</strong>。</p>
+<blockquote>
+<p><strong>關鍵張力</strong>：基本面動能（毛利、需求底）說「還在中段」，但估值與週期時長說「已近頂」。這正是 8.45x 同時可被解讀為「便宜」與「陷阱」的原因。</p>
+</blockquote>
+<hr />
+<h2 id="8-845x">8. 估值：8.45x 的多空解讀</h2>
+<p><strong>多方框架（這次不一樣）</strong>：
+- 若 $100B 長約讓營收「去週期化」，舊的「峰值給低 P/E」邏輯失效，應給半導體成長股估值。
+- SOTP：HBM/AI 部位套成長 P/E、傳統 DRAM 套 P/B → 加總遠高於現價。
+- 淨現金、FCF 強勁，下檔有資產保護。</p>
+<p><strong>空方框架（peak-earnings 陷阱）</strong>：
+- 8.45x forward 看似便宜，但分母（EPS）若是峰值，真實的「正常化 P/E」要高得多。
+- 歷史鐵律：記憶體股最低 P/E 出現在<strong>獲利頂部</strong>，之後 EPS 崩、股價跌、P/E 反而擴張。45.5% 的 12 個月報酬可由 P/E band 區分 —— 低 P/E ≠ 安全。
+- 市場已從 spot 估值轉向 SOTP，意味樂觀情境<strong>已被定價</strong>。</p>
+<p><strong>情境分析（粗略框架，非精算）</strong>：
+- <strong>Bull（軟著陸/去週期化成立）</strong>：FY27 EPS 維持高檔，市場給 12–15x → 顯著上行。
+- <strong>Base（晚週期、2027 H2 觸頂）</strong>：享受 2–3 季動能後 EPS 見頂回落，股價區間震盪、報酬平庸。
+- <strong>Bear（供給洪水 + 需求破壞早來）</strong>：FY27 EPS 大幅下修，本益比擴張掩護不了 EPS 崩跌 → 大幅回檔。</p>
+<hr />
+<h2 id="9">9. 交易/部位含義（給裁量交易者）</h2>
+<ul>
+<li><strong>不是放空時機</strong>：動能、毛利、需求底都還在多方手上；逆勢空超級週期股是高風險。</li>
+<li><strong>也過了無腦追的階段</strong>：+15.7% 已反映完美財報，risk/reward 對稱性轉差。</li>
+<li><strong>這是「跟著催化劑走」的階段</strong>，不是「買了抱整年」。關鍵觀察日：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>日期</th>
+<th>事件</th>
+<th>觀察重點</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>~2026-07-15</td>
+<td>Hyperscaler Q2 財報季</td>
+<td>MSFT/AMZN/GOOG/META 的 <strong>capex 上修是否持續</strong>；任一砍 capex = 需求底首裂</td>
+</tr>
+<tr>
+<td>2026-08-27</td>
+<td>NVDA Q2 FY27 財報</td>
+<td><strong>$119B+ 供給承諾是否維持</strong>；HBM4 Rubin 拉貨節奏</td>
+</tr>
+<tr>
+<td>H2'26</td>
+<td>CXMT IPO / YMTC 武漢投產 / Samsung HBM4 良率</td>
+<td>供給端三顆未爆彈，任一放量 = 下行第一張骨牌</td>
+</tr>
+<tr>
+<td>~2026-09</td>
+<td>美光 FQ4 財報</td>
+<td>$50B 財測達標度 + <strong>FQ1'27 財測是否首見減速</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>與 6/23 財報前研究的銜接</strong>：本資料夾既有《MU_財報前部位處置研究_20260623》。財報前的不確定性已解除（結果為大幅 beat），現在的問題從「敢不敢抱財報」變成「晚週期如何管理一個贏家部位」——建議用催化劑日曆設停利/減碼節點，而非估值單一錨點。</li>
+</ul>
+<hr />
+<h2 id="10">10. 風險清單 + 待追蹤訊號</h2>
+<p><strong>下行風險（依時間遠近）</strong>：
+1. 雲端 capex 上修週期反轉（最前瞻、最致命）—— 盯 7/15
+2. Samsung HBM4 良率突破 → HBM 供給釋放
+3. 中國 CXMT/YMTC 2027 商品 DRAM/NAND 放量
+4. 消費端需求破壞外溢（PC −11%/手機 −8% 若惡化拖累整體位元需求）
+5. 估值多殺多（peak-earnings 陷阱觸發）</p>
+<p><strong>上行風險（空方要小心的）</strong>：
+1. 缺貨延續超預期、2027 仍緊
+2. $100B 長約模式被市場接受 → 估值重評（de-rating 變 re-rating）
+3. HBM4 美光份額逆勢提升</p>
+<p><strong>待追蹤訊號（接我方儀表板）</strong>：DDR5/DDR4 分化（DDR4 已轉軟為早期裂痕）、spot/contract 比值（跌破 1.0 = 現貨先軟）、中國對手擴產與 IPO 進度、Hyperscaler backlog vs capex 背離。</p>
+<hr />
+<h2 id="_1">附錄</h2>
+<h3 id="a">A. 數據來源（多源交叉）</h3>
+<ul>
+<li><strong>公司</strong>：Micron IR FQ3 FY2026 Prepared Remarks / 法說 transcript（Investing.com）</li>
+<li><strong>財報數字</strong>：StockMarketNerd、TheStreet、TechTimes、TradingKey（毛利率 84.9% 確認）、GuruFocus/Investing</li>
+<li><strong>股價</strong>：stockanalysis.com（$1,213.56，2026-06-25 4PM EDT，+15.74%）</li>
+<li><strong>市況/合約價</strong>：TrendForce、Tom's Hardware、IDC、BigGo、Sourceability</li>
+<li><strong>競爭/HBM</strong>：Counterpoint、Astute Group、TrendForce、SK Hynix Newsroom、UBS（轉述）</li>
+<li><strong>需求破壞</strong>：IDC（PC −11.3%）、Gartner（手機 −8.4%、+130% 成本）</li>
+<li><strong>中國供給</strong>：Tom's Hardware、SemiAnalysis、Digitimes、KrAsia（CXMT 350kwspm、UBS 120–140k 晶圓/月）</li>
+<li><strong>自有訊號</strong>：記憶體週期儀表板 V3（signals.json, 2026-06-26）</li>
+</ul>
+<h3 id="b">B. 方法論</h3>
+<p>數字採「至少兩源交叉、矛盾則回主源」原則；極端值（$41.5B、84.9%）經獨立來源確認非單一報導。價格標註 as-of 日期避免時差錯位。估值情境為框架性推演，非精算模型。</p>
+<h3 id="c">C. 與既有資產的銜接</h3>
+<p>本報告為 6/23《財報前部位處置研究》的後續，構成美光「財報前 → 財報後」完整研究序列。</p>
+<h3 id="d-ai-3ai">D. 跨 AI 互審紀錄（3AI 模式）</h3>
+<ul>
+<li><strong>架構/資料階段</strong>：已執行 xreview 雙廠商互審。<strong>Gemini（flash）</strong>回報 3 項：①空方論點需更硬數據（high）②毛利率精度 84.9%/270bps（low，已修正）③peak-cycle 需硬量化指標（med）。三項均已採納並補強（§6 空方量化、§7 硬指標表）。</li>
+<li><strong>Codex（gpt-5.5）</strong>：本輪因訂閱用量達上限（重置 2026-07-19）未能參與，故實際為 Claude + Gemini 雙向互審，非完整 3AI。如需補 Codex 角度，7/19 後可重跑。</li>
+<li><strong>誠實揭露</strong>：本報告引用之極端營收/獲利數字雖經多源交叉，仍屬非常規量級；交易決策請以美光官方 10-Q / 法說原文為最終依據。</li>
+</ul>
+<hr />
+<p><em>本報告為研究分析，非投資建議。記憶體為高週期性產業，數字與情境隨市況快速變化。</em></p>
+</body></html>
