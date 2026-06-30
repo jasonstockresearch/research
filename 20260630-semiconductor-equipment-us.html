@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全球半導體設備產業深度研究（美股）</title>
+<style>
+  :root {
+    --bg: #0d1117; --bg2: #161b22; --bg3: #21262d;
+    --border: #30363d; --text: #e6edf3; --muted: #8b949e;
+    --accent: #58a6ff; --green: #3fb950; --yellow: #d29922;
+    --red: #f85149; --purple: #bc8cff; --teal: #39d353;
+    --header-bg: #1c2128;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", "Noto Sans TC", sans-serif;
+    background: var(--bg); color: var(--text);
+    font-size: 15px; line-height: 1.7;
+    max-width: 1000px; margin: 0 auto; padding: 40px 24px 80px;
+  }
+
+  /* ── Cover ── */
+  .cover {
+    background: linear-gradient(135deg, #0d1117 0%, #1c2a4a 50%, #0d1117 100%);
+    border: 1px solid #1e3a5f; border-radius: 12px;
+    padding: 48px 40px; margin-bottom: 40px; text-align: center;
+  }
+  .cover .badge {
+    display: inline-block; background: #1e3a5f; color: var(--accent);
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    padding: 4px 14px; border-radius: 20px; margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  .cover h1 {
+    font-size: 26px; font-weight: 900; color: #fff;
+    line-height: 1.3; margin-bottom: 12px;
+  }
+  .cover .subtitle { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
+  .cover .meta {
+    display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;
+    font-size: 13px;
+  }
+  .cover .meta-item { display: flex; flex-direction: column; gap: 2px; }
+  .cover .meta-label { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
+  .cover .meta-value { color: var(--text); font-weight: 600; }
+
+  /* ── Executive Summary ── */
+  .exec-summary {
+    background: #0d2137; border: 1px solid #1e3a5f; border-left: 4px solid var(--accent);
+    border-radius: 8px; padding: 24px 28px; margin-bottom: 36px;
+  }
+  .exec-summary h2 { color: var(--accent); font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 16px; }
+  .exec-summary blockquote {
+    color: #8ebbff; font-size: 15px; font-style: italic; line-height: 1.6;
+    border-left: 2px solid var(--accent); padding-left: 16px; margin-bottom: 20px;
+  }
+  .exec-summary ol { padding-left: 20px; }
+  .exec-summary li { margin-bottom: 8px; color: var(--text); }
+  .exec-summary li strong { color: var(--accent); }
+
+  /* ── Section headings ── */
+  h2 {
+    font-size: 18px; font-weight: 800; color: var(--accent);
+    margin: 48px 0 16px; padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  h3 { font-size: 15px; font-weight: 700; color: #e6edf3; margin: 28px 0 10px; }
+  h4 { font-size: 13px; font-weight: 700; color: var(--muted); margin: 20px 0 8px; letter-spacing: 0.5px; }
+  p { margin-bottom: 12px; color: var(--text); }
+
+  /* ── Tables ── */
+  .table-wrap { overflow-x: auto; margin: 16px 0 24px; border-radius: 8px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead tr { background: var(--header-bg); }
+  th { padding: 10px 14px; text-align: left; font-weight: 700; color: var(--accent); font-size: 12px; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:nth-child(even) { background: #161b22; }
+  tbody tr:hover { background: #1c2a3a; }
+  td strong { color: var(--accent); }
+  td em { color: var(--green); font-style: normal; font-weight: 600; }
+
+  /* ── Code blocks ── */
+  pre {
+    background: var(--bg3); border: 1px solid var(--border); border-radius: 8px;
+    padding: 16px 20px; overflow-x: auto; margin: 16px 0 24px;
+    font-family: "Consolas", "Courier New", monospace; font-size: 13px;
+    line-height: 1.6; color: #adbac7;
+  }
+  code { font-family: "Consolas", monospace; font-size: 12px; color: #ff7b72; background: var(--bg3); padding: 2px 6px; border-radius: 4px; }
+
+  /* ── Lists ── */
+  ul, ol { padding-left: 22px; margin-bottom: 14px; }
+  li { margin-bottom: 6px; }
+  li strong { color: #e6edf3; }
+
+  /* ── Layer cards ── */
+  .layer-card {
+    border: 1px solid var(--border); border-radius: 10px;
+    margin-bottom: 28px; overflow: hidden;
+  }
+  .layer-header {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 20px; background: var(--bg2);
+  }
+  .layer-num {
+    width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900; font-size: 14px; flex-shrink: 0;
+  }
+  .layer-num.l1 { background: #1e3a5f; color: var(--accent); }
+  .layer-num.l2 { background: #1a3a1a; color: var(--green); }
+  .layer-num.l3 { background: #3a2a00; color: var(--yellow); }
+  .layer-num.l4 { background: #2a1a3a; color: var(--purple); }
+  .layer-title { font-weight: 800; font-size: 15px; }
+  .layer-body { padding: 16px 20px; }
+
+  /* ── Company cards ── */
+  .company-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  @media (max-width: 680px) { .company-grid { grid-template-columns: 1fr; } }
+  .company-card {
+    background: var(--bg2); border: 1px solid var(--border); border-radius: 8px;
+    padding: 16px;
+  }
+  .company-card .ticker { font-size: 11px; color: var(--accent); font-weight: 700; letter-spacing: 1px; margin-bottom: 4px; }
+  .company-card .name { font-size: 15px; font-weight: 800; color: var(--text); margin-bottom: 8px; }
+  .company-card .desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+  /* ── Portfolio tiers ── */
+  .portfolio-tier {
+    border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;
+  }
+  .portfolio-tier.core { background: #0d2137; border: 1px solid #1e3a5f; }
+  .portfolio-tier.flexible { background: #0d2a0d; border: 1px solid #1a3a1a; }
+  .portfolio-tier.options { background: #1a1a2a; border: 1px solid #2a2a4a; }
+  .portfolio-tier .tier-header {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 14px;
+  }
+  .tier-pct {
+    font-size: 22px; font-weight: 900;
+    min-width: 52px;
+  }
+  .core .tier-pct { color: var(--accent); }
+  .flexible .tier-pct { color: var(--green); }
+  .options .tier-pct { color: var(--purple); }
+  .tier-label { font-weight: 700; font-size: 14px; }
+  .tier-desc { font-size: 12px; color: var(--muted); }
+
+  /* ── Timeline ── */
+  .timeline { position: relative; padding-left: 28px; margin-bottom: 28px; }
+  .timeline::before {
+    content: ""; position: absolute; left: 8px; top: 0; bottom: 0;
+    width: 2px; background: var(--border);
+  }
+  .tl-item { position: relative; margin-bottom: 24px; }
+  .tl-dot {
+    position: absolute; left: -24px; top: 4px;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--bg);
+  }
+  .tl-item.yellow .tl-dot { background: var(--yellow); }
+  .tl-item.purple .tl-dot { background: var(--purple); }
+  .tl-year { font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: 1px; margin-bottom: 6px; }
+  .tl-item.yellow .tl-year { color: var(--yellow); }
+  .tl-item.purple .tl-year { color: var(--purple); }
+  .tl-content h4 { color: var(--text); font-size: 14px; margin: 0 0 6px; }
+  .tl-checklist { list-style: none; padding: 0; margin: 0; }
+  .tl-checklist li { font-size: 13px; color: var(--muted); padding: 3px 0; }
+  .tl-checklist li::before { content: "□ "; color: var(--accent); }
+
+  /* ── Risk boxes ── */
+  .risk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  @media (max-width: 680px) { .risk-grid { grid-template-columns: 1fr; } }
+  .risk-box { border-radius: 8px; padding: 16px 20px; }
+  .risk-box.up { background: #0d2a0d; border: 1px solid #1a3a1a; }
+  .risk-box.down { background: #2a0d0d; border: 1px solid #3a1a1a; }
+  .risk-box h4 { margin: 0 0 10px; font-size: 13px; }
+  .risk-box.up h4 { color: var(--green); }
+  .risk-box.down h4 { color: var(--red); }
+  .risk-box ul { padding-left: 16px; }
+  .risk-box li { font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+  .risk-box li strong { color: var(--text); }
+
+  /* ── Callout boxes ── */
+  .callout {
+    border-radius: 8px; padding: 16px 20px; margin: 16px 0 24px;
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+  .callout.insight { background: #0d2137; border-left: 3px solid var(--accent); }
+  .callout.warning { background: #2a1a00; border-left: 3px solid var(--yellow); }
+  .callout-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .callout-text { font-size: 13px; line-height: 1.6; color: var(--text); }
+  .callout-text strong { color: var(--accent); }
+  .callout.warning .callout-text strong { color: var(--yellow); }
+
+  /* ── Appendix ── */
+  .appendix { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 24px; margin-top: 40px; }
+  .appendix h3 { color: var(--muted); font-size: 13px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; }
+
+  /* ── Footer ── */
+  .footer {
+    margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border);
+    font-size: 12px; color: var(--muted); text-align: center; line-height: 1.8;
+  }
+
+  /* ── Highlight spans ── */
+  .hl { color: var(--accent); font-weight: 700; }
+  .hl-green { color: var(--green); font-weight: 700; }
+  .hl-yellow { color: var(--yellow); font-weight: 700; }
+  .hl-red { color: var(--red); font-weight: 700; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="badge">Sector Deep Dive · Semiconductor Equipment</div>
+  <h1>全球半導體設備產業深度研究</h1>
+  <p class="subtitle">AI 超級週期、混合鍵合與測試新主線，與 2027 獲利／估值情境（美股）</p>
+  <div class="meta">
+    <div class="meta-item"><span class="meta-label">發布日期</span><span class="meta-value">2026-06-30</span></div>
+    <div class="meta-item"><span class="meta-label">研究類型</span><span class="meta-value">產業深度研究</span></div>
+    <div class="meta-item"><span class="meta-label">覆蓋市場</span><span class="meta-value">美股</span></div>
+  </div>
+</div>
+
+<div class="exec-summary"><h2>執行摘要</h2>
+<blockquote>
+<p>半導體設備是這輪 AI 投資週期中確定性最高的硬體環節。但 2026 年中的核心問題，已從「成長是否存在」轉為「市場已將多少年的成長計入股價」。</p>
+</blockquote>
+<p><strong>五項核心結論：</strong></p>
+<ol>
+<li>
+<p><strong>資本支出超級週期具備實證支撐。</strong> SEMI（2026/4）預估全球 300mm 晶圓廠設備（WFE）支出 2026 年 +18% 至 1,330 億美元、2027 年 +14% 至 1,510 億美元（史上首破 1,500 億），2028 年 1,550 億、2029 年 1,720 億；2027–29 邏輯/微處理器累計投資 2,280 億美元、記憶體 1,750 億美元。動能來自 AI（2 奈米 GAA 與 HBM）與供應鏈在地化雙輪。</p>
+</li>
+<li>
+<p><strong>產業主線已擴及混合鍵合與測試。</strong> 本報告涵蓋九檔核心標的，橫跨微影、沉積、蝕刻、量測檢測、混合鍵合與測試六大環節：ASML、Applied Materials、Lam Research、ASM International、KLA、Onto Innovation、BE Semiconductor（Besi）、Advantest、Camtek，並附觀察名單。</p>
+</li>
+<li>
+<p><strong>估值已取代成長成為主導變數。</strong> 設備九雄一年內市值上漲 200–340%，目前 trailing P/E 介於 48×（ASMI）至 163×（ONTO）；換算 forward，市場普遍以 40–60 倍 2027 預估盈餘評價歷史常態僅 15–25 倍的循環股。</p>
+</li>
+<li>
+<p><strong>估值口徑提示：KLA 已於 2026/6/12 執行 10 比 1 股票分割。</strong> 本報告所有 KLA 數字均採分割後（post-split）口徑：2027 預估 EPS 約 5.14 美元、2030 目標 EPS 約 8.40 美元。</p>
+</li>
+<li>
+<p><strong>個股基本面開始分流。</strong> 同屬先進封裝檢測，Onto 營業利益率一年內由 23.7% 壓縮至 11.5%，而 ASMI、Besi、Advantest 仍創毛利紀錄。在週期後段，選股（毛利趨勢、訂單能見度、客戶分散度）的重要性已超過選產業。</p>
+</li>
+</ol>
+<p><strong>投資結論：</strong> 產業方向看多、估值保守。這是一個「方向正確、價格昂貴」的市場——順勢操作宜降低單筆部位、嚴守回檔分批；逢高追價所承擔的，是估值收縮而非基本面崩壞的風險。</p>
+<hr />
+</div>
+<h2>一、研究方法與資料來源</h2>
+<p>本報告以一手與可驗證來源交叉比對，財務數字標註季別與報導日，股價標註時點。</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>來源類型</th>
+<th>具體來源</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>產業協會</td>
+<td>SEMI《300mm Fab Outlook》（2026/4/1）</td>
+<td>WFE 2025–2029 支出與板塊拆解</td>
+</tr>
+<tr>
+<td>一手財報</td>
+<td>各公司 SEC 8-K / 6-K、IR 新聞稿、法說逐字稿</td>
+<td>最近一季實績與下季／全年指引</td>
+</tr>
+<tr>
+<td>賣方共識</td>
+<td>Morgan Stanley、BofA、Wolfe 等</td>
+<td>2027 EPS 與目標價</td>
+</tr>
+<tr>
+<td>即時報價</td>
+<td>公開報價頁（2026/6/29 美股收盤、6/30 歐日盤中）</td>
+<td>現價、trailing P/E、市值</td>
+</tr>
+<tr>
+<td>公司行動</td>
+<td>KLA 8-K（10:1 分割，2026/6/12 生效）</td>
+<td>估值口徑校正</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>口徑聲明：</strong> 凡標「估算」之 2027 EPS 為依最近一季年化與成長假設推導，非賣方共識，僅供估值區間參考；凡引用賣方數字均註明出處。海外標的（ASML/ASMI/Besi 以歐元、Advantest 以日圓）以其主要掛牌貨幣評價。</p>
+<hr />
+<h2>二、產業概覽：設備技術分類與 WFE 超級週期</h2>
+<h3>2.1 半導體製造設備的六大技術分類</h3>
+<p>晶片製造分前段晶圓製造（FEOL）與後段封裝測試（BEOL）。隨製程往 2 奈米及以下迭代，設備的技術難度與資本密集度呈幾何級數上升。</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>設備類別</th>
+<th>核心機制</th>
+<th>代表次技術</th>
+<th>主要技術壁壘</th>
+<th>全球主導者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>黃光微影</td>
+<td>光學投影、光化學反應</td>
+<td>DUV、EUV、High-NA EUV</td>
+<td>超精密反射鏡、雙工件台同步、極短波長光源</td>
+<td>ASML</td>
+</tr>
+<tr>
+<td>薄膜沉積</td>
+<td>氣相化學反應、等離子體濺射</td>
+<td>PECVD、ALD、PVD</td>
+<td>原子級厚度均勻、3D 結構階梯覆蓋</td>
+<td>AMAT、Lam、ASMI</td>
+</tr>
+<tr>
+<td>乾式蝕刻</td>
+<td>等離子體物理轟擊＋化學去材料</td>
+<td>RIE、DRIE、ALE</td>
+<td>極高深寬比定向蝕刻、高選擇比</td>
+<td>Lam、AMAT</td>
+</tr>
+<tr>
+<td>量測檢測</td>
+<td>光學干涉、電子束成像</td>
+<td>OCD、e-Beam、Overlay</td>
+<td>奈米級缺陷識別、高速多通道成像</td>
+<td>KLA、Onto、Camtek、Nova</td>
+</tr>
+<tr>
+<td>先進封裝／鍵合</td>
+<td>精密對位、銅對銅鍵合</td>
+<td>TCB、Hybrid Bonding、Die Bonder</td>
+<td>次微米對位、&lt;10nm 鍵合精度、熱應力控制</td>
+<td>Besi、ASMPT、AMAT、EVG</td>
+</tr>
+<tr>
+<td>測試</td>
+<td>訊號量測、KGD 良率驗證</td>
+<td>SoC ATE、Memory ATE、探針卡</td>
+<td>高平行度、超高腳數、HBM KGD</td>
+<td>Advantest、Teradyne、FormFactor</td>
+</tr>
+</tbody>
+</table></div>
+<p>2026 年領漲的兩條主線為混合鍵合（HBM4／3D-IC 的物理瓶頸）與測試（AI SoC 與 HBM KGD 道次爆增），下文個股深度納入兩條主線的全球龍頭。</p>
+<h3>2.2 WFE 超級週期：2025–2029 的歷史性拐點</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>年度</th>
+<th>全球 300mm 晶圓廠設備（WFE）</th>
+<th>年增率</th>
+<th>主要驅動</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025</td>
+<td>約 1,128 億美元（依 +18% 回推）</td>
+<td>—</td>
+<td>DRAM/HBM 起飛、先進邏輯早期投資</td>
+</tr>
+<tr>
+<td>2026</td>
+<td>1,330 億美元</td>
+<td>+18%</td>
+<td>AI 加速器擴產、2 奈米建置、DRAM 大漲</td>
+</tr>
+<tr>
+<td>2027</td>
+<td>1,510 億美元</td>
+<td>+14%</td>
+<td>2 奈米量產、SoIC/CPO、在地化完工（史上首破 $150B）</td>
+</tr>
+<tr>
+<td>2028</td>
+<td>1,550 億美元</td>
+<td>+3%</td>
+<td>消化期</td>
+</tr>
+<tr>
+<td>2029</td>
+<td>1,720 億美元</td>
+<td>+11%</td>
+<td>次世代節點再投資</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>口徑說明：上表為 SEMI 2026/4 發布之「300mm 晶圓廠設備（即 WFE）」支出，不含後段封裝/測試設備，與市場另稱之「含封測之半導體設備總額」（約 2026 $145B／2027 $156B）並非同一條線。</p>
+</blockquote>
+<h3>2.3 雙軌化與 memflation</h3>
+<p>市場呈明顯雙軌：AI 基礎建設極強，傳統消費／車用／工業則處去庫存後的平緩復甦。記憶體端出現「memflation」——AI 加速器對 HBM 的需求使 DRAM／NAND 價格與資本支出同步上行；HBM 將多顆 DRAM 堆疊、TSV 與製程複雜度大增，使每片晶圓的設備強度顯著攀升，直接利多乾蝕刻、ALD 沉積、混合鍵合、檢測與測試。</p>
+<hr />
+<h2>三、美股九大設備龍頭深度剖析</h2>
+<p>排序：前段四雄（ASML / AMAT / LRCX / ASMI）→ 檢測量測（KLAC / ONTO，並提 Camtek）→ 先進封裝鍵合（Besi）→ 測試（Advantest）。各檔附最近一季實績、2027 展望、現價與隱含估值、風險。</p>
+<h3>3.1 ASML — 微影絕對壟斷，估值已先行</h3>
+<p><strong>護城河：</strong> EUV 在 7 奈米以下不可替代，High-NA EUV 獨家。台積電 N2／A14、三星與 SK 海力士 DRAM 導入更多 EUV 層數，驅動系統銷售。</p>
+<p><strong>最新實績（Q1 2026）：</strong> 營收 €88 億、毛利率 53%；Q2 指引 €84–90 億、毛利率 51–52%；全年 2026 上修至 €360–400 億。Low-NA EUV 預計 2026 交付 ≥60 台、2027 ≥80 台；High-NA 自 2026 底至 2027 進入量產導入。</p>
+<p><strong>2027 展望：</strong> Morgan Stanley 估 2027 EPS €33（≈US$36，依 EUR/USD≈1.08；ASML 美股掛牌與阿姆斯特丹為同一普通股、非 ADR，故以美元股價除美元 EPS）；BofA 估 2027 自由現金流翻倍至 €140 億、毛利率擴張 150bp 以上。</p>
+<p><strong>現價與估值（6/29 美股）：</strong> $1,883.11，trailing P/E 61×，市值 $708B。以 2027E EPS ≈US$36 計，forward P/E ≈ 53×。</p>
+<p><strong>風險：</strong> 中國成熟製程微影採購在出口管制下收縮；High-NA 客戶導入節奏與良率；估值對訂單遞延高度敏感。</p>
+<h3>3.2 Applied Materials（AMAT）— 材料工程一體化，GAA 近壟斷</h3>
+<p><strong>護城河：</strong> 全球最大前段設備商，沉積、選擇性移除、CMP、離子植入市佔極高；GAA 特殊沉積與形貌控制近乎壟斷；AGS 服務部門中雙位數成長、高利潤率防禦。</p>
+<p><strong>最新實績（Q2 FY2026，2026/5/14）：</strong> 營收 $79.1 億創新高（+11% YoY）、非 GAAP EPS $2.86（+20%）、毛利率首破 50%；Q3 指引 $89.5 億 ±$5 億。CY2026 半導體設備成長上修至 &gt;30%。</p>
+<p><strong>2027 展望：</strong> Wolfe 估 CY2026 營收 $360 億／EPS $13.37；2027 營收 $423–440 億、EPS $16.50–17.28。</p>
+<p><strong>現價與估值（6/29）：</strong> $694.64，trailing P/E 65×，市值 $552B。以 2027E EPS $16.5–17.3 計，forward P/E ≈ 40–42×。</p>
+<p><strong>風險：</strong> 中國成熟製程曝險、AGS 以外的循環性、估值已計入 GAA 與封裝的完美兌現。</p>
+<h3>3.3 Lam Research（LRCX）— 蝕刻王者，記憶體 beta 最高</h3>
+<p><strong>護城河：</strong> 蝕刻與高深寬比 CVD 領先，3D NAND 垂直通道孔蝕刻剛需；獲利與記憶體資本支出高度相關。</p>
+<p><strong>最新實績（Q3 FY2026，3 月季，2026/4/22）：</strong> 營收 $58.4 億創新高、營業利益率 35%、EPS $1.45；6 月季指引營收 $66 億、EPS $1.65 創新高。系統別：Foundry 54%（+35% YoY）、Memory 39%（DRAM 27%、NVM 12%）；客戶服務 CSBG $21 億（+25% YoY）。</p>
+<p><strong>2027 展望：</strong> Morgan Stanley 估 2027 營收 $354 億／EPS $9.71；市場共識 2027 EPS 中位 $7.85–7.96。</p>
+<p><strong>現價與估值（6/29）：</strong> $410.91，trailing P/E 78×，市值 $514B。以 2027E EPS $7.9–9.7 計，forward P/E ≈ 42–52×。</p>
+<p><strong>風險：</strong> 記憶體循環反轉的下行彈性同樣巨大；中國營收下滑、客戶頭款減少。</p>
+<h3>3.4 ASM International（ASMI）— ALD 純龍頭</h3>
+<p><strong>公司定位：</strong> 全球原子層沉積（ALD）龍頭，是 GAA 世代每片晶圓 ALD 步數爆增的直接受益者。</p>
+<p><strong>最新實績（Q1 2026，2026/4/21）：</strong> 營收 €8.63 億（+16% YoY 固定匯率、+26% QoQ）、EPS €5.01、調整後營業利益率創紀錄 33.1%；設備銷售 +14%（ALD 領軍）、備品服務 +23%。Q2 指引 €9.80 億 ±5%；全年成長優於 WFE 市場，先進邏輯/foundry 為主動能。</p>
+<p><strong>現價與估值（6/30）：</strong> €996.60，trailing P/E 48×，市值 €47.5B。以 2026 年化 EPS ≈€20、2027E 估算 €24–28 計，forward P/E ≈ 36–42×，為九雄中估值相對溫和者之一。</p>
+<p><strong>風險：</strong> ALD 競品（AMAT/Lam/TEL）切入；單一技術集中度。</p>
+<h3>3.5 KLA Corporation（KLAC）— 製程控制壟斷（已 10:1 分割）</h3>
+<p><strong>護城河：</strong> 製程控制與光學/電子束檢測全球市佔近 60%；製程窗口收縮使檢測強度（檢測占 WFE 比重）由 7.4% 拉向 9%；2025 年取得先進晶圓級封裝製程控制第一。</p>
+<p><strong>最新實績（Q3 FY2026，3 月季）：</strong> 營收 $34.15 億（+11% YoY）、非 GAAP EPS $9.40（分割前口徑），連五季超預期；6 月季指引 $35.75 億。CY2026 成長上修至 high-teens。下次財報 2026/7/23。</p>
+<blockquote>
+<p>估值口徑：KLA 於 2026/6/12 起以 10 比 1 分割後價格交易。本報告採分割後口徑：2027E EPS ≈$5.14、2030 目標 EPS ≈$8.40、情境基準目標 ≈$154、樂觀 ≈$244。</p>
+</blockquote>
+<p><strong>現價與估值（6/29，post-split）：</strong> $278.39，trailing P/E 79×，市值 $364B。以 post-split 2027E EPS $5.14 計，forward P/E ≈ 54×。</p>
+<p><strong>風險：</strong> DRAM 成本通膨壓抑毛利約 100bp；高市佔意味成長須靠 WFE 與檢測強度雙升。</p>
+<h3>3.6 Onto Innovation（ONTO）— 先進封裝量測，獲利能力出現壓縮</h3>
+<p><strong>護城河：</strong> Dragonfly G5 晶圓級檢測、Atlas G6 GAA 量測、JetStep 面板級步進；台積電與頂尖 OSAT 採用。</p>
+<p><strong>最新實績（Q1 2026，2026/5/5）：</strong> 營收 $2.92 億創新高（+10% QoQ）；惟營業利益率自 23.7% 壓縮至 11.5%、非 GAAP EPS $1.42（低於去年同期 $1.51）。亮點：Dragonfly G5 通過 2.5D 邏輯與 HBM 客戶認證；與某 HBM 大廠簽 $2.4 億以上量購協議（涵蓋至 2027）；Atlas G6 拿下第二家 GAA 客戶，先進節點全年估 +25%。</p>
+<p><strong>現價與估值（6/29）：</strong> $351.45，trailing P/E 163×（九雄最高），市值 $17.5B。為九雄中估值最高、且唯一出現獲利能力倒退者。</p>
+<p><strong>風險：</strong> 利潤率壓縮若延續、與 Camtek 在先進封裝檢測的正面競爭、高估值對任何不如預期的脆弱度。</p>
+<blockquote>
+<p>檢測量測補充——Camtek（CAMT）：Q1 2026 營收 $1.217 億、毛利率 51%、約 50% 來自 AI 加 20% 其他先進封裝；手握 2 家 HBM 廠 $2.6 億以上 2026–27 訂單；Q2 指引 $1.29–1.31 億、H2 較 H1 高 25% 以上。現價 $157.32（6/29 收盤），trailing P/E 158×，市值 $7.24B。Camtek 與 Onto 構成先進封裝檢測雙雄，訂單能見度均直指 HBM4e。</p>
+</blockquote>
+<h3>3.7 BE Semiconductor / Besi（BESIY / AMS:BESI）— 混合鍵合絕對龍頭</h3>
+<p><strong>公司定位：</strong> 混合鍵合（銅對銅 &lt;10nm 對位）是 HBM4／3D-IC 與 AI 晶片堆疊的物理瓶頸。Besi 為全球混合鍵合龍頭，Applied Materials 持股 9%（最大股東）並合作 Centura Sculpta D2W 系統。</p>
+<p><strong>最新實績（Q1 2026，2026/4/23）：</strong> 營收 €1.849 億（+28.3% YoY）；訂單 €2.697 億（YoY 翻倍以上），其中混合鍵合機台訂單 QoQ 翻倍、超越 2024Q2 前高、客戶數擴至 20 家（橫跨邏輯、記憶體、矽光子、行動）；淨利率 27.9%、毛利率 63.5%（Q2 指引 64–66%）。管理層指混合鍵合導入隨 2027–2030 AI 新品加速。</p>
+<p><strong>現價與估值（6/30）：</strong> €285.00，trailing P/E 146×，市值 €22B。以 2027E EPS 估算 €4.5–6.0 計，forward P/E ≈ 48–63×，反映市場對混合鍵合作為下一條結構性主線的押注。</p>
+<p><strong>風險：</strong> 混合鍵合放量時程若遞延、ASML/ASMPT/TEL/EVG 競爭加劇、高估值的兌現壓力。</p>
+<h3>3.8 Advantest（ATEYY / TYO:6857）— HBM 與 AI 測試壟斷者</h3>
+<p><strong>公司定位：</strong> SoC ATE 與 HBM 記憶體測試機的全球壟斷者。AI SoC 測試道次爆增、HBM 由 HBM3e 向 HBM4 演進使每顆 KGD 測試時間與 ASP 同步上行。</p>
+<p><strong>最新實績（FY2025，截至 2026/3，2026/4/27 公布）：</strong> AI SoC 與 HBM 記憶體測試需求帶動營收獲利創紀錄；FY2026 SoC 測試系統展望 ¥9,995 億，約 95% 來自運算/通訊（AI）應用；計畫 2029/3 前投入 ¥500 億擴產，目標兩年內達 7,500 台 SoC 測試機產能。</p>
+<p><strong>現價與估值（6/30）：</strong> ¥32,340，trailing P/E 63×，市值 ¥23.4T。以 2027E EPS 估算 ¥700–800 計，forward P/E ≈ 40–46×。</p>
+<p><strong>風險：</strong> 測試循環性、HBM 世代切換的訂單空窗、日股權重上限造成的被動賣壓技術面雜訊。</p>
+<h3>3.9 觀察名單</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>標的</th>
+<th>代號</th>
+<th>定位</th>
+<th>摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FormFactor</td>
+<td>FORM</td>
+<td>HBM 探針卡</td>
+<td>HBM3e/HBM4 探針卡放量、AI 硬體驗證核心</td>
+</tr>
+<tr>
+<td>Teradyne</td>
+<td>TER</td>
+<td>SoC/記憶體測試</td>
+<td>測試雙雄之一</td>
+</tr>
+<tr>
+<td>Nova</td>
+<td>NVMI</td>
+<td>量測</td>
+<td>與 KLA/Onto/Camtek 同場的量測商</td>
+</tr>
+<tr>
+<td>Tokyo Electron</td>
+<td>TOELY</td>
+<td>塗佈/蝕刻/鍵合</td>
+<td>日本前段全能商、混合鍵合端到端方案</td>
+</tr>
+<tr>
+<td>DISCO</td>
+<td>DSCSY</td>
+<td>切割/研磨</td>
+<td>先進封裝薄化、中介層切割剛需</td>
+</tr>
+<tr>
+<td>SCREEN</td>
+<td>DINRY</td>
+<td>清洗/塗佈</td>
+<td>單晶圓清洗全球龍頭</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>TEL/DISCO/SCREEN 三檔日本前段／封裝設備龍頭，市值與成長性不亞於部分核心檔；本報告以美股可直接交易性與兩條新主線為納入主軸，故將其列為觀察名單，全球設備配置時應與九雄同列評估。</p>
+</blockquote>
+<hr />
+<h2>四、2027 獲利情境與估值地圖</h2>
+<h3>4.1 現價已計入多少？（forward 估值總表）</h3>
+<p>下表以各標的主要掛牌貨幣評價；KLAC 為 post-split 口徑；標「估算」之 2027E EPS 為本報告推導、非賣方共識。Forward P/E ＝ 現價 ÷ 2027E EPS。</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>標的</th>
+<th>現價（時點）</th>
+<th>trailing P/E</th>
+<th>2027E EPS（來源）</th>
+<th>forward 2027 P/E</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ASML</td>
+<td>$1,883（6/29）</td>
+<td>61×</td>
+<td>€33 ≈ $36（MS）</td>
+<td>≈53×</td>
+</tr>
+<tr>
+<td>AMAT</td>
+<td>$695（6/29）</td>
+<td>65×</td>
+<td>$16.5–17.3（Wolfe）</td>
+<td>≈40–42×</td>
+</tr>
+<tr>
+<td>LRCX</td>
+<td>$411（6/29）</td>
+<td>78×</td>
+<td>$7.9–9.7（共識/MS）</td>
+<td>≈42–52×</td>
+</tr>
+<tr>
+<td>KLAC（拆分後）</td>
+<td>$278（6/29）</td>
+<td>79×</td>
+<td>$5.14（post-split）</td>
+<td>≈54×</td>
+</tr>
+<tr>
+<td>ONTO</td>
+<td>$351（6/29）</td>
+<td>163×</td>
+<td>$7.66（基準）</td>
+<td>≈46×</td>
+</tr>
+<tr>
+<td>ASMI</td>
+<td>€997（6/30）</td>
+<td>48×</td>
+<td>€24–28（估算）</td>
+<td>≈36–42×</td>
+</tr>
+<tr>
+<td>Besi</td>
+<td>€285（6/30）</td>
+<td>146×</td>
+<td>€4.5–6.0（估算）</td>
+<td>≈48–63×</td>
+</tr>
+<tr>
+<td>Advantest</td>
+<td>¥32,340（6/30）</td>
+<td>63×</td>
+<td>¥700–800（估算）</td>
+<td>≈40–46×</td>
+</tr>
+<tr>
+<td>Camtek</td>
+<td>$157（6/29）</td>
+<td>158×</td>
+<td>$3.0–3.6（估算）</td>
+<td>≈44–52×</td>
+</tr>
+</tbody>
+</table></div>
+<p>設備循環股歷史本益比常態為 15–25×，當前九雄 forward 2027 P/E 落在 36–63×，多數介於 40–60×，為歷史常態的 2–3 倍。此為純就「現價對自身與同業歷史評價區間」即可成立的偏高訊號，不依賴任何目標價假設。市場目前評價的，是 2028–2030 仍持續超預期的假設。需注意：此為估值偏高的證據，非放空訊號；趨勢未轉前不宜逆勢，但風險報酬已明顯左偏。</p>
+<h3>4.2 三情境模型（五大主軸）</h3>
+<p>基準 EPS 採賣方共識；樂觀/保守 EPS 為本報告估算之上下緣，非共識；ASML 以 USD 計、€33≈$36。</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>標的</th>
+<th>樂觀 EPS/PE/目標</th>
+<th>基準 EPS/PE/目標</th>
+<th>保守 EPS/PE/目標</th>
+<th>對現價</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ASML</td>
+<td>$40/40×=$1,600</td>
+<td>$36/30×=$1,080</td>
+<td>$30/22×=$660</td>
+<td>現價 $1,883 高於樂觀</td>
+</tr>
+<tr>
+<td>AMAT</td>
+<td>$17.3/38×=$657</td>
+<td>$16.5/28×=$462</td>
+<td>$12.5/18×=$225</td>
+<td>現價 $695 高於樂觀</td>
+</tr>
+<tr>
+<td>LRCX</td>
+<td>$9.7/42×=$407</td>
+<td>$7.9/30×=$237</td>
+<td>$6.5/18×=$117</td>
+<td>現價 $411 ≈樂觀</td>
+</tr>
+<tr>
+<td>KLAC（拆分後）</td>
+<td>$5.8/42×=$244</td>
+<td>$5.14/30×=$154</td>
+<td>$4.0/20×=$80</td>
+<td>現價 $278 高於樂觀</td>
+</tr>
+<tr>
+<td>ONTO</td>
+<td>$9.5/38×=$361</td>
+<td>$7.66/28×=$214</td>
+<td>$6.0/18×=$108</td>
+<td>現價 $351 ≈樂觀</td>
+</tr>
+</tbody>
+</table></div>
+<p>在五大主軸中，ASML、AMAT、KLAC 三檔現價已高於本報告的樂觀情境目標，LRCX、ONTO 則已站在樂觀情境上緣。這意味正向催化多已反映，向上空間需靠上修樂觀情境本身取得，下檔則對任何不如預期高度敏感，三情境的風險報酬已明顯左偏。</p>
+<h3>4.3 三大情境假設</h3>
+<ul>
+<li>樂觀（Bull）：AI 基建投資強度不減、無泡沫；2 奈米 GAA 良率快速提升；HBM4／SoIC／混合鍵合需求超預期；各國補貼落實。市場給歷史評價上緣。</li>
+<li>基準（Base）：CapEx 依規畫穩健推進；AI 伺服器成長回歸理性；記憶體循環健康復甦；P/E 回歸行業中位。</li>
+<li>保守（Bear）：AI 變現速度落後、CSP 於 2027 放緩採購引發 CapEx 空窗；出口管制阻斷成熟製程設備流動；DRAM 成本通膨壓縮毛利。在當前 40–60× forward 的起點，去估值的跌幅將遠大於歷史循環。</li>
+</ul>
+<hr />
+<h2>五、二階因子分析</h2>
+<p><strong>先進封裝「前段化」驅動後段設備估值重估。</strong> 歷史上後段裝配/測試設備 P/E 僅 10–15×，前段量測/微影享 30× 以上。但混合鍵合、矽光子、3D 堆疊已達次微米至奈米級定位，市場願給接近前段的溢價（Besi 146×、Camtek 158×）。此為真實的重估，亦是過度的延伸：當題材股 P/E 與龍頭壟斷股趨同，意味市場對執行風險的定價趨近於零。</p>
+<p><strong>週期錯配與認列時間差為最大系統性風險。</strong> 設備營收高度依賴新晶圓廠建置時程與無塵室驗收點。歐美新廠若因熟練勞工短缺、電力基建延誤而驗收遞延，即使在手訂單龐大，獲利認列亦將拉長，造成 2027 EPS 暫時性低於預期，引發本益比向成熟股下限重估。</p>
+<p><strong>memflation 為雙面刃。</strong> DRAM/NAND 漲價拉動記憶體 CapEx，但同樣推升設備廠成本——Onto 的營業利益率壓縮、KLA 的毛利率受 DRAM 通膨壓制約 100bp 已是前兆。營收創高與利潤率見頂可以同時發生。</p>
+<p><strong>併購重定價先進封裝。</strong> AMAT 持股 Besi 9%、市場對混合鍵合龍頭的併購興趣，意味大廠願以溢價買進封裝卡位點，對 Besi、Camtek、Onto 構成估值支撐，亦是以購併替代內生研發的訊號。</p>
+<hr />
+<h2>六、風險與反向觀點</h2>
+<p>本章列出此論點最可能的證偽路徑。</p>
+<p><strong>一、估值具備循環頂部特徵。</strong> 一年內市值漲 200–340%、trailing P/E 飆至 60–160×、單日跳漲 8–12%、現價普遍高於分析師目標價——此組合在歷史上通常出現在循環頂部區。設備為循環股，在獲利與本益比同創高時買進，屬高風險組合。</p>
+<p><strong>二、AI CapEx 的軟體變現尚未驗證。</strong> WFE 需求最終取決於雲服務商持續加碼資料中心。若 2027 年 AI 應用變現跟不上資本投入，任一季 CapEx 指引下修都會沿供應鏈放大傳導至設備訂單，而當前估值未為此預留安全邊際。</p>
+<p><strong>三、地緣與客戶集中度。</strong> 多檔對中國成熟製程營收仍有曝險，出口管制為非線性風險。Advantest、Besi、Onto 的客戶高度集中於少數 HBM／AI 大廠，單一客戶庫存調整即足以造成季度級衝擊。</p>
+<p><strong>四、基本面開始分流。</strong> Onto 營業利益率腰斬、KLA 毛利受壓，而 ASMI、Besi、Advantest 仍創紀錄。在週期後段，選股的重要性已超過選產業。</p>
+<p><strong>風險傳導鏈（對應受傷標的）：</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>觸發情境</th>
+<th>傳導機制</th>
+<th>曝險最高</th>
+<th>相對防禦</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>記憶體/HBM CapEx 反轉</td>
+<td>DRAM/NAND 價格回落→記憶體廠砍單→乾蝕刻/ALD/測試/鍵合/檢測訂單先縮</td>
+<td>LRCX、Advantest、Besi、Camtek、AMAT</td>
+<td>ASML、KLA</td>
+</tr>
+<tr>
+<td>High-NA／先進製程延遲</td>
+<td>2 奈米/A14 良率或建廠遞延→EUV 與配套前段量測遞延認列</td>
+<td>ASML、ASMI、KLA</td>
+<td>記憶體/封裝鏈相對隔離</td>
+</tr>
+<tr>
+<td>CSP CapEx 下修</td>
+<td>雲廠砍資料中心預算→GPU/ASIC→HBM/CoWoS→測試訂單沿鏈放大</td>
+<td>封裝/測試（Besi/Advantest/Camtek/Onto）跌幅最大</td>
+<td>無真正避風港，僅程度差異</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>多頭可能正確之處：</strong> 若這輪 AI 是長期生產力革命而非單一週期，則 2027–2030 的 WFE 可能持續上修，當前 forward 40–60× 將被盈餘成長逐步消化。歷史上 2013–2018 的 ASML、2016–2021 的 Lam 都曾讓「看似昂貴」的買點事後證明便宜。關鍵變數為 AI CapEx 的持續性，此無法精確預測，僅能以部位管理應對。</p>
+<hr />
+<h2>七、結論與投資啟示</h2>
+<ol>
+<li>
+<p><strong>產業方向：看多。</strong> AI 基建的硬體剛性與全球供應鏈重組是可持續數年的結構趨勢，WFE 2027 首破 $150B，混合鍵合與測試打開新成長極。</p>
+</li>
+<li>
+<p><strong>估值現實：保守。</strong> 此看多被「市場已提前計入 2–3 年成長」大幅抵銷。九雄 forward 40–60× 2027 盈餘、五雄現價超越自身基準甚至樂觀目標——方向正確、價格昂貴。</p>
+</li>
+<li>
+<p><strong>選股重於選產業（週期後段）：</strong> 優先毛利趨勢向上、訂單能見度長、客戶分散者——ASMI（ALD、毛利創高、估值相對溫和）、Besi（混合鍵合結構主線，估值最貴需擇時）、Advantest（測試壟斷、AI 純度高）；對 Onto（利潤壓縮加高估值）保持警覺。</p>
+</li>
+<li>
+<p><strong>部位管理是此價位唯一的安全邊際：</strong> 降低單筆部位、嚴守回檔分批、停利前置；避免在獲利與本益比雙創高時集中進場。</p>
+</li>
+<li>
+<p><strong>領先訊號追蹤：</strong> ①雲服務商季度 CapEx 指引（需求源頭）；②各廠訂單能見度與毛利率趨勢（品質）；③設備從下單到驗收的時間軸（認列風險）；④出口管制動態（非線性風險）。</p>
+</li>
+</ol>
+<blockquote>
+<p>半導體設備是這輪 AI 革命確定性最高的硬體環節，但 2026 年中的價格，已要求其在 2030 年前不能犯錯。看多趨勢，敬畏估值。</p>
+</blockquote>
+<hr />
+<h2>附錄：主要資料來源</h2>
+<ul>
+<li>SEMI《300mm Fab Outlook》2026/4/1</li>
+<li>ASML Q1 2026 6-K／IR</li>
+<li>Applied Materials Q2 FY2026 8-K（2026/5/14）</li>
+<li>Lam Research Q3 FY2026 8-K</li>
+<li>KLA Q3 FY2026 IR／10:1 分割 8-K（2026/6/12 生效）</li>
+<li>Onto Innovation Q1 2026（2026/5/5）</li>
+<li>ASM International Q1 2026（2026/4/21）</li>
+<li>BE Semiconductor Q1 2026（2026/4/23）</li>
+<li>Advantest FY2025（2026/4/27）</li>
+<li>Camtek Q1 2026</li>
+<li>即時報價：公開報價頁（2026/6/29 美股收盤、6/30 歐日盤中）</li>
+</ul>
+<p><em>本報告為研究與教育用途，非投資建議。標示「估算」之數字非賣方共識，投資前請以最新財報與券商報告覆核。</em></p>
+
+<div class="footer">
+  本報告為研究與教育用途，非投資建議。標示「估算」之數字非賣方共識，投資前請以最新財報與券商報告覆核。<br>
+  價格基準：2026-06-29 美股收盤 / 2026-06-30 歐日盤中。
+</div>
+
+</body>
+</html>
