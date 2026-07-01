@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 泡沫壓力監控儀表板</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<style>
+  :root { --red:#c0392b; --yellow:#f39c12; --green:#27ae60; --gray:#7f8c8d; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:#0f1419; color:#e6e6e6;
+         font-family:"Segoe UI","Microsoft JhengHei",sans-serif; padding:24px; }
+  .wrap { max-width: 960px; margin: 0 auto; }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  .sub { color:#8a94a0; font-size: 13px; margin-bottom: 20px; }
+  .hero { display:flex; gap:24px; align-items:center; flex-wrap:wrap;
+          background:#161d26; border-radius:14px; padding:22px 26px; margin-bottom:18px; }
+  .score { font-size:60px; font-weight:700; line-height:1; }
+  .score small { font-size:22px; color:#8a94a0; font-weight:400; }
+  .band { font-size:18px; font-weight:600; margin-top:6px; }
+  .counts { display:flex; gap:18px; margin-left:auto; }
+  .cnt { text-align:center; }
+  .cnt .n { font-size:30px; font-weight:700; }
+  .cnt .l { font-size:12px; color:#8a94a0; }
+  .disclaimer { background:#2a1e12; border-left:4px solid var(--yellow);
+                padding:10px 14px; border-radius:6px; font-size:13px; color:#d8c9b0;
+                margin-bottom:22px; }
+  .group { background:#161d26; border-radius:12px; padding:16px 20px; margin-bottom:14px; }
+  .ghead { display:flex; align-items:baseline; gap:12px; margin-bottom:12px; }
+  .ghead h2 { font-size:16px; margin:0; }
+  .gweight { font-size:12px; color:#8a94a0; }
+  .gscore { margin-left:auto; font-size:15px; font-weight:600; }
+  .manual-tag { font-size:11px; background:#33404d; color:#aab4c0;
+                padding:2px 8px; border-radius:10px; }
+  .sig { display:flex; align-items:center; gap:12px; padding:9px 0;
+         border-top:1px solid #232c37; }
+  .sig:first-of-type { border-top:none; }
+  .dot { width:12px; height:12px; border-radius:50%; flex:none; }
+  .sig .lbl { font-weight:600; min-width:170px; }
+  .sig .val { font-variant-numeric:tabular-nums; min-width:80px; color:#cfd6dd; }
+  .sig .note { color:#8a94a0; font-size:13px; }
+  .chart-box { background:#161d26; border-radius:12px; padding:16px 20px; margin-top:6px; }
+  .foot { color:#5f6b78; font-size:12px; margin-top:20px; text-align:center; }
+  .guide { background:#141b24; border:1px solid #232c37; border-radius:12px;
+           padding:18px 22px; margin-bottom:18px; font-size:14px; line-height:1.7; }
+  .guide h3 { margin:0 0 8px; font-size:15px; color:#cfe0f0; }
+  .guide p { margin:6px 0; color:#b6c0cc; }
+  .guide .lg { display:inline-block; width:11px; height:11px; border-radius:50%;
+               vertical-align:middle; margin:0 3px; }
+  .guide ul { margin:6px 0 0; padding-left:18px; color:#b6c0cc; }
+  .guide li { margin:2px 0; }
+  .guide b { color:#dfe6ee; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>AI 泡沫壓力監控儀表板</h1>
+  <div class="sub">更新時間：2026-07-02 01:22　·　資料源：FRED / multpl / yfinance（免金鑰）</div>
+
+  <div class="guide">
+    <h3>這張表在看什麼？怎麼讀？</h3>
+    <p>把「AI 行情是否接近見頂、信用市場是否開始出現裂縫」的關鍵總經指標，濃縮成
+       <b>一個壓力分數</b> 加 <b>一排紅黃綠燈</b>。它是<b>風險溫度計，不是買賣訊號</b>。</p>
+    <p><b>分數（0–100）</b>：越高＝泡沫風險累積越多。
+       <span style="color:#27ae60">0–30 低壓</span>｜
+       <span style="color:#f39c12">30–55 中壓</span>｜
+       <span style="color:#e67e22">55–75 高壓（晚週期）</span>｜
+       <span style="color:#c0392b">75–100 極端</span>。
+       分數是五組指標的加權平均，只是一眼摘要——<b>燈號明細比分數更該細看</b>。</p>
+    <p><b>燈號</b>：每個指標一顆。
+       <span class="lg" style="background:#c0392b"></span>紅＝觸及警戒
+       <span class="lg" style="background:#f39c12"></span>黃＝偏緊／初步轉弱
+       <span class="lg" style="background:#27ae60"></span>綠＝健康
+       <span class="lg" style="background:#7f8c8d"></span>灰＝手動季更待填。</p>
+    <p><b>五組指標</b>：</p>
+    <ul>
+      <li><b>估值</b>—股票整體貴不貴（CAPE 本益比、股債溢酬 ECY）</li>
+      <li><b>信用</b>—債市有沒有裂縫（投資級／高收益債利差走闊＝先行警訊）</li>
+      <li><b>流動性</b>—資金緊不緊（SOFR 季底跳升、逆回購 RRP 緩衝水位）</li>
+      <li><b>技術</b>—大盤趨勢（QQQ／NVDA／台積電是否跌破年線、月線）</li>
+      <li><b>資本支出叛變</b>—市場還買不買 AI 資本支出（財報後手動季更）</li>
+    </ul>
+    <p style="color:#d8b98a">⚠ <b>怎麼用</b>：分數／紅燈變多＝提高警覺、分批設停利、降槓桿，<b>不是叫你當天賣光</b>。
+       估值指標（CAPE/ECY）對「一年後報酬」幾乎沒有預測力，只反映風險累積程度；門檻是啟發值，會隨環境漂移需定期回校。</p>
+  </div>
+
+  
+  <div class="hero">
+    <div>
+      <div class="score" style="color:#e67e22">58<small>/100</small></div>
+      <div class="band" style="color:#e67e22">高壓 / Late Cycle</div>
+    </div>
+    <div class="counts">
+      <div class="cnt"><div class="n" style="color:var(--red)">4</div><div class="l">紅燈</div></div>
+      <div class="cnt"><div class="n" style="color:var(--yellow)">1</div><div class="l">黃燈</div></div>
+      <div class="cnt"><div class="n" style="color:var(--green)">4</div><div class="l">綠燈</div></div>
+      <div class="cnt"><div class="n" style="color:var(--gray)">2</div><div class="l">待更</div></div>
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    ⚠ 監控警戒用，非進出場訊號。分數僅為一眼摘要；<b>燈號明細才是實質</b>。
+    估值型指標（CAPE/ECY）對一年報酬的預測力≈0，高分代表「風險累積」而非「賣點」。
+  </div>
+
+  
+
+  
+  <div class="group">
+    <div class="ghead">
+      <h2>估值</h2>
+      <span class="gweight">權重 30%</span>
+      
+      <span class="gscore" style="color:var(--red)">
+        組壓力 100
+      </span>
+    </div>
+    
+    <div class="sig">
+      <span class="dot" style="background:var(--red)"></span>
+      <span class="lbl">Shiller CAPE</span>
+      <span class="val">41.7</span>
+      <span class="note">>35 極端偏貴</span>
+    </div>
+    
+    <div class="sig">
+      <span class="dot" style="background:var(--red)"></span>
+      <span class="lbl">Excess CAPE Yield</span>
+      <span class="val">0.24%</span>
+      <span class="note"><1.35 股債相對估值警戒</span>
+    </div>
+    
+  </div>
+  
+  <div class="group">
+    <div class="ghead">
+      <h2>信用</h2>
+      <span class="gweight">權重 25%</span>
+      
+      <span class="gscore" style="color:var(--green)">
+        組壓力 0
+      </span>
+    </div>
+    
+    <div class="sig">
+      <span class="dot" style="background:var(--green)"></span>
+      <span class="lbl">投資級利差 (IG OAS)</span>
+      <span class="val">0.76%</span>
+      <span class="note">3M 變動 -0.09%，穩定</span>
+    </div>
+    
+    <div class="sig">
+      <span class="dot" style="background:var(--green)"></span>
+      <span class="lbl">高收益利差 (HY OAS)</span>
+      <span class="val">2.75%</span>
+      <span class="note">3M 變動 -0.30%，穩定</span>
+    </div>
+    
+  </div>
+  
+  <div class="group">
+    <div class="ghead">
+      <h2>流動性</h2>
+      <span class="gweight">權重 20%</span>
+      
+      <span class="gscore" style="color:var(--red)">
+        組壓力 100
+      </span>
+    </div>
+    
+    <div class="sig">
+      <span class="dot" style="background:var(--red)"></span>
+      <span class="lbl">SOFR 季底跳升</span>
+      <span class="val">3.68%</span>
+      <span class="note">較 20 日均值跳升 +5bp（融資緊張）</span>
+    </div>
+    
+    <div class="sig">
+      <span class="dot" style="background:var(--red)"></span>
+      <span class="lbl">逆回購 RRP 水位</span>
+      <span class="val">$27B</span>
+      <span class="note">水位偏低，流動性緩衝將盡</span>
+    </div>
+    
+  </div>
+  
+  <div class="group">
+    <div class="ghead">
+      <h2>技術</h2>
+      <span class="gweight">權重 15%</span>
+      
+      <span class="gscore" style="color:var(--green)">
+        組壓力 17
+      </span>
+    </div>
+    
+    <div class="sig">
+      <span class="dot" style="background:var(--green)"></span>
+      <span class="lbl">QQQ 那斯達克100</span>
+      <span class="val">728.9</span>
+      <span class="note">728.9 站上雙線</span>
+    </div>
+    
+    <div class="sig">
+      <span class="dot" style="background:var(--yellow)"></span>
+      <span class="lbl">NVDA 輝達</span>
+      <span class="val">198.0</span>
+      <span class="note">198.0 跌破月線 204.5（守年線）</span>
+    </div>
+    
+    <div class="sig">
+      <span class="dot" style="background:var(--green)"></span>
+      <span class="lbl">TSM 台積電ADR</span>
+      <span class="val">445.7</span>
+      <span class="note">445.7 站上雙線</span>
+    </div>
+    
+  </div>
+  
+  <div class="group">
+    <div class="ghead">
+      <h2>資本支出叛變</h2>
+      <span class="gweight">權重 10%</span>
+      <span class="manual-tag">手動季更</span>
+      <span class="gscore" style="color:var(--gray)">
+        待更新
+      </span>
+    </div>
+    
+    <div class="sig">
+      <span class="dot" style="background:var(--gray)"></span>
+      <span class="lbl">MSFT/META capex 叛變</span>
+      <span class="val">待季更</span>
+      <span class="note">宣布加碼 capex 後股價是否反跌（市場開始不買單）→ 反跌=red</span>
+    </div>
+    
+    <div class="sig">
+      <span class="dot" style="background:var(--gray)"></span>
+      <span class="lbl">GOOG/AMZN 雲端成長率</span>
+      <span class="val">待季更</span>
+      <span class="note">雲端成長率是否熄火（變現分化錨，熄火=全面破裂風險升）→ 明顯減速=red</span>
+    </div>
+    
+  </div>
+  
+
+  
+
+  <div class="foot">minijames 衍生工具 · AI 泡沫壓力監控 · 訊號≠進出場，標的/門檻需定期重校</div>
+</div>
+</body>
+</html>
