@@ -50,7 +50,7 @@ def main():
         return
     run("git push")
     print(f"[OK] 已推送 {copied} 個追蹤頁")
-    print("直連：https://jasonfu1222.github.io/research/us-tools/form4_track.html")
+    print("直連：https://jasonstockresearch.github.io/research/us-tools/form4_track.html")
 
 
 if __name__ == "__main__":

@@ -181,7 +181,7 @@ def main():
     run(f'git commit -m "feat: 美股工具日報 {date_str}"')
     run("git push")
     print(f"[OK] 已推送到 GitHub")
-    print(f"直連：https://jasonfu1222.github.io/research/us-tools/{filename}")
+    print(f"直連：https://jasonstockresearch.github.io/research/us-tools/{filename}")
 
 
 if __name__ == "__main__":
