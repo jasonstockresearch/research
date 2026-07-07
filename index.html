@@ -152,16 +152,23 @@
     width: 100%; height: 100%;
     border: none;
   }
-  /* ── 美股工具追蹤 iframe（近N日累積視圖）── */
-  #form4-view, #sector-view, #radar-view {
-    display: none;
-    width: 100%; height: calc(100vh - 180px);
-    min-height: 600px;
+  /* ── 美股工具子分頁（每日日報 + 近N日累積追蹤）── */
+  .ust-subnav {
+    display: flex; gap: 4px; flex-wrap: wrap;
+    max-width: 900px; margin: 0 auto; padding: 20px 24px 0;
   }
-  #form4-view iframe, #sector-view iframe, #radar-view iframe {
-    width: 100%; height: 100%;
-    border: none;
+  .ust-subbtn {
+    background: none; border: 1px solid var(--border); color: var(--muted);
+    font-size: 12px; font-weight: 600; padding: 7px 14px; border-radius: 8px;
+    cursor: pointer; transition: all 0.15s;
   }
+  .ust-subbtn:hover { color: var(--text); border-color: #f0883e; }
+  .ust-subbtn.active { color: #f0883e; border-color: #f0883e; background: #1f1a12; }
+  .ust-frame {
+    width: 100%; height: calc(100vh - 200px);
+    min-height: 560px; margin-top: 12px;
+  }
+  .ust-frame iframe { width: 100%; height: 100%; border: none; }
 
   /* ── 晨報 ── */
   #morning-view { display: none; }
@@ -298,9 +305,6 @@
   <button class="tab-btn" onclick="switchTab('ctc', this)">籌碼追蹤</button>
   <button class="tab-btn" onclick="switchTab('etf', this)">主動式ETF追蹤</button>
   <button class="tab-btn" onclick="switchTab('us-tools', this)">美股工具</button>
-  <button class="tab-btn" onclick="switchTab('form4', this)">Form4追蹤</button>
-  <button class="tab-btn" onclick="switchTab('sector', this)">板塊資金流</button>
-  <button class="tab-btn" onclick="switchTab('radar', this)">趨勢雷達</button>
   <button class="tab-btn" onclick="switchTab('dashboard', this)">記憶體週期儀表板</button>
   <button class="tab-btn" onclick="switchTab('bubble', this)">AI泡沫壓力</button>
 </nav>
@@ -344,27 +348,34 @@
 </div>
 
 <div id="us-tools-view">
-  <div class="ust-main">
-    <div class="ust-header">
-      <h2>美股工具日報</h2>
-      <p>Form 4 內部人 · 板塊 ETF 流向 · 趨勢雷達 · 13D/13G 機構申報 · 13F 狼群（季報）</p>
-    </div>
-    <div class="section-title">歷史日報</div>
-    <div class="ust-grid" id="ust-grid"></div>
-    <div class="ust-empty" id="ust-empty" style="display:none">尚無已發布的日報</div>
+  <div class="ust-subnav">
+    <button class="ust-subbtn active" onclick="switchUstSub('daily', this)">每日日報</button>
+    <button class="ust-subbtn" onclick="switchUstSub('form4', this)">Form4追蹤 · 近30日</button>
+    <button class="ust-subbtn" onclick="switchUstSub('sector', this)">板塊資金流 · 近20日</button>
+    <button class="ust-subbtn" onclick="switchUstSub('radar', this)">趨勢雷達 · 近20日</button>
   </div>
-</div>
 
-<div id="form4-view">
-  <iframe src="us-tools/form4_track.html" loading="lazy" title="Form4 內部人買入追蹤"></iframe>
-</div>
+  <div id="ust-sub-daily">
+    <div class="ust-main">
+      <div class="ust-header">
+        <h2>美股工具日報</h2>
+        <p>Form 4 內部人 · 板塊 ETF 流向 · 趨勢雷達 · 13D/13G 機構申報 · 13F 狼群（季報）</p>
+      </div>
+      <div class="section-title">歷史日報</div>
+      <div class="ust-grid" id="ust-grid"></div>
+      <div class="ust-empty" id="ust-empty" style="display:none">尚無已發布的日報</div>
+    </div>
+  </div>
 
-<div id="sector-view">
-  <iframe src="us-tools/sector_track.html" loading="lazy" title="板塊 ETF 資金流向追蹤"></iframe>
-</div>
-
-<div id="radar-view">
-  <iframe src="us-tools/radar_track.html" loading="lazy" title="趨勢雷達三視角追蹤"></iframe>
+  <div id="ust-sub-form4" class="ust-frame" style="display:none">
+    <iframe src="us-tools/form4_track.html" loading="lazy" title="Form4 內部人買入追蹤"></iframe>
+  </div>
+  <div id="ust-sub-sector" class="ust-frame" style="display:none">
+    <iframe src="us-tools/sector_track.html" loading="lazy" title="板塊 ETF 資金流向追蹤"></iframe>
+  </div>
+  <div id="ust-sub-radar" class="ust-frame" style="display:none">
+    <iframe src="us-tools/radar_track.html" loading="lazy" title="趨勢雷達三視角追蹤"></iframe>
+  </div>
 </div>
 
 <div id="dashboard-view">
@@ -1073,9 +1084,6 @@ function switchTab(tab, btn) {
   const ctc       = document.getElementById("ctc-view");
   const etf       = document.getElementById("etf-view");
   const ustools   = document.getElementById("us-tools-view");
-  const form4     = document.getElementById("form4-view");
-  const sector    = document.getElementById("sector-view");
-  const radar     = document.getElementById("radar-view");
   const dashboard = document.getElementById("dashboard-view");
   const bubble    = document.getElementById("bubble-view");
   reports.style.display   = tab === "reports"   ? "" : "none";
@@ -1083,11 +1091,16 @@ function switchTab(tab, btn) {
   ctc.style.display       = tab === "ctc"       ? "block" : "none";
   etf.style.display       = tab === "etf"       ? "block" : "none";
   ustools.style.display   = tab === "us-tools"  ? "block" : "none";
-  form4.style.display     = tab === "form4"     ? "block" : "none";
-  sector.style.display    = tab === "sector"    ? "block" : "none";
-  radar.style.display     = tab === "radar"     ? "block" : "none";
   dashboard.style.display = tab === "dashboard" ? "block" : "none";
   bubble.style.display    = tab === "bubble"    ? "block" : "none";
+}
+
+function switchUstSub(sub, btn) {
+  document.querySelectorAll(".ust-subbtn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  ["daily", "form4", "sector", "radar"].forEach(s => {
+    document.getElementById("ust-sub-" + s).style.display = s === sub ? "block" : "none";
+  });
 }
 </script>
 </body>
