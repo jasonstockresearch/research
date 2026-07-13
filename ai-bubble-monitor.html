@@ -55,7 +55,7 @@
 <body>
 <div class="wrap">
   <h1>AI 泡沫壓力監控儀表板</h1>
-  <div class="sub">更新時間：2026-07-12 22:30　·　資料源：FRED / multpl / yfinance（免金鑰）</div>
+  <div class="sub">更新時間：2026-07-13 22:09　·　資料源：FRED / multpl / yfinance（免金鑰）</div>
 
   <div class="guide">
     <h3>這張表在看什麼？怎麼讀？</h3>
@@ -87,13 +87,13 @@
   
   <div class="hero">
     <div>
-      <div class="score" style="color:#f39c12">47<small>/100</small></div>
+      <div class="score" style="color:#f39c12">50<small>/100</small></div>
       <div class="band" style="color:#f39c12">中壓 / Mid</div>
     </div>
     <div class="counts">
       <div class="cnt"><div class="n" style="color:var(--red)">3</div><div class="l">紅燈</div></div>
-      <div class="cnt"><div class="n" style="color:var(--yellow)">1</div><div class="l">黃燈</div></div>
-      <div class="cnt"><div class="n" style="color:var(--green)">5</div><div class="l">綠燈</div></div>
+      <div class="cnt"><div class="n" style="color:var(--yellow)">2</div><div class="l">黃燈</div></div>
+      <div class="cnt"><div class="n" style="color:var(--green)">4</div><div class="l">綠燈</div></div>
       <div class="cnt"><div class="n" style="color:var(--gray)">2</div><div class="l">待更</div></div>
     </div>
   </div>
@@ -171,8 +171,8 @@
     <div class="sig">
       <span class="dot" style="background:var(--green)"></span>
       <span class="lbl">SOFR 季底跳升</span>
-      <span class="val">3.53%</span>
-      <span class="note">與均值差 -10bp，平穩</span>
+      <span class="val">3.55%</span>
+      <span class="note">與均值差 -7bp，平穩</span>
     </div>
     
     <div class="sig">
@@ -190,29 +190,29 @@
       <span class="gweight">權重 15%</span>
       
       <span class="gscore" style="color:var(--green)">
-        組壓力 17
+        組壓力 33
       </span>
     </div>
     
     <div class="sig">
-      <span class="dot" style="background:var(--green)"></span>
+      <span class="dot" style="background:var(--yellow)"></span>
       <span class="lbl">QQQ 那斯達克100</span>
-      <span class="val">725.5</span>
-      <span class="note">725.5 站上雙線</span>
+      <span class="val">715.5</span>
+      <span class="note">715.5 跌破月線 722.3（守年線）</span>
     </div>
     
     <div class="sig">
       <span class="dot" style="background:var(--green)"></span>
       <span class="lbl">NVDA 輝達</span>
-      <span class="val">211.0</span>
-      <span class="note">211.0 站上雙線</span>
+      <span class="val">209.5</span>
+      <span class="note">209.5 站上雙線</span>
     </div>
     
     <div class="sig">
       <span class="dot" style="background:var(--yellow)"></span>
       <span class="lbl">TSM 台積電ADR</span>
-      <span class="val">434.1</span>
-      <span class="note">434.1 跌破月線 441.1（守年線）</span>
+      <span class="val">429.2</span>
+      <span class="note">429.2 跌破月線 441.5（守年線）</span>
     </div>
     
   </div>
@@ -251,8 +251,8 @@
   <script>
     new Chart(document.getElementById('hist'), {
       type:'line',
-      data:{ labels:["07-02", "07-06", "07-08", "07-09", "07-12"],
-             datasets:[{ label:'泡沫壓力分數', data:[53.0, 47.0, 53.0, 50.0, 47.0],
+      data:{ labels:["07-02", "07-06", "07-08", "07-09", "07-12", "07-13"],
+             datasets:[{ label:'泡沫壓力分數', data:[53.0, 47.0, 53.0, 50.0, 47.0, 50.0],
                          borderColor:'#f39c12', backgroundColor:'#f39c1233',
                          fill:true, tension:0.25, pointRadius:2 }] },
       options:{ scales:{ y:{ min:0, max:100, ticks:{ color:'#8a94a0' }, grid:{ color:'#232c37' } },
