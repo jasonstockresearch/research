@@ -55,7 +55,7 @@
 <body>
 <div class="wrap">
   <h1>AI 泡沫壓力監控儀表板</h1>
-  <div class="sub">更新時間：2026-07-13 22:09　·　資料源：FRED / multpl / yfinance（免金鑰）</div>
+  <div class="sub">更新時間：2026-07-14 22:05　·　資料源：FRED / multpl / yfinance（免金鑰）</div>
 
   <div class="guide">
     <h3>這張表在看什麼？怎麼讀？</h3>
@@ -119,14 +119,14 @@
     <div class="sig">
       <span class="dot" style="background:var(--red)"></span>
       <span class="lbl">Shiller CAPE</span>
-      <span class="val">42.2</span>
+      <span class="val">41.9</span>
       <span class="note">>35 極端偏貴</span>
     </div>
     
     <div class="sig">
       <span class="dot" style="background:var(--red)"></span>
       <span class="lbl">Excess CAPE Yield</span>
-      <span class="val">0.06%</span>
+      <span class="val">0.07%</span>
       <span class="note"><1.35 股債相對估值警戒</span>
     </div>
     
@@ -145,15 +145,15 @@
     <div class="sig">
       <span class="dot" style="background:var(--green)"></span>
       <span class="lbl">投資級利差 (IG OAS)</span>
-      <span class="val">0.76%</span>
+      <span class="val">0.77%</span>
       <span class="note">3M 變動 -0.04%，穩定</span>
     </div>
     
     <div class="sig">
       <span class="dot" style="background:var(--green)"></span>
       <span class="lbl">高收益利差 (HY OAS)</span>
-      <span class="val">2.70%</span>
-      <span class="note">3M 變動 -0.15%，穩定</span>
+      <span class="val">2.69%</span>
+      <span class="note">3M 變動 -0.17%，穩定</span>
     </div>
     
   </div>
@@ -171,8 +171,8 @@
     <div class="sig">
       <span class="dot" style="background:var(--green)"></span>
       <span class="lbl">SOFR 季底跳升</span>
-      <span class="val">3.55%</span>
-      <span class="note">與均值差 -7bp，平穩</span>
+      <span class="val">3.60%</span>
+      <span class="note">與均值差 -2bp，平穩</span>
     </div>
     
     <div class="sig">
@@ -197,22 +197,22 @@
     <div class="sig">
       <span class="dot" style="background:var(--yellow)"></span>
       <span class="lbl">QQQ 那斯達克100</span>
-      <span class="val">715.5</span>
-      <span class="note">715.5 跌破月線 722.3（守年線）</span>
+      <span class="val">716.7</span>
+      <span class="note">716.7 跌破月線 721.9（守年線）</span>
     </div>
     
     <div class="sig">
       <span class="dot" style="background:var(--green)"></span>
       <span class="lbl">NVDA 輝達</span>
-      <span class="val">209.5</span>
-      <span class="note">209.5 站上雙線</span>
+      <span class="val">204.5</span>
+      <span class="note">204.5 站上雙線</span>
     </div>
     
     <div class="sig">
       <span class="dot" style="background:var(--yellow)"></span>
       <span class="lbl">TSM 台積電ADR</span>
-      <span class="val">429.2</span>
-      <span class="note">429.2 跌破月線 441.5（守年線）</span>
+      <span class="val">422.9</span>
+      <span class="note">422.9 跌破月線 441.1（守年線）</span>
     </div>
     
   </div>
@@ -251,8 +251,8 @@
   <script>
     new Chart(document.getElementById('hist'), {
       type:'line',
-      data:{ labels:["07-02", "07-06", "07-08", "07-09", "07-12", "07-13"],
-             datasets:[{ label:'泡沫壓力分數', data:[53.0, 47.0, 53.0, 50.0, 47.0, 50.0],
+      data:{ labels:["07-02", "07-06", "07-08", "07-09", "07-12", "07-13", "07-14"],
+             datasets:[{ label:'泡沫壓力分數', data:[53.0, 47.0, 53.0, 50.0, 47.0, 50.0, 50.0],
                          borderColor:'#f39c12', backgroundColor:'#f39c1233',
                          fill:true, tension:0.25, pointRadius:2 }] },
       options:{ scales:{ y:{ min:0, max:100, ticks:{ color:'#8a94a0' }, grid:{ color:'#232c37' } },
