@@ -55,7 +55,7 @@
 <body>
 <div class="wrap">
   <h1>AI 泡沫壓力監控儀表板</h1>
-  <div class="sub">更新時間：2026-07-20 22:00　·　資料源：FRED / multpl / yfinance（免金鑰）</div>
+  <div class="sub">更新時間：2026-07-21 21:54　·　資料源：FRED / multpl / yfinance（免金鑰）</div>
 
   <div class="guide">
     <h3>這張表在看什麼？怎麼讀？</h3>
@@ -93,8 +93,8 @@
     <div class="counts">
       <div class="cnt"><div class="n" style="color:var(--red)">3</div><div class="l">紅燈</div></div>
       <div class="cnt"><div class="n" style="color:var(--yellow)">2</div><div class="l">黃燈</div></div>
-      <div class="cnt"><div class="n" style="color:var(--green)">3</div><div class="l">綠燈</div></div>
-      <div class="cnt"><div class="n" style="color:var(--gray)">3</div><div class="l">待更</div></div>
+      <div class="cnt"><div class="n" style="color:var(--green)">4</div><div class="l">綠燈</div></div>
+      <div class="cnt"><div class="n" style="color:var(--gray)">2</div><div class="l">待更</div></div>
     </div>
   </div>
 
@@ -119,14 +119,14 @@
     <div class="sig">
       <span class="dot" style="background:var(--red)"></span>
       <span class="lbl">Shiller CAPE</span>
-      <span class="val">41.5</span>
+      <span class="val">40.6</span>
       <span class="note">>35 極端偏貴</span>
     </div>
     
     <div class="sig">
       <span class="dot" style="background:var(--red)"></span>
       <span class="lbl">Excess CAPE Yield</span>
-      <span class="val">0.06%</span>
+      <span class="val">0.15%</span>
       <span class="note"><1.35 股債相對估值警戒</span>
     </div>
     
@@ -143,16 +143,16 @@
     </div>
     
     <div class="sig">
-      <span class="dot" style="background:var(--gray)"></span>
+      <span class="dot" style="background:var(--green)"></span>
       <span class="lbl">投資級利差 (IG OAS)</span>
-      <span class="val">N/A</span>
-      <span class="note">抓取失敗</span>
+      <span class="val">0.79%</span>
+      <span class="note">3M 變動 -0.01%，穩定</span>
     </div>
     
     <div class="sig">
       <span class="dot" style="background:var(--green)"></span>
       <span class="lbl">高收益利差 (HY OAS)</span>
-      <span class="val">2.71%</span>
+      <span class="val">2.73%</span>
       <span class="note">3M 變動 -0.13%，穩定</span>
     </div>
     
@@ -171,8 +171,8 @@
     <div class="sig">
       <span class="dot" style="background:var(--green)"></span>
       <span class="lbl">SOFR 季底跳升</span>
-      <span class="val">3.59%</span>
-      <span class="note">與均值差 -3bp，平穩</span>
+      <span class="val">3.57%</span>
+      <span class="note">與均值差 -5bp，平穩</span>
     </div>
     
     <div class="sig">
@@ -197,8 +197,8 @@
     <div class="sig">
       <span class="dot" style="background:var(--yellow)"></span>
       <span class="lbl">QQQ 那斯達克100</span>
-      <span class="val">701.2</span>
-      <span class="note">701.2 跌破月線 716.4（守年線）</span>
+      <span class="val">704.7</span>
+      <span class="note">704.7 跌破月線 714.5（守年線）</span>
     </div>
     
     <div class="sig">
@@ -211,8 +211,8 @@
     <div class="sig">
       <span class="dot" style="background:var(--yellow)"></span>
       <span class="lbl">TSM 台積電ADR</span>
-      <span class="val">404.8</span>
-      <span class="note">404.8 跌破月線 434.5（守年線）</span>
+      <span class="val">415.9</span>
+      <span class="note">415.9 跌破月線 431.8（守年線）</span>
     </div>
     
   </div>
@@ -251,8 +251,8 @@
   <script>
     new Chart(document.getElementById('hist'), {
       type:'line',
-      data:{ labels:["07-02", "07-06", "07-08", "07-09", "07-12", "07-13", "07-14", "07-15", "07-16", "07-17", "07-19", "07-20"],
-             datasets:[{ label:'泡沫壓力分數', data:[53.0, 47.0, 53.0, 50.0, 47.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0],
+      data:{ labels:["07-02", "07-06", "07-08", "07-09", "07-12", "07-13", "07-14", "07-15", "07-16", "07-17", "07-19", "07-20", "07-21"],
+             datasets:[{ label:'泡沫壓力分數', data:[53.0, 47.0, 53.0, 50.0, 47.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0],
                          borderColor:'#f39c12', backgroundColor:'#f39c1233',
                          fill:true, tension:0.25, pointRadius:2 }] },
       options:{ scales:{ y:{ min:0, max:100, ticks:{ color:'#8a94a0' }, grid:{ color:'#232c37' } },
