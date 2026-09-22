@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CTC 日報 2026-09-22</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: #0f172a; color: #cbd5e1;
+    padding: 1.5rem; font-size: 14px; line-height: 1.6;
+  }
+  header { margin-bottom: 2rem; border-bottom: 1px solid #1e293b; padding-bottom: 1rem; }
+  header h1 { font-size: 1.5rem; color: #f1f5f9; }
+  header .meta { color: #64748b; font-size: 0.85rem; margin-top: .25rem; }
+  section { margin-bottom: 2.5rem; }
+  h2 { font-size: 1.1rem; color: #e2e8f0; margin-bottom: 1rem; display:flex; align-items:center; gap:.5rem; }
+  .badge {
+    background:#334155; color:#e2e8f0; border-radius:20px;
+    padding:1px 10px; font-size:.8em; font-weight:600;
+  }
+  /* Phase cards */
+  .phase-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-bottom:2rem; }
+  .phase-card {
+    background:#1e293b; border-radius:8px; padding:1rem;
+  }
+  .phase-title { font-size:.8rem; font-weight:600; margin-bottom:.25rem; }
+  .phase-count { font-size:1.8rem; font-weight:700; color:#f1f5f9; }
+  .phase-bar-bg { background:#0f172a; border-radius:4px; height:4px; margin-top:.5rem; }
+  .phase-bar { height:4px; border-radius:4px; }
+  /* Legend */
+  .legend { background:#1e293b; border-radius:8px; padding:1.25rem; margin-bottom:2rem; }
+  .legend-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.25rem; margin-top:.75rem; }
+  .legend-block { background:#0f172a; border-radius:6px; padding:.9rem 1rem; }
+  .legend-title { font-size:.75rem; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:.05em; margin-bottom:.5rem; }
+  .legend-items { font-size:.85rem; color:#94a3b8; line-height:1.9; }
+  @media (max-width:768px) { .legend-grid { grid-template-columns:1fr; } }
+  /* Table */
+  table { width:100%; border-collapse:collapse; background:#1e293b; border-radius:8px; overflow:hidden; }
+  thead tr { background:#0f172a; }
+  th { padding:.6rem .75rem; text-align:left; color:#64748b; font-weight:600; font-size:.8rem; white-space:nowrap; }
+  td { padding:.55rem .75rem; border-top:1px solid #0f172a; color:#cbd5e1; }
+  tr:hover td { background:#243044; }
+  @media (max-width:768px) {
+    .phase-grid { grid-template-columns:repeat(2,1fr); }
+    table { font-size:12px; }
+    th, td { padding:.4rem .5rem; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>CTC 籌碼追蹤日報</h1>
+  <div class="meta">資料日期：2026-09-22 &nbsp;|&nbsp; 全市場掃描 2398 檔（Top 2398）</div>
+</header>
+
+
+<section class="legend">
+  <h2>名詞說明</h2>
+  <div class="legend-grid">
+    <div class="legend-block">
+      <div class="legend-title">融借信號（融資 × 借券方向）</div>
+      <div class="legend-items">
+        <span style="color:#10b981">多攻</span> 融資增、借券減 — 多方主導，空方撤退，偏多<br>
+        <span style="color:#f59e0b">雙增</span> 融資增、借券增 — 多空同步加碼，對立加劇，不確定<br>
+        <span style="color:#ef4444">空攻</span> 融資減、借券增 — 空方主導，多方撤退，偏空<br>
+        <span style="color:#6b7280">雙減</span> 融資減、借券減 — 多空同步退場，觀望情緒<br>
+        <span style="color:#9ca3af">中性</span> 變化量不顯著，無明確方向
+      </div>
+    </div>
+    <div class="legend-block">
+      <div class="legend-title">法人分（-3 ～ +3）</div>
+      <div class="legend-items">
+        外資 / 投信 / 自營各貢獻 ±1 分，合計代表法人合力方向。<br>
+        <span style="color:#10b981">正值</span> = 法人合力買超 &nbsp; <span style="color:#ef4444">負值</span> = 合力賣超
+      </div>
+    </div>
+    <div class="legend-block">
+      <div class="legend-title">量能</div>
+      <div class="legend-items">
+        <span style="color:#f59e0b">爆量</span> 成交量 &gt; 5日均量 × 1.5<br>
+        <span style="color:#9ca3af">正常</span> 一般量能範圍<br>
+        <span style="color:#6b7280">縮量</span> 成交量 &lt; 5日均量 × 0.5
+      </div>
+    </div>
+    <div class="legend-block">
+      <div class="legend-title">Phase 分類</div>
+      <div class="legend-items">
+        <span style="color:#10b981">拉抬</span> 法人積極買 + 爆量 + 上漲，最高優先<br>
+        <span style="color:#3b82f6">吸籌</span> 法人持續建倉，量未爆，等待攻擊訊號<br>
+        <span style="color:#f59e0b">出貨</span> 法人轉賣超 + 爆量，高位震盪<br>
+        <span style="color:#ef4444">退潮</span> 法人賣超 + 縮量 + 跌破成本，弱勢
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Phase 分布</h2>
+  <div class="phase-grid">
+    
+        <div class="phase-card" style="border-top:3px solid #3b82f6">
+          <div class="phase-title" style="color:#3b82f6">Phase 1 吸籌</div>
+          <div class="phase-count">1699 檔</div>
+          <div class="phase-bar-bg">
+            <div class="phase-bar" style="width:71%;background:#3b82f6"></div>
+          </div>
+        </div>
+        <div class="phase-card" style="border-top:3px solid #10b981">
+          <div class="phase-title" style="color:#10b981">Phase 2 拉抬</div>
+          <div class="phase-count">29 檔</div>
+          <div class="phase-bar-bg">
+            <div class="phase-bar" style="width:1%;background:#10b981"></div>
+          </div>
+        </div>
+        <div class="phase-card" style="border-top:3px solid #f59e0b">
+          <div class="phase-title" style="color:#f59e0b">Phase 3 出貨</div>
+          <div class="phase-count">46 檔</div>
+          <div class="phase-bar-bg">
+            <div class="phase-bar" style="width:2%;background:#f59e0b"></div>
+          </div>
+        </div>
+        <div class="phase-card" style="border-top:3px solid #ef4444">
+          <div class="phase-title" style="color:#ef4444">Phase 4 退潮</div>
+          <div class="phase-count">624 檔</div>
+          <div class="phase-bar-bg">
+            <div class="phase-bar" style="width:26%;background:#ef4444"></div>
+          </div>
+        </div>
+  </div>
+</section>
+
+
+
+
+<section>
+  <h2 style="color:#3b82f6">Phase 1 吸籌<span class="badge" style="background:#3b82f6">1699</span></h2>
+  <p style="color:#9ca3af;margin-bottom:1rem">法人持續建倉，量未爆，等待攻擊訊號</p>
+  
+    <table>
+      <thead><tr>
+        <th>#</th>
+        <th>代號</th><th>收盤</th><th>漲跌%</th>
+        <th>量能</th><th>法人分</th><th>融借信號</th><th>Phase</th><th>成交額</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td style="font-weight:600;color:#e2e8f0">00923</td>
+          <td>41.59</td>
+          <td><span style="color:#10b981">+0.70%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#10b981;font-weight:600">+3</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">吸籌</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">2.3億</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td style="font-weight:600;color:#e2e8f0">00888</td>
+          <td>36.16</td>
+          <td><span style="color:#10b981">+1.12%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">吸籌</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">4.4億</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td style="font-weight:600;color:#e2e8f0">00673R</td>
+          <td>10.45</td>
+          <td><span style="color:#9ca3af">+0.00%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">吸籌</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">4.2億</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td style="font-weight:600;color:#e2e8f0">2610</td>
+          <td>20.5</td>
+          <td><span style="color:#10b981">+1.23%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#ef4444;font-weight:600">空攻</span></td>
+          <td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">吸籌</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">4.1億</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td style="font-weight:600;color:#e2e8f0">009829</td>
+          <td>10.97</td>
+          <td><span style="color:#10b981">+1.67%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#ef4444;font-weight:600">空攻</span></td>
+          <td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">吸籌</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">3.9億</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td style="font-weight:600;color:#e2e8f0">00411A</td>
+          <td>10.48</td>
+          <td><span style="color:#10b981">+2.54%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#10b981;font-weight:600">多攻</span></td>
+          <td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">吸籌</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">3.7億</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td style="font-weight:600;color:#e2e8f0">00402A</td>
+          <td>10.0</td>
+          <td><span style="color:#10b981">+2.56%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">吸籌</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">3.2億</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td style="font-weight:600;color:#e2e8f0">00990A</td>
+          <td>15.76</td>
+          <td><span style="color:#10b981">+2.20%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#9ca3af;font-weight:600">中性</span></td>
+          <td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">吸籌</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">2.6億</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td style="font-weight:600;color:#e2e8f0">009820</td>
+          <td>10.41</td>
+          <td><span style="color:#10b981">+2.66%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">吸籌</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">2.6億</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td style="font-weight:600;color:#e2e8f0">00892</td>
+          <td>43.45</td>
+          <td><span style="color:#10b981">+1.31%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">吸籌</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">2.4億</td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td style="font-weight:600;color:#e2e8f0">00404A</td>
+          <td>9.87</td>
+          <td><span style="color:#10b981">+0.71%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">吸籌</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">2.1億</td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td style="font-weight:600;color:#e2e8f0">00980A</td>
+          <td>25.34</td>
+          <td><span style="color:#10b981">+1.20%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#10b981;font-weight:600">多攻</span></td>
+          <td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">吸籌</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">2.0億</td>
+        </tr>
+        <tr>
+          <td>13</td>
+          <td style="font-weight:600;color:#e2e8f0">00896</td>
+          <td>27.5</td>
+          <td><span style="color:#10b981">+0.18%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">吸籌</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">1.9億</td>
+        </tr>
+        <tr>
+          <td>14</td>
+          <td style="font-weight:600;color:#e2e8f0">00997A</td>
+          <td>11.45</td>
+          <td><span style="color:#10b981">+2.14%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#9ca3af;font-weight:600">中性</span></td>
+          <td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">吸籌</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">1.8億</td>
+        </tr>
+        <tr>
+          <td>15</td>
+          <td style="font-weight:600;color:#e2e8f0">00940</td>
+          <td>13.13</td>
+          <td><span style="color:#10b981">+0.23%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#10b981;font-weight:600">多攻</span></td>
+          <td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">吸籌</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">1.5億</td>
+        </tr>
+        <tr>
+          <td>16</td>
+          <td style="font-weight:600;color:#e2e8f0">009802</td>
+          <td>20.17</td>
+          <td><span style="color:#ef4444">-0.05%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">吸籌</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">1.5億</td>
+        </tr>
+        <tr>
+          <td>17</td>
+          <td style="font-weight:600;color:#e2e8f0">009803</td>
+          <td>21.57</td>
+          <td><span style="color:#10b981">+0.51%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">吸籌</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">1.2億</td>
+        </tr>
+        <tr>
+          <td>18</td>
+          <td style="font-weight:600;color:#e2e8f0">00401A</td>
+          <td>14.33</td>
+          <td><span style="color:#10b981">+0.07%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">吸籌</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">1.0億</td>
+        </tr>
+        <tr>
+          <td>19</td>
+          <td style="font-weight:600;color:#e2e8f0">009824</td>
+          <td>10.51</td>
+          <td><span style="color:#10b981">+1.55%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#9ca3af;font-weight:600">中性</span></td>
+          <td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">吸籌</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">1.0億</td>
+        </tr>
+        <tr>
+          <td>20</td>
+          <td style="font-weight:600;color:#e2e8f0">00900</td>
+          <td>19.78</td>
+          <td><span style="color:#ef4444">-0.25%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#9ca3af;font-weight:600">中性</span></td>
+          <td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">吸籌</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">1.0億</td>
+        </tr>
+        <tr>
+          <td>21</td>
+          <td style="font-weight:600;color:#e2e8f0">00999A</td>
+          <td>11.26</td>
+          <td><span style="color:#10b981">+0.09%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">吸籌</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">1.0億</td>
+        </tr>
+        <tr>
+          <td>22</td>
+          <td style="font-weight:600;color:#e2e8f0">00996A</td>
+          <td>14.49</td>
+          <td><span style="color:#10b981">+2.04%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#ef4444;font-weight:600">空攻</span></td>
+          <td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">吸籌</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">0.9億</td>
+        </tr>
+        <tr>
+          <td>23</td>
+          <td style="font-weight:600;color:#e2e8f0">00995A</td>
+          <td>17.62</td>
+          <td><span style="color:#10b981">+1.44%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">吸籌</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">0.8億</td>
+        </tr>
+        <tr>
+          <td>24</td>
+          <td style="font-weight:600;color:#e2e8f0">00410A</td>
+          <td>12.25</td>
+          <td><span style="color:#10b981">+0.74%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">吸籌</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">0.7億</td>
+        </tr>
+        <tr>
+          <td>25</td>
+          <td style="font-weight:600;color:#e2e8f0">00915</td>
+          <td>33.17</td>
+          <td><span style="color:#ef4444">-0.12%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#9ca3af;font-weight:600">中性</span></td>
+          <td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">吸籌</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">0.5億</td>
+        </tr>
+        <tr>
+          <td>26</td>
+          <td style="font-weight:600;color:#e2e8f0">00905</td>
+          <td>27.45</td>
+          <td><span style="color:#10b981">+0.81%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">吸籌</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">0.5億</td>
+        </tr>
+        <tr>
+          <td>27</td>
+          <td style="font-weight:600;color:#e2e8f0">00946</td>
+          <td>15.31</td>
+          <td><span style="color:#10b981">+0.07%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">吸籌</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">0.4億</td>
+        </tr>
+        <tr>
+          <td>28</td>
+          <td style="font-weight:600;color:#e2e8f0">00893</td>
+          <td>45.77</td>
+          <td><span style="color:#10b981">+3.16%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#10b981;font-weight:600">多攻</span></td>
+          <td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">吸籌</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">0.4億</td>
+        </tr>
+        <tr>
+          <td>29</td>
+          <td style="font-weight:600;color:#e2e8f0">009819</td>
+          <td>9.78</td>
+          <td><span style="color:#10b981">+0.82%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#10b981;font-weight:600">多攻</span></td>
+          <td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">吸籌</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">0.4億</td>
+        </tr>
+        <tr>
+          <td>30</td>
+          <td style="font-weight:600;color:#e2e8f0">00680L</td>
+          <td>6.3</td>
+          <td><span style="color:#ef4444">-0.16%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#9ca3af;font-weight:600">中性</span></td>
+          <td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">吸籌</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">0.4億</td>
+        </tr></tbody>
+    </table>
+    <p style="color:#64748b;font-size:.8rem;padding:.6rem .75rem;background:#1e293b;border-top:1px solid #0f172a">共 1699 檔，依法人分 + 成交額排序，僅顯示前 30 名</p>
+</section>
+
+<section>
+  <h2 style="color:#10b981">Phase 2 拉抬<span class="badge" style="background:#10b981">29</span></h2>
+  <p style="color:#9ca3af;margin-bottom:1rem">法人積極買超 + 爆量 + 上漲，最高優先</p>
+  
+    <table>
+      <thead><tr>
+        <th>#</th>
+        <th>代號</th><th>收盤</th><th>漲跌%</th>
+        <th>量能</th><th>法人分</th><th>融借信號</th><th>Phase</th><th>成交額</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td style="font-weight:600;color:#e2e8f0">2449</td>
+          <td>317.0</td>
+          <td><span style="color:#10b981">+5.14%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#10b981;font-weight:600">+3</td>
+          <td><span style="color:#ef4444;font-weight:600">空攻</span></td>
+          <td><span style="background:#10b981;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">拉抬</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">232.6億</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td style="font-weight:600;color:#e2e8f0">3711</td>
+          <td>693.0</td>
+          <td><span style="color:#10b981">+4.52%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#10b981;font-weight:600">+3</td>
+          <td><span style="color:#ef4444;font-weight:600">空攻</span></td>
+          <td><span style="background:#10b981;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">拉抬</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">174.8億</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td style="font-weight:600;color:#e2e8f0">2303</td>
+          <td>160.0</td>
+          <td><span style="color:#10b981">+1.91%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#ef4444;font-weight:600">空攻</span></td>
+          <td><span style="background:#10b981;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">拉抬</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">469.9億</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td style="font-weight:600;color:#e2e8f0">2409</td>
+          <td>36.65</td>
+          <td><span style="color:#10b981">+9.90%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#f59e0b;font-weight:600">雙增</span></td>
+          <td><span style="background:#10b981;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">拉抬</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">421.5億</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td style="font-weight:600;color:#e2e8f0">3189</td>
+          <td>909.0</td>
+          <td><span style="color:#10b981">+9.92%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#ef4444;font-weight:600">空攻</span></td>
+          <td><span style="background:#10b981;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">拉抬</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">262.1億</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td style="font-weight:600;color:#e2e8f0">4958</td>
+          <td>489.0</td>
+          <td><span style="color:#10b981">+4.04%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#ef4444;font-weight:600">空攻</span></td>
+          <td><span style="background:#10b981;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">拉抬</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">224.1億</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td style="font-weight:600;color:#e2e8f0">3037</td>
+          <td>1120.0</td>
+          <td><span style="color:#10b981">+9.80%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#ef4444;font-weight:600">空攻</span></td>
+          <td><span style="background:#10b981;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">拉抬</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">121.2億</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td style="font-weight:600;color:#e2e8f0">00981A</td>
+          <td>30.15</td>
+          <td><span style="color:#10b981">+1.96%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#ef4444;font-weight:600">空攻</span></td>
+          <td><span style="background:#10b981;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">拉抬</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">83.0億</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td style="font-weight:600;color:#e2e8f0">5483</td>
+          <td>195.0</td>
+          <td><span style="color:#10b981">+4.56%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#ef4444;font-weight:600">空攻</span></td>
+          <td><span style="background:#10b981;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">拉抬</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">64.3億</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td style="font-weight:600;color:#e2e8f0">00403A</td>
+          <td>10.7</td>
+          <td><span style="color:#10b981">+2.00%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#10b981;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">拉抬</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">62.7億</td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td style="font-weight:600;color:#e2e8f0">3035</td>
+          <td>203.0</td>
+          <td><span style="color:#10b981">+6.28%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#ef4444;font-weight:600">空攻</span></td>
+          <td><span style="background:#10b981;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">拉抬</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">31.1億</td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td style="font-weight:600;color:#e2e8f0">6278</td>
+          <td>213.5</td>
+          <td><span style="color:#10b981">+9.77%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#f59e0b;font-weight:600">雙增</span></td>
+          <td><span style="background:#10b981;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">拉抬</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">30.0億</td>
+        </tr>
+        <tr>
+          <td>13</td>
+          <td style="font-weight:600;color:#e2e8f0">00409A</td>
+          <td>10.07</td>
+          <td><span style="color:#10b981">+1.82%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#ef4444;font-weight:600">空攻</span></td>
+          <td><span style="background:#10b981;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">拉抬</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">18.1億</td>
+        </tr>
+        <tr>
+          <td>14</td>
+          <td style="font-weight:600;color:#e2e8f0">00405A</td>
+          <td>9.23</td>
+          <td><span style="color:#10b981">+2.90%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#ef4444;font-weight:600">空攻</span></td>
+          <td><span style="background:#10b981;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">拉抬</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">17.7億</td>
+        </tr>
+        <tr>
+          <td>15</td>
+          <td style="font-weight:600;color:#e2e8f0">00991A</td>
+          <td>17.88</td>
+          <td><span style="color:#10b981">+2.00%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#10b981;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">拉抬</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">17.0億</td>
+        </tr>
+        <tr>
+          <td>16</td>
+          <td style="font-weight:600;color:#e2e8f0">00407A</td>
+          <td>10.04</td>
+          <td><span style="color:#10b981">+2.03%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#ef4444;font-weight:600">空攻</span></td>
+          <td><span style="background:#10b981;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">拉抬</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">15.8億</td>
+        </tr>
+        <tr>
+          <td>17</td>
+          <td style="font-weight:600;color:#e2e8f0">00927</td>
+          <td>39.88</td>
+          <td><span style="color:#10b981">+1.35%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#10b981;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">拉抬</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">14.4億</td>
+        </tr>
+        <tr>
+          <td>18</td>
+          <td style="font-weight:600;color:#e2e8f0">0052</td>
+          <td>64.75</td>
+          <td><span style="color:#10b981">+0.31%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#10b981;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">拉抬</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">10.9億</td>
+        </tr>
+        <tr>
+          <td>19</td>
+          <td style="font-weight:600;color:#e2e8f0">00663L</td>
+          <td>111.75</td>
+          <td><span style="color:#10b981">+0.49%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#10b981;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">拉抬</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">10.0億</td>
+        </tr>
+        <tr>
+          <td>20</td>
+          <td style="font-weight:600;color:#e2e8f0">00881</td>
+          <td>52.2</td>
+          <td><span style="color:#10b981">+0.77%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#ef4444;font-weight:600">空攻</span></td>
+          <td><span style="background:#10b981;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">拉抬</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">9.6億</td>
+        </tr>
+        <tr>
+          <td>21</td>
+          <td style="font-weight:600;color:#e2e8f0">00929</td>
+          <td>29.13</td>
+          <td><span style="color:#10b981">+0.24%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#10b981;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">拉抬</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">9.5億</td>
+        </tr>
+        <tr>
+          <td>22</td>
+          <td style="font-weight:600;color:#e2e8f0">00400A</td>
+          <td>15.49</td>
+          <td><span style="color:#10b981">+1.77%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#ef4444;font-weight:600">空攻</span></td>
+          <td><span style="background:#10b981;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">拉抬</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">8.7億</td>
+        </tr>
+        <tr>
+          <td>23</td>
+          <td style="font-weight:600;color:#e2e8f0">00891</td>
+          <td>37.41</td>
+          <td><span style="color:#10b981">+1.38%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#ef4444;font-weight:600">空攻</span></td>
+          <td><span style="background:#10b981;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">拉抬</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">8.3億</td>
+        </tr>
+        <tr>
+          <td>24</td>
+          <td style="font-weight:600;color:#e2e8f0">2618</td>
+          <td>42.5</td>
+          <td><span style="color:#10b981">+1.31%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#9ca3af;font-weight:600">中性</span></td>
+          <td><span style="background:#10b981;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">拉抬</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">7.8億</td>
+        </tr>
+        <tr>
+          <td>25</td>
+          <td style="font-weight:600;color:#e2e8f0">00992A</td>
+          <td>18.65</td>
+          <td><span style="color:#10b981">+1.52%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#ef4444;font-weight:600">空攻</span></td>
+          <td><span style="background:#10b981;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">拉抬</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">7.7億</td>
+        </tr>
+        <tr>
+          <td>26</td>
+          <td style="font-weight:600;color:#e2e8f0">1101</td>
+          <td>24.55</td>
+          <td><span style="color:#10b981">+1.66%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#ef4444;font-weight:600">空攻</span></td>
+          <td><span style="background:#10b981;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">拉抬</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">7.2億</td>
+        </tr>
+        <tr>
+          <td>27</td>
+          <td style="font-weight:600;color:#e2e8f0">00982A</td>
+          <td>23.02</td>
+          <td><span style="color:#10b981">+0.70%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#10b981;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">拉抬</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">6.2億</td>
+        </tr>
+        <tr>
+          <td>28</td>
+          <td style="font-weight:600;color:#e2e8f0">006208</td>
+          <td>255.7</td>
+          <td><span style="color:#10b981">+0.39%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#10b981;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">拉抬</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">6.0億</td>
+        </tr>
+        <tr>
+          <td>29</td>
+          <td style="font-weight:600;color:#e2e8f0">00988A</td>
+          <td>16.73</td>
+          <td><span style="color:#10b981">+1.95%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#10b981;font-weight:600">+2</td>
+          <td><span style="color:#ef4444;font-weight:600">空攻</span></td>
+          <td><span style="background:#10b981;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">拉抬</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">5.8億</td>
+        </tr></tbody>
+    </table>
+    
+</section>
+
+<section>
+  <h2 style="color:#f59e0b">Phase 3 出貨<span class="badge" style="background:#f59e0b">46</span></h2>
+  <p style="color:#9ca3af;margin-bottom:1rem">法人轉賣超 + 爆量，高位震盪，注意風險</p>
+  
+    <table>
+      <thead><tr>
+        <th>#</th>
+        <th>代號</th><th>收盤</th><th>漲跌%</th>
+        <th>量能</th><th>法人分</th><th>融借信號</th><th>Phase</th><th>成交額</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td style="font-weight:600;color:#e2e8f0">2344</td>
+          <td>171.0</td>
+          <td><span style="color:#ef4444">-1.72%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#9ca3af;font-weight:600">中性</span></td>
+          <td><span style="background:#f59e0b;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">出貨</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">170.4億</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td style="font-weight:600;color:#e2e8f0">6669</td>
+          <td>2115.0</td>
+          <td><span style="color:#ef4444">-1.63%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#10b981;font-weight:600">多攻</span></td>
+          <td><span style="background:#f59e0b;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">出貨</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">132.4億</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td style="font-weight:600;color:#e2e8f0">2368</td>
+          <td>1040.0</td>
+          <td><span style="color:#ef4444">-0.48%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#10b981;font-weight:600">多攻</span></td>
+          <td><span style="background:#f59e0b;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">出貨</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">87.1億</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td style="font-weight:600;color:#e2e8f0">4979</td>
+          <td>605.0</td>
+          <td><span style="color:#ef4444">-2.10%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#f59e0b;font-weight:600">雙增</span></td>
+          <td><span style="background:#f59e0b;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">出貨</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">70.5億</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td style="font-weight:600;color:#e2e8f0">3081</td>
+          <td>2825.0</td>
+          <td><span style="color:#ef4444">-1.74%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#f59e0b;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">出貨</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">63.1億</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td style="font-weight:600;color:#e2e8f0">6239</td>
+          <td>292.0</td>
+          <td><span style="color:#ef4444">-0.17%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#9ca3af;font-weight:600">中性</span></td>
+          <td><span style="background:#f59e0b;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">出貨</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">57.9億</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td style="font-weight:600;color:#e2e8f0">3450</td>
+          <td>526.0</td>
+          <td><span style="color:#ef4444">-3.49%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#10b981;font-weight:600">多攻</span></td>
+          <td><span style="background:#f59e0b;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">出貨</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">46.6億</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td style="font-weight:600;color:#e2e8f0">3006</td>
+          <td>278.5</td>
+          <td><span style="color:#ef4444">-2.28%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#f59e0b;font-weight:600">雙增</span></td>
+          <td><span style="background:#f59e0b;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">出貨</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">27.5億</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td style="font-weight:600;color:#e2e8f0">2881</td>
+          <td>154.5</td>
+          <td><span style="color:#9ca3af">+0.00%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#9ca3af;font-weight:600">中性</span></td>
+          <td><span style="background:#f59e0b;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">出貨</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">26.5億</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td style="font-weight:600;color:#e2e8f0">4991</td>
+          <td>473.0</td>
+          <td><span style="color:#ef4444">-5.02%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#f59e0b;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">出貨</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">26.2億</td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td style="font-weight:600;color:#e2e8f0">0056</td>
+          <td>56.85</td>
+          <td><span style="color:#ef4444">-0.52%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#10b981;font-weight:600">多攻</span></td>
+          <td><span style="background:#f59e0b;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">出貨</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">22.2億</td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td style="font-weight:600;color:#e2e8f0">6706</td>
+          <td>149.0</td>
+          <td><span style="color:#ef4444">-9.15%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#f59e0b;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">出貨</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">21.8億</td>
+        </tr>
+        <tr>
+          <td>13</td>
+          <td style="font-weight:600;color:#e2e8f0">2464</td>
+          <td>190.5</td>
+          <td><span style="color:#ef4444">-1.04%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#f59e0b;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">出貨</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">21.5億</td>
+        </tr>
+        <tr>
+          <td>14</td>
+          <td style="font-weight:600;color:#e2e8f0">2887</td>
+          <td>42.9</td>
+          <td><span style="color:#ef4444">-2.05%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#f59e0b;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">出貨</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">20.4億</td>
+        </tr>
+        <tr>
+          <td>15</td>
+          <td style="font-weight:600;color:#e2e8f0">3491</td>
+          <td>1480.0</td>
+          <td><span style="color:#ef4444">-2.63%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#f59e0b;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">出貨</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">19.4億</td>
+        </tr>
+        <tr>
+          <td>16</td>
+          <td style="font-weight:600;color:#e2e8f0">5536</td>
+          <td>888.0</td>
+          <td><span style="color:#10b981">+2.66%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#10b981;font-weight:600">多攻</span></td>
+          <td><span style="background:#f59e0b;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">出貨</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">18.7億</td>
+        </tr>
+        <tr>
+          <td>17</td>
+          <td style="font-weight:600;color:#e2e8f0">2883</td>
+          <td>39.3</td>
+          <td><span style="color:#ef4444">-2.84%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#10b981;font-weight:600">多攻</span></td>
+          <td><span style="background:#f59e0b;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">出貨</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">18.7億</td>
+        </tr>
+        <tr>
+          <td>18</td>
+          <td style="font-weight:600;color:#e2e8f0">3260</td>
+          <td>384.0</td>
+          <td><span style="color:#ef4444">-1.29%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#ef4444;font-weight:600">空攻</span></td>
+          <td><span style="background:#f59e0b;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">出貨</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">17.8億</td>
+        </tr>
+        <tr>
+          <td>19</td>
+          <td style="font-weight:600;color:#e2e8f0">009816</td>
+          <td>16.52</td>
+          <td><span style="color:#10b981">+0.30%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#ef4444;font-weight:600">空攻</span></td>
+          <td><span style="background:#f59e0b;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">出貨</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">16.2億</td>
+        </tr>
+        <tr>
+          <td>20</td>
+          <td style="font-weight:600;color:#e2e8f0">5871</td>
+          <td>108.0</td>
+          <td><span style="color:#ef4444">-2.26%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#10b981;font-weight:600">多攻</span></td>
+          <td><span style="background:#f59e0b;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">出貨</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">16.2億</td>
+        </tr>
+        <tr>
+          <td>21</td>
+          <td style="font-weight:600;color:#e2e8f0">1802</td>
+          <td>58.8</td>
+          <td><span style="color:#ef4444">-2.16%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#f59e0b;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">出貨</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">15.9億</td>
+        </tr>
+        <tr>
+          <td>22</td>
+          <td style="font-weight:600;color:#e2e8f0">6672</td>
+          <td>302.0</td>
+          <td><span style="color:#ef4444">-2.58%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#f59e0b;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">出貨</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">15.3億</td>
+        </tr>
+        <tr>
+          <td>23</td>
+          <td style="font-weight:600;color:#e2e8f0">2324</td>
+          <td>37.05</td>
+          <td><span style="color:#ef4444">-1.46%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#f59e0b;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">出貨</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">14.2億</td>
+        </tr>
+        <tr>
+          <td>24</td>
+          <td style="font-weight:600;color:#e2e8f0">2489</td>
+          <td>41.95</td>
+          <td><span style="color:#ef4444">-2.44%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#f59e0b;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">出貨</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">12.6億</td>
+        </tr>
+        <tr>
+          <td>25</td>
+          <td style="font-weight:600;color:#e2e8f0">6443</td>
+          <td>28.4</td>
+          <td><span style="color:#10b981">+1.25%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#f59e0b;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">出貨</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">12.5億</td>
+        </tr>
+        <tr>
+          <td>26</td>
+          <td style="font-weight:600;color:#e2e8f0">1301</td>
+          <td>64.6</td>
+          <td><span style="color:#ef4444">-0.92%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#9ca3af;font-weight:600">中性</span></td>
+          <td><span style="background:#f59e0b;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">出貨</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">11.9億</td>
+        </tr>
+        <tr>
+          <td>27</td>
+          <td style="font-weight:600;color:#e2e8f0">6139</td>
+          <td>715.0</td>
+          <td><span style="color:#ef4444">-0.42%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#9ca3af;font-weight:600">中性</span></td>
+          <td><span style="background:#f59e0b;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">出貨</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">11.8億</td>
+        </tr>
+        <tr>
+          <td>28</td>
+          <td style="font-weight:600;color:#e2e8f0">2406</td>
+          <td>30.1</td>
+          <td><span style="color:#ef4444">-0.99%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#f59e0b;font-weight:600">雙增</span></td>
+          <td><span style="background:#f59e0b;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">出貨</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">10.0億</td>
+        </tr>
+        <tr>
+          <td>29</td>
+          <td style="font-weight:600;color:#e2e8f0">00878</td>
+          <td>35.21</td>
+          <td><span style="color:#10b981">+0.28%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#10b981;font-weight:600">多攻</span></td>
+          <td><span style="background:#f59e0b;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">出貨</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">8.8億</td>
+        </tr>
+        <tr>
+          <td>30</td>
+          <td style="font-weight:600;color:#e2e8f0">3131</td>
+          <td>2410.0</td>
+          <td><span style="color:#ef4444">-2.23%</span></td>
+          <td><span style="color:#f59e0b;font-weight:600">爆量</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#f59e0b;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">出貨</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">6.5億</td>
+        </tr></tbody>
+    </table>
+    <p style="color:#64748b;font-size:.8rem;padding:.6rem .75rem;background:#1e293b;border-top:1px solid #0f172a">共 46 檔，依法人分 + 成交額排序，僅顯示前 30 名</p>
+</section>
+
+<section>
+  <h2 style="color:#ef4444">Phase 4 退潮<span class="badge" style="background:#ef4444">624</span></h2>
+  <p style="color:#9ca3af;margin-bottom:1rem">法人賣超 + 縮量 + 跌破成本，弱勢避開</p>
+  
+    <table>
+      <thead><tr>
+        <th>#</th>
+        <th>代號</th><th>收盤</th><th>漲跌%</th>
+        <th>量能</th><th>法人分</th><th>融借信號</th><th>Phase</th><th>成交額</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td style="font-weight:600;color:#e2e8f0">3706</td>
+          <td>79.3</td>
+          <td><span style="color:#ef4444">-0.63%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#9ca3af;font-weight:600">中性</span></td>
+          <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">退潮</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">4.4億</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td style="font-weight:600;color:#e2e8f0">00922</td>
+          <td>43.71</td>
+          <td><span style="color:#10b981">+0.74%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#ef4444;font-weight:600">空攻</span></td>
+          <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">退潮</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">4.3億</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td style="font-weight:600;color:#e2e8f0">4951</td>
+          <td>92.9</td>
+          <td><span style="color:#ef4444">-6.82%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#10b981;font-weight:600">多攻</span></td>
+          <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">退潮</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">4.3億</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td style="font-weight:600;color:#e2e8f0">00930</td>
+          <td>24.81</td>
+          <td><span style="color:#10b981">+0.32%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#10b981;font-weight:600">多攻</span></td>
+          <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">退潮</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">4.2億</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td style="font-weight:600;color:#e2e8f0">2332</td>
+          <td>20.2</td>
+          <td><span style="color:#ef4444">-1.70%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#10b981;font-weight:600">多攻</span></td>
+          <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">退潮</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">3.9億</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td style="font-weight:600;color:#e2e8f0">2399</td>
+          <td>47.5</td>
+          <td><span style="color:#ef4444">-3.94%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#10b981;font-weight:600">多攻</span></td>
+          <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">退潮</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">3.9億</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td style="font-weight:600;color:#e2e8f0">8054</td>
+          <td>86.1</td>
+          <td><span style="color:#10b981">+1.41%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#10b981;font-weight:600">多攻</span></td>
+          <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">退潮</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">3.8億</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td style="font-weight:600;color:#e2e8f0">6209</td>
+          <td>77.1</td>
+          <td><span style="color:#ef4444">-2.53%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">退潮</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">3.7億</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td style="font-weight:600;color:#e2e8f0">6781</td>
+          <td>1015.0</td>
+          <td><span style="color:#10b981">+0.50%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#9ca3af;font-weight:600">中性</span></td>
+          <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">退潮</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">3.7億</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td style="font-weight:600;color:#e2e8f0">2428</td>
+          <td>255.0</td>
+          <td><span style="color:#ef4444">-1.35%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#9ca3af;font-weight:600">中性</span></td>
+          <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">退潮</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">3.6億</td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td style="font-weight:600;color:#e2e8f0">7750</td>
+          <td>1945.0</td>
+          <td><span style="color:#ef4444">-0.77%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#9ca3af;font-weight:600">中性</span></td>
+          <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">退潮</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">3.4億</td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td style="font-weight:600;color:#e2e8f0">2474</td>
+          <td>210.0</td>
+          <td><span style="color:#ef4444">-0.47%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">退潮</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">3.2億</td>
+        </tr>
+        <tr>
+          <td>13</td>
+          <td style="font-weight:600;color:#e2e8f0">2371</td>
+          <td>29.45</td>
+          <td><span style="color:#ef4444">-1.83%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">退潮</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">3.2億</td>
+        </tr>
+        <tr>
+          <td>14</td>
+          <td style="font-weight:600;color:#e2e8f0">1717</td>
+          <td>71.0</td>
+          <td><span style="color:#ef4444">-0.98%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">退潮</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">3.2億</td>
+        </tr>
+        <tr>
+          <td>15</td>
+          <td style="font-weight:600;color:#e2e8f0">1504</td>
+          <td>68.6</td>
+          <td><span style="color:#ef4444">-0.72%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">退潮</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">3.2億</td>
+        </tr>
+        <tr>
+          <td>16</td>
+          <td style="font-weight:600;color:#e2e8f0">00708L</td>
+          <td>78.05</td>
+          <td><span style="color:#ef4444">-1.33%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">退潮</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">3.1億</td>
+        </tr>
+        <tr>
+          <td>17</td>
+          <td style="font-weight:600;color:#e2e8f0">8042</td>
+          <td>111.5</td>
+          <td><span style="color:#9ca3af">+0.00%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#ef4444;font-weight:600">空攻</span></td>
+          <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">退潮</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">3.1億</td>
+        </tr>
+        <tr>
+          <td>18</td>
+          <td style="font-weight:600;color:#e2e8f0">2834</td>
+          <td>18.25</td>
+          <td><span style="color:#ef4444">-0.54%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#ef4444;font-weight:600">空攻</span></td>
+          <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">退潮</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">3.0億</td>
+        </tr>
+        <tr>
+          <td>19</td>
+          <td style="font-weight:600;color:#e2e8f0">3019</td>
+          <td>135.0</td>
+          <td><span style="color:#ef4444">-0.74%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">退潮</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">2.6億</td>
+        </tr>
+        <tr>
+          <td>20</td>
+          <td style="font-weight:600;color:#e2e8f0">6425</td>
+          <td>72.7</td>
+          <td><span style="color:#ef4444">-3.07%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#f59e0b;font-weight:600">雙增</span></td>
+          <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">退潮</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">2.5億</td>
+        </tr>
+        <tr>
+          <td>21</td>
+          <td style="font-weight:600;color:#e2e8f0">2241</td>
+          <td>41.05</td>
+          <td><span style="color:#10b981">+9.91%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#f59e0b;font-weight:600">雙增</span></td>
+          <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">退潮</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">2.5億</td>
+        </tr>
+        <tr>
+          <td>22</td>
+          <td style="font-weight:600;color:#e2e8f0">6829</td>
+          <td>210.0</td>
+          <td><span style="color:#ef4444">-3.45%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#f59e0b;font-weight:600">雙增</span></td>
+          <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">退潮</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">2.5億</td>
+        </tr>
+        <tr>
+          <td>23</td>
+          <td style="font-weight:600;color:#e2e8f0">5386</td>
+          <td>281.5</td>
+          <td><span style="color:#ef4444">-2.09%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">退潮</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">2.4億</td>
+        </tr>
+        <tr>
+          <td>24</td>
+          <td style="font-weight:600;color:#e2e8f0">3339</td>
+          <td>46.1</td>
+          <td><span style="color:#ef4444">-4.95%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#ef4444;font-weight:600">空攻</span></td>
+          <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">退潮</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">2.3億</td>
+        </tr>
+        <tr>
+          <td>25</td>
+          <td style="font-weight:600;color:#e2e8f0">2385</td>
+          <td>104.0</td>
+          <td><span style="color:#ef4444">-1.42%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#9ca3af;font-weight:600">中性</span></td>
+          <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">退潮</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">2.3億</td>
+        </tr>
+        <tr>
+          <td>26</td>
+          <td style="font-weight:600;color:#e2e8f0">3312</td>
+          <td>55.0</td>
+          <td><span style="color:#10b981">+0.55%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#9ca3af;font-weight:600">中性</span></td>
+          <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">退潮</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">2.3億</td>
+        </tr>
+        <tr>
+          <td>27</td>
+          <td style="font-weight:600;color:#e2e8f0">3049</td>
+          <td>12.85</td>
+          <td><span style="color:#10b981">+2.39%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#10b981;font-weight:600">多攻</span></td>
+          <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">退潮</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">2.2億</td>
+        </tr>
+        <tr>
+          <td>28</td>
+          <td style="font-weight:600;color:#e2e8f0">3704</td>
+          <td>41.3</td>
+          <td><span style="color:#ef4444">-2.02%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">退潮</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">2.2億</td>
+        </tr>
+        <tr>
+          <td>29</td>
+          <td style="font-weight:600;color:#e2e8f0">1409</td>
+          <td>24.1</td>
+          <td><span style="color:#ef4444">-1.43%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#6b7280;font-weight:600">雙減</span></td>
+          <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">退潮</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">2.2億</td>
+        </tr>
+        <tr>
+          <td>30</td>
+          <td style="font-weight:600;color:#e2e8f0">3289</td>
+          <td>138.5</td>
+          <td><span style="color:#10b981">+1.47%</span></td>
+          <td><span style="color:#9ca3af">正常</span></td>
+          <td style="color:#ef4444;font-weight:600">-1</td>
+          <td><span style="color:#10b981;font-weight:600">多攻</span></td>
+          <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8em">退潮</span></td>
+          <td style="color:#9ca3af;font-size:0.85em">2.2億</td>
+        </tr></tbody>
+    </table>
+    <p style="color:#64748b;font-size:.8rem;padding:.6rem .75rem;background:#1e293b;border-top:1px solid #0f172a">共 624 檔，依法人分 + 成交額排序，僅顯示前 30 名</p>
+</section>
+
+<footer style="margin-top:3rem;padding-top:1rem;border-top:1px solid #1e293b;color:#475569;font-size:.8rem">
+  Generated by CTC 籌碼追蹤系統 · 2026-09-22
+</footer>
+</body>
+</html>
