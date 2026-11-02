@@ -24,24 +24,28 @@ from pathlib import Path
 from datetime import datetime
 
 TOOLS_OUTPUT = Path(r"C:\Users\USER\Claude\Projects\美股研究工具系統\output")
-HUB_DIR      = Path(__file__).parent
-INDEX        = HUB_DIR / "index.html"
-DEST_DIR     = HUB_DIR / "us-tools"
-MARKER       = "// ← publish_us_tools.py 會自動在這裡插入新紀錄"
+HUB_DIR = Path(__file__).parent
+INDEX = HUB_DIR / "index.html"
+DEST_DIR = HUB_DIR / "us-tools"
+MARKER = "// ← publish_us_tools.py 會自動在這裡插入新紀錄"
 
 SECTIONS = [
-    ("form4",  "A — Form 4 內部人交易"),
+    ("form4", "A — Form 4 內部人交易"),
     ("sector", "C — 板塊 ETF 資金流向"),
-    ("radar",  "D — 美股趨勢雷達"),
-    ("13dg",   "E — 13D/13G 機構申報"),
-    ("13f",    "G — 13F 狼群偵測（季報快照）"),
+    ("radar", "D — 美股趨勢雷達"),
+    ("13dg", "E — 13D/13G 機構申報"),
+    ("13f", "G — 13F 狼群偵測（季報快照）"),
 ]
 
 
 def run(cmd: str):
     result = subprocess.run(
-        cmd, shell=True, cwd=HUB_DIR,
-        capture_output=True, text=True, encoding="utf-8",
+        cmd,
+        shell=True,
+        cwd=HUB_DIR,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
     )
     if result.returncode != 0:
         print(f"[ERROR] {result.stderr.strip()}")
@@ -86,7 +90,9 @@ def build_combined_html(date_str: str, compact: str) -> str:
             style, body = extract_parts(src)
 
         anchor = f"ust-{key.replace('/', '-')}"
-        nav_links.append(f'<a href="#{anchor}">{label.split("—")[1].strip() if "—" in label else label}</a>')
+        nav_links.append(
+            f'<a href="#{anchor}">{label.split("—")[1].strip() if "—" in label else label}</a>'
+        )
         all_styles.append(style)
         sections_html.append(f"""
 <div id="{anchor}">
@@ -137,7 +143,7 @@ body {{ background: #0d1117; color: #e6edf3; font-family: "Microsoft JhengHei", 
 def inject(date_str: str, filename: str) -> bool:
     content = INDEX.read_text(encoding="utf-8")
     start = content.find("const US_TOOLS_REPORTS = [")
-    end   = content.find("];", start) if start != -1 else -1
+    end = content.find("];", start) if start != -1 else -1
     if start == -1:
         print("[WARN] 找不到 US_TOOLS_REPORTS 陣列，略過注入")
         return False
@@ -178,7 +184,14 @@ def main():
         print(f"[OK] index.html 已更新")
 
     run("git add -A")
-    run(f'git commit -m "feat: 美股工具日報 {date_str}"')
+    # 重試時內容常與已推送版本相同，git commit 會回 exit 1 且只寫 stdout，造成假失敗
+    if (
+        subprocess.run("git diff --cached --quiet", shell=True, cwd=HUB_DIR).returncode
+        == 0
+    ):
+        print("[SKIP] 內容與已推送版本相同，不需 commit")
+    else:
+        run(f'git commit -m "feat: 美股工具日報 {date_str}"')
     run("git push")
     print(f"[OK] 已推送到 GitHub")
     print(f"直連：https://jasonstockresearch.github.io/research/us-tools/{filename}")
